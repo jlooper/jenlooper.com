@@ -1,0 +1,62 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = 'Projects';
+const description = 'Interesting Projects';
+const permalink = `${Astro.site.href}projects`;
+
+let allPosts = await Astro.glob('../../data/project-posts/*.md');
+allPosts = allPosts.sort((a, b) => new Date(b.frontmatter.publishDate).valueOf() - new Date(a.frontmatter.publishDate).valueOf());
+---
+
+<BaseLayout title={title} description={description} permalink={permalink} current="blog">
+  <main class="container">
+    <h1>Projects</h1>
+    {allPosts.map((post, index) => {
+      const href = `/projects/${post.file.split('/').pop().split('.').shift()}`;
+      return (
+        <article>
+          { index !== 0 && <hr /> }
+          <img src={post.frontmatter.image} alt="image"/>
+          <div class="post-item">
+            <h2>
+              <a href={post.frontmatter.href} target="_blank">{post.frontmatter.title}</a>
+            </h2>
+            <p>{post.frontmatter.description}</p>
+          </div>
+        </article>
+        <hr/>
+      )
+    })}
+  </main>
+</BaseLayout>
+
+<style>
+  h2,
+  .post-item-footer {
+    font-family: var(--font-family-sans);
+    font-weight: 700;
+  }
+
+  .post-item-date {
+    color: var(--text-secondary);
+    text-align: left;
+    text-transform: uppercase;
+    margin-right: 16px;
+  }
+
+  hr {
+    margin: 60px auto;
+  }
+  article {
+    align-items: center;
+    display: flex;
+  }
+  img {
+    width: 200px;
+    height: 200px;
+    border-radius: 100px;
+    display: block;
+    margin-right: 20px;
+  }
+</style>

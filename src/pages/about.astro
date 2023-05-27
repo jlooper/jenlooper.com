@@ -7,24 +7,19 @@ const permalink = `${Astro.site.href}about`;
 ---
 
 <BaseLayout title={title} description={description} permalink={permalink} current="about">
-  <div class="container">
-    <h1>About</h1>
+  <main class="container">
+    <h1>About Me</h1>
     <figure class="about-image">
-      <img src="/assets/about-illustration.webp" alt="Illustration of a notebook" width="330">
-      <figcaption>
-        Illustration by
-        <a href="https://icons8.com/illustrations/author/5c07e68d82bcbc0092519bb6" target="_blank" rel="noopener">Icons 8</a>
-        from
-        <a href="https://icons8.com/illustrations" target="_blank" rel="noopener">Ouch!</a>
-      </figcaption>
+      <img src="/assets/coffee.png" alt="Illustration of a smiling person with coffee" width="330">
     </figure>
-    <p>Text placeholder via <a href="https://jeffsum.com/" target="_blank">Jeffsum</a>.</p>
-    <p>So you two dig up, dig up dinosaurs? What do they got in there? King Kong? My dad once told me, laugh and the world laughs with you, Cry, and I'll give you something to cry about you little bastard! Life finds a way. God creates dinosaurs. God destroys dinosaurs. God creates Man. Man destroys God. Man creates Dinosaurs.</p>
-    <p>You really think you can fly that thing? You know what? It is beets. I've crashed into a beet truck. Forget the fat lady! You're obsessed with the fat lady! Drive us out of here! Is this my espresso machine? Wh-what is-h-how did you get my espresso machine?</p>
-    <p>Hey, you know how I'm, like, always trying to save the planet? Here's my chance. Hey, take a look at the earthlings. Goodbye! I was part of something special. Just my luck, no ice. You're a very talented young man, with your own clever thoughts and ideas. Do you need a manager?</p>
-    <p>Jaguar shark! So tell me - does it really exist? This thing comes fully loaded. AM/FM radio, reclining bucket seats, and... power windows. Yes, Yes, without the oops! You're a very talented young man, with your own clever thoughts and ideas. Do you need a manager?</p>
-    <p>Yes, Yes, without the oops! Do you have any idea how long it takes those cups to decompose. They're using our own satellites against us. And the clock is ticking. Do you have any idea how long it takes those cups to decompose. My dad once told me, laugh and the world laughs with you, Cry, and I'll give you something to cry about you little bastard!</p>
-  </div>
+    <p>Welcome! I'm the Head of Academic Advocacy at AWS and have over 23 years' experience as a web and mobile developer, specializing in creating cross-platform apps, often with an educational focus. I specialize in designing awesome curriculum on technical topics and am known for the quality of my educational content.</p>
+    <p>I'm a multilingual multiculturalist with a passion for hardware hacking, mobile apps, the frontend of the web and various JavaScript frameworks and meta-frameworks, applied machine learning and AI (as well as the ramifications!) and discovering new things every day.</p>
+    <p>I'm also an author of a textbook, <a href="https://www.amazon.com/Computer-Science-Kids-Storytelling-Approach/dp/1119912512/">Computer Science for Kids: A Storytelling Approach</a> for grades 6-8, aligned to CSTA standards. Learn more about this textbook at <a href="https://cs4kids.club">CS4Kids.club</a>.</p>
+    <p>You can usually find me on <a href="https://twitter.com/jenlooper">Twitter @jenlooper</a>.</p>
+    <p>I'm also active <a href="https://www.linkedin.com/in/jenlooper/">on LinkedIn.</a></p>
+    <p>Looking to contact me? You can simply <a href="mailto:jen.looper@gmail.com">email me</a>.</p>
+    <p>My resume can be found <a href="/assets/jlooper-resume.pdf">here</a>.</p>
+  </main>
 </BaseLayout>
 
 <style>

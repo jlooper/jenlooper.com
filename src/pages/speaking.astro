@@ -1,0 +1,74 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = 'Speaking';
+const description = 'Speaking.';
+const permalink = `${Astro.site.href}speaking`;
+---
+
+<BaseLayout title={title} description={description} permalink={permalink} current="speaking">
+  <main class="container">
+    <h1>Speaking</h1>
+    <figure class="about-image">
+      <img src="/assets/coffee.png" alt="Illustration of a smiling person with coffee" width="330">
+    </figure>
+    <p>I'm a well-known conference speaker. Here are a few of my talks, and a <a
+      class="underline"
+      href="https://www.youtube.com/playlist?list=PL8bLS57CI8i2idWqYbsvu9IOwjTGqReaa"
+      >link to my playlist on YouTube</a
+    >.</p>  
+    <p>If you'd like me to come speak at your conference, please <a href="mailto:jen.looper@gmail.com">email me</a>.</p>
+    <article>
+      <p></p>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/ToHsJPcgKdI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </article>
+    <article>
+      <p></p>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/4Zhjy3Mdtbc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </article>
+    <article>
+      <p></p>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/SgBDEydZb4A" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </article>
+    <article>
+      <p></p>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/wCU-kDlXY58" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </article>
+    <article>
+      <p></p>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/ZG7GtgfUS6g" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </article>
+    <article>
+      <p></p>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/1Kqtg1Mw2wc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </article>
+    <article>
+      <p></p>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/H4Rnh01ywJk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </article>
+    <article>
+      <p></p>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/dJTRjBHFLFU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </article>
+  </main>
+</BaseLayout>
+
+<style>
+  .about-image {
+    float: right;
+    margin: -3em -7em 2em 2em;
+    max-width: 300px;
+  }
+
+  .about-image img {
+    border-radius: 8px;
+    margin-bottom: 1.5em;
+  }
+
+  @media (max-width: 1020px) {
+    .about-image {
+      float: none;
+      margin: 0 auto 2em;
+    }
+  }
+</style>

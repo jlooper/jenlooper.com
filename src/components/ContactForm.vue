@@ -45,7 +45,7 @@
         </div>
         <div>
           <div>
-            <label class="font-semibold mb-2 text-gray-600" for="grid-email"
+            <label for="grid-email"
               >Email</label
             >
             <input
@@ -83,7 +83,6 @@
             <button
               type="submit"
               :disabled="!valid"
-              class="shadow font-sans bg-gray-600 hover:bg-gray-800 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
             >
               Submit
             </button>

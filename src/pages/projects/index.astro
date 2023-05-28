@@ -9,7 +9,7 @@ let allPosts = await Astro.glob('../../data/project-posts/*.md');
 allPosts = allPosts.sort((a, b) => new Date(b.frontmatter.publishDate).valueOf() - new Date(a.frontmatter.publishDate).valueOf());
 ---
 
-<BaseLayout title={title} description={description} permalink={permalink} current="blog">
+<BaseLayout title={title} description={description} permalink={permalink} current="projects">
   <main class="container">
     <h1>Projects</h1>
     {allPosts.map((post, index) => {
@@ -17,7 +17,7 @@ allPosts = allPosts.sort((a, b) => new Date(b.frontmatter.publishDate).valueOf()
       return (
         <article>
           { index !== 0 && <hr /> }
-          <img src={post.frontmatter.image} alt="image"/>
+          <img src={post.frontmatter.image} alt="image reflecting the content of the blogpost"/>
           <div class="post-item">
             <h2>
               <a href={post.frontmatter.href} target="_blank">{post.frontmatter.title}</a>

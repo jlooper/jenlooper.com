@@ -1,23 +1,20 @@
-import { defineConfig } from 'astro/config'
-import svelte from '@astrojs/svelte'
-import mdx from '@astrojs/mdx'
+import { defineConfig } from 'astro/config';
+import svelte from '@astrojs/svelte';
+import mdx from '@astrojs/mdx';
+
+import vue from "@astrojs/vue";
 
 // https://astro.build/config
 export default defineConfig({
   site: 'https://astro-blog-template.netlify.app',
-  integrations: [mdx(), svelte()],
+  integrations: [mdx(), svelte(), vue()],
   markdown: {
     shikiConfig: {
-      theme: 'nord',
+      theme: 'nord'
     },
     remarkPlugins: ['remark-gfm', 'remark-smartypants'],
-    rehypePlugins: [
-      [
-        'rehype-external-links',
-        {
-          target: '_blank',
-        },
-      ],
-    ],
-  },
-})
+    rehypePlugins: [['rehype-external-links', {
+      target: '_blank'
+    }]]
+  }
+});

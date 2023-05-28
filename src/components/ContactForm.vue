@@ -1,9 +1,7 @@
 <template>
     <section>
       
-      <div v-if="submitted">
-        <p>Thank you for your email, I will get back to you as soon as I can.</p>
-      </div>
+        <p v-if="submitted">Thank you for your email, I will get back to you as soon as I can.</p>
   
       <form
         @submit.prevent="handleSubmit"
@@ -13,8 +11,7 @@
         data-netlify="true"
         data-netlify-honeypot="bot-field"
       >
-        <div>
-          <div>
+        
             <label for="grid-first-name"
               >First Name</label
             >
@@ -27,8 +24,7 @@
               name="firstName"
               required
             />
-          </div>
-          <div>
+         
             <label for="grid-last-name"
               >Last Name</label
             >
@@ -41,10 +37,7 @@
               name="lastName"
               required
             />
-          </div>
-        </div>
-        <div>
-          <div>
+          
             <label for="grid-email"
               >Email</label
             >
@@ -57,10 +50,7 @@
               name="email"
               required
             />
-          </div>
-        </div>
-        <div>
-          <div>
+         
             <label for="grid-message"
               >Message</label
             >
@@ -75,19 +65,14 @@
               name="message"
               required
             ></textarea>
-          </div>
-        </div>
-  
-        <div>
-          <div >
+         
             <button
               type="submit"
               :disabled="!valid"
             >
               Submit
             </button>
-          </div>
-        </div>
+         
       </form>
     </section>
   </template>
@@ -159,7 +144,7 @@
     width: 100%;
     text-indent:1em;
     padding: 1em;
-    margin: 1em;
+    margin-bottom: 1em;
     border: 2px solid #eee;
     border-radius: 4px;
   }

@@ -6,7 +6,7 @@ import vue from "@astrojs/vue";
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://astro-blog-template.netlify.app',
+  site: 'https://jenlooper.com',
   integrations: [mdx(), svelte(), vue()],
   markdown: {
     shikiConfig: {

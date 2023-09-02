@@ -10,15 +10,15 @@
     "astro": "astro"
   },
   "devDependencies": {
-    "@astrojs/mdx": "^0.19.3",
-    "@astrojs/svelte": "^2.2.0",
-    "astro": "^2.5.5",
+    "@astrojs/mdx": "^1.0.0",
+    "@astrojs/svelte": "^4.0.0",
+    "astro": "^3.0.7",
     "rehype-external-links": "^2.1.0"
   },
   "dependencies": {
-    "@astrojs/vue": "^2.2.0",
+    "@astrojs/vue": "^3.0.0",
     "reading-time": "^1.5.0",
-    "svelte": "^3.59.1",
+    "svelte": "^4.2.0",
     "vue": "^3.3.4"
   }
 }

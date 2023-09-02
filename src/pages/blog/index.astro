@@ -12,6 +12,9 @@ allPosts = allPosts.sort((a, b) => new Date(b.frontmatter.publishDate).valueOf()
 <BaseLayout title={title} description={description} permalink={permalink} current="blog">
   <div class="container">
     <h1>Articles</h1>
+    <p>Many of my articles are published on <a href="https://dev.to/jenlooper">Dev.to</a>. Other articles that I've written for my current company are <a href="https://community.aws/posts/build-an-affirmation-app">here</a> (search for 'Looper').</p>
+    <hr>
+    
     {allPosts.map((post, index) => {
       const href = `/blog/${post.file.split('/').pop().split('.').shift()}`;
       return (

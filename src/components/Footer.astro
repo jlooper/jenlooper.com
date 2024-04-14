@@ -1,17 +1,16 @@
-<footer>
-  <span>
-    &copy; {new Date().getFullYear()} Jen Looper. <a href='/credits'>Credits</a>
-  </span>
-</footer>
+---
 
-<style>
-  footer {
-    color: var(--text-secondary);
-    font-size: .8em;
-    margin: 1em auto;
-    max-width: 1400px;
-    padding: 1em 2em;
-    text-align: center;
-    width: 100%;
-  }
-</style>
+const currentYear = new Date().getFullYear()
+---
+
+<footer>
+  <section class="py-8">
+    <div class="container">
+      <p>
+        &copy; {currentYear} - <a
+          href="https://github.com/jenlooper">Jen Looper</a
+        >. Accessible Astro theme by Mark Teekman.
+      </p>
+    </div>
+  </section>
+</footer>

@@ -1,0 +1,38 @@
+---
+const { src = '/seated.png' } = Astro.props
+---
+
+<section class="hero my-12">
+  <div class="container">
+    <div class="grid grid-cols-1 items-center gap-6 lg:grid-cols-2">
+      <div class="flex flex-col items-center gap-8 md:items-start">
+        <h1 class="text-center text-6xl md:text-left lg:text-8xl">
+          <slot><span class="text-gradient">Hi, I'm Jen!</span></slot>
+        </h1>
+        <h2 class="flex flex-col gap-3 min-[500px]:flex-row">
+          I'm the Head of Academic Advocacy at AWS
+        </h2>
+        <h3 class="flex flex-col gap-3 min-[500px]:flex-row">
+          I'm an author and an educator. Let's learn from each other!
+        </h3>
+      </div>
+      <img class="hidden lg:block" src={src} alt="" decoding="async" />
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  .text-gradient {
+    background: linear-gradient(315deg, var(--primary-200) 25%, var(--secondary-500));
+    background-clip: border-box;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  :global(.darkmode .text-gradient) {
+    background: linear-gradient(315deg, var(--primary-200) 25%, var(--secondary-400));
+    background-clip: border-box;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+</style>

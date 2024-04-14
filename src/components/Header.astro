@@ -1,21 +1,52 @@
 ---
-import Logo from './Logo.astro'
-import Nav from './Nav.astro'
-
-const { current = '' } = Astro.props;
+import Navigation from '../components/Navigation.astro'
+import { SkipLinks } from 'accessible-astro-components'
 ---
 
-<style>
+<header>
+  <SkipLinks />
+  <Navigation>
+    <li class="menu-item">
+      <a href="/about/">About</a>
+    </li>
+    <li class="menu-item">
+      <a href="/projects/">Projects</a>
+    </li>
+    <li class="menu-item">
+      <a href="/blog/">Writing</a>
+    </li>
+    <li class="menu-item">
+      <a href="/speaking/">Speaking</a>
+    </li>
+    <li class="menu-item">
+      <a href="/contact/">Contact</a>
+    </li>
+    
+  </Navigation>
+</header>
+
+<style lang="scss" is:global>
+  @use '../assets/scss/base/outline' as *;
+
   header {
-    display: flex;
-    margin: 0 auto;
-    max-width: 1400px;
-    padding: 2em;
-    width: 100%;
+    .type-icon a {
+      display: block;
+
+      [data-icon] {
+        height: auto;
+        margin-top: -4px;
+        width: 30px;
+
+        path {
+          fill: var(--action-color);
+        }
+      }
+
+      &:hover {
+        [data-icon] path {
+          fill: var(--action-color-state);
+        }
+      }
+    }
   }
 </style>
-
-<header>
-  <Logo />
-  <Nav current={current} />
-</header>

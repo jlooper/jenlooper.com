@@ -1,0 +1,33 @@
+---
+import DefaultLayout from '../layouts/DefaultLayout.astro'
+import ContentMedia from '../components/ContentMedia.astro'
+---
+<DefaultLayout title="Projects">
+  <section class="my-12">
+    <div class="space-content container">
+  <h1>Projects</h1>
+  <ContentMedia imgSrc="/illus.jpg">
+    <h2>The Illustrated AWS Cloud</h2>
+    <p class="text-2xl">
+      In this book from Wiley, learn all about the AWS Cloud and prepare for the Cloud Practitioner Exam, learning Cloud fundamentals alongside Jen (storyteller) and Denise Yu (illustrator). This book doubles as a coloring book!
+    </p>
+    <p class="text-2xl">Learn more <a href="https://illustratedaws.cloud">here</a>.</p>
+  </ContentMedia>
+  <ContentMedia imgSrc="/cs4kids.png">
+    <h2>Computer Science for Kids: A Storytelling Approach</h2>
+    <p class="text-2xl">
+      Aligned for grades 6-8, this textbook is for sale on Amazon and at a bookstore near you. It's a rethinking of the Middle School Computer Science curriculum and includes a web site and GitHub code in a project-based, storytelling-infused format. Watch for the 'hidden curriculum' featuring sustainability!
+    </p>
+    <p class="text-2xl">Learn more <a href="https://cs4kids.club">here</a>.</p>
+  </ContentMedia>
+  <ContentMedia imgSrc="/cc.png">
+    <h2>AWS Cloud Clubs</h2>
+    <p class="text-2xl">
+      In February of 2023 my team at AWS launched AWS Cloud Clubs worldwide. We have grown immensely since then and are a global phenomenon.
+    </p>
+    <p class="text-2xl">Learn more <a href=https://www.meetup.com/pro/cloud-clubs/">here</a>.</p>
+  </ContentMedia>
+  ...more coming soon!
+  </div>
+</section>
+</DefaultLayout>

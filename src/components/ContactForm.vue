@@ -135,7 +135,7 @@
   form {
     display: flex;
     flex-direction: column;
-    width: min(32rem, 100%);
+    /*width: min(32rem, 100%);*/
     margin-left: auto;
     margin-right: auto;
   }

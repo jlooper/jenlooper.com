@@ -1,15 +1,13 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import DefaultLayout from '../layouts/DefaultLayout.astro'
 import ContactForm from '../components/ContactForm.vue';
-const title = 'Contact Me';
-const description = 'Contact Me';
-const permalink = `${Astro.site.href}contact`;
 ---
 
-<BaseLayout title={title} description={description} permalink={permalink} current="credits">
- 
-  <main class="container">
-    <h1>Contact Me</h2>
-    <ContactForm client:load /></main>
-</BaseLayout>
-
+<DefaultLayout title="Contact Me">
+   
+    <main class="container">
+      <h1>Contact Me</h2>
+      <ContactForm client:load /></main>
+   
+  
+</DefaultLayout>

@@ -1,8 +1,13 @@
 ---
 import DefaultLayout from '../../layouts/DefaultLayout.astro'
 import { Card } from 'accessible-astro-components'
-
-
+export async function getStaticPaths() {
+  const posts = await Astro.glob('../../data/*.md');
+  return posts.map(p => ({
+    params: { slug: p.file.split('/').pop().split('.').shift() },
+    props: { post: p },
+  }));
+}
 const { Content, frontmatter } = Astro.props.post;
 
 ---

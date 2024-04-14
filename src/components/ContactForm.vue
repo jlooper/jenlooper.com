@@ -9,7 +9,6 @@
  
       <form v-else
         @submit.prevent="handleSubmit"
-        netlify
         name="contact-me"
         method="post"
         data-netlify="true"
@@ -69,6 +68,8 @@
               name="message"
               required
             ></textarea>
+
+            <input type="hidden" name="form-name" value="contact-us" />
          
             <button
               type="submit"

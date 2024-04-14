@@ -1,9 +1,13 @@
 <template>
     <section>
       
-        <p v-if="submitted">Thank you for your email, I will get back to you as soon as I can.</p>
-  
-      <form
+      <div v-if="submitted" class="bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3" role="alert">
+        <p class="font-bold">Thank you!</p>
+        <p class="text-sm">Thank you for your email, I will get back to you as soon as I can.</p>
+      </div>
+
+ 
+      <form v-else
         @submit.prevent="handleSubmit"
         netlify
         name="contact-me"
@@ -135,7 +139,6 @@
   form {
     display: flex;
     flex-direction: column;
-    /*width: min(32rem, 100%);*/
     margin-left: auto;
     margin-right: auto;
   }

@@ -69,7 +69,7 @@
               required
             ></textarea>
 
-            <input type="hidden" name="form-name" value="contact-us" />
+            <input type="hidden" name="form-name" value="contact-me" />
          
             <button
               type="submit"

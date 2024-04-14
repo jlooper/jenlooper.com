@@ -33,6 +33,7 @@
     "tailwindcss": "^3.2.7"
   },
   "dependencies": {
+    "@astrojs/netlify": "^5.2.0",
     "@astrojs/vue": "^4.1.0",
     "@vitejs/plugin-vue": "^5.0.4",
     "vue": "^3.4.21"

@@ -11,6 +11,6 @@ export default defineConfig({
   integrations: [mdx(), icon(), tailwind({
     applyBaseStyles: false
   }), compress()],
-  output: "server",
+  //output: "server",
   adapter: netlify()
 });

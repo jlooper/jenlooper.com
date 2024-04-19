@@ -16,6 +16,7 @@ import DefaultLayout from "../layouts/DefaultLayout.astro"
         method="POST"
         action="/success"
       >
+    <input type="hidden" name="form-name" value="feedback" />
     <p class="hidden">
       <label>
         Don’t fill this out if you’re human: <input name="bot-field" />

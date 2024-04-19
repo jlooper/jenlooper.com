@@ -15,14 +15,12 @@ import DefaultLayout from "../layouts/DefaultLayout.astro"
         name="feedback"
         method="POST"
         action="/success"
-        data-netlify="true"
       >
     <p class="hidden">
       <label>
         Don’t fill this out if you’re human: <input name="bot-field" />
       </label>
     </p>
-    <input type="hidden" name="form-name" value="feedback" />
     <label for="name">Name</label>
     <input id="name" type="text" name="name" required/>
     <label for="email">Email</label>

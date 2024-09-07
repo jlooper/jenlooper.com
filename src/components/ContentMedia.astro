@@ -1,17 +1,16 @@
 ---
 import { Media } from 'accessible-astro-components'
 
-const { imgSrc, reverseImg = false } = Astro.props
+const { imgSrc, author = null} = Astro.props
 ---
 
 <section class="my-20">
   <div class="container">
     <div class="grid grid-cols-1 gap-12 md:grid-cols-2">
-      {!reverseImg ? <Media src={imgSrc} /> : ''}
+      <Media class={author} src={imgSrc} />
       <div class="space-content flex flex-col justify-center">
         <slot />
       </div>
-      {reverseImg ? <Media src={imgSrc} /> : ''}
     </div>
     <hr class="my-10"/>
   </div>

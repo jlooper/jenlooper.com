@@ -1,5 +1,5 @@
 ---
-const { src = '/seated.png' } = Astro.props
+const { src = "/seated.png" } = Astro.props;
 ---
 
 <section class="hero my-12">
@@ -10,11 +10,10 @@ const { src = '/seated.png' } = Astro.props
           <slot><span class="text-gradient">Hi, I'm Jen!</span></slot>
         </h1>
         <h2 class="flex flex-col gap-3 min-[500px]:flex-row">
-          I'm the Head of Academic Advocacy at AWS
+          I'm an author and an educator. I've built excellent curriculum at
+          Microsoft and AWS, and led the creation of student communities with
+          thousands of members. Let's learn from each other!
         </h2>
-        <h3 class="flex flex-col gap-3 min-[500px]:flex-row">
-          I'm an author and an educator. Let's learn from each other!
-        </h3>
       </div>
       <img class="hidden lg:block" src={src} alt="" decoding="async" />
     </div>
@@ -23,14 +22,22 @@ const { src = '/seated.png' } = Astro.props
 
 <style lang="scss">
   .text-gradient {
-    background: linear-gradient(315deg, var(--primary-200) 25%, var(--secondary-500));
+    background: linear-gradient(
+      315deg,
+      var(--primary-200) 25%,
+      var(--secondary-500)
+    );
     background-clip: border-box;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
 
   :global(.darkmode .text-gradient) {
-    background: linear-gradient(315deg, var(--primary-200) 25%, var(--secondary-400));
+    background: linear-gradient(
+      315deg,
+      var(--primary-200) 25%,
+      var(--secondary-400)
+    );
     background-clip: border-box;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;

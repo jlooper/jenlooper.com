@@ -10,10 +10,13 @@ const { src = "/seated.png" } = Astro.props;
           <slot><span class="text-gradient">Hi, I'm Jen!</span></slot>
         </h1>
         <h2 class="flex flex-col gap-3 min-[500px]:flex-row">
-          I'm an author and an educator. I've built excellent curriculum at
+          I'm an author and an educator.
+        </h2>
+        <h3 class="flex flex-col gap-3 min-[500px]:flex-row">
+          I've founded a nonprofit, written books, built excellent curriculum at
           Microsoft and AWS, and led the creation of student communities with
           thousands of members. Let's learn from each other!
-        </h2>
+        </h3>
       </div>
       <img class="hidden lg:block" src={src} alt="" decoding="async" />
     </div>

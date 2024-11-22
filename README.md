@@ -1,3 +1,3 @@
 # Jen Looper
 
-Hello, this is my web site!
+Hello, this is my website!

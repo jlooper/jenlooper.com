@@ -6,12 +6,34 @@ import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
 
 const {
-  title = 'Jen Looper - Head of Academic Advocacy at AWS - Author - Educator',
-  description = 'Author, Educator, and Head of Academic Advocacy at AWS, this is Jen Looper\'s home online',
+  title = 'Jen Looper - Technologist - Author - Educator',
+  description = 'Author, Educator, and Technologist, this is Jen Looper\'s home online',
   url,
   image = '/social-preview-image.png',
   author = 'Jen Looper',
 } = Astro.props
+
+const slideoutScript = `
+  function toggleJenAI() {
+    const panel = document.getElementById('jenai-slideout');
+    const button = document.getElementById('jenai-button');
+    const isOpen = panel.classList.contains('translate-x-0');
+    
+    if (isOpen) {
+      // Close panel
+      panel.classList.remove('translate-x-0');
+      panel.classList.add('translate-x-full');
+      button.classList.remove('right-[400px]');
+      button.classList.add('right-0');
+    } else {
+      // Open panel
+      panel.classList.remove('translate-x-full');
+      panel.classList.add('translate-x-0');
+      button.classList.remove('right-0');
+      button.classList.add('right-[400px]');
+    }
+  }
+`;
 
 
 ---
@@ -35,8 +57,37 @@ const {
       author={author}
     />
     
+    <script set:html={slideoutScript} />
   </head>
   <body>
+    <div 
+      id="jenai-slideout"
+      class="fixed top-0 right-0 w-[400px] h-full bg-white dark:bg-gray-800 shadow-lg transform translate-x-full transition-transform duration-300 ease-in-out z-50"
+    >
+      <iframe
+        src="/assets/chat.html"
+        class="w-full h-full border-none"
+        title="JenAI Interface"
+      ></iframe>
+    </div>
+
+    <button
+      id="jenai-button"
+      onclick="toggleJenAI()"
+      class="fixed top-1/2 -translate-y-1/2 right-0 border-none bg-purple-600 text-white w-12 px-2 py-16 rounded-r-none hover:bg-purple-700 transition-all duration-300 z-50 flex items-center justify-center"
+    >
+      <span class="writing-mode-vertical text-lg font-semibold tracking-wide">JenAI</span>
+    </button>
+
+    <style>
+      .writing-mode-vertical {
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+        letter-spacing: 2px;
+      }
+      
+    </style>
+
     <Header />
     <div class="snowflakes" aria-hidden="true">
       <div class="snowflake">❅</div>
@@ -44,10 +95,6 @@ const {
       <div class="snowflake">❅</div>
       <div class="snowflake">❆</div>
       <div class="snowflake">❅</div>
-      <div class="snowflake">❅</div>
-      <div class="snowflake">❆</div>
-      <div class="snowflake">❅</div>
-      <div class="snowflake">❆</div>
     </div>
     <main id="main-content" transition:animate="fade">
       <slot />
@@ -138,25 +185,9 @@ const {
         }
       }
 
-      pre {
-        padding: 1rem;
-        border-radius: 0.35rem;
-        border: 2px solid var(--action-color);
-      }
-
-      body .pagination a {
-        &:hover,
-        &:focus-visible {
-          background-color: var(--action-color-state);
-
-          svg path {
-            stroke: white;
-          }
-        }
-      }
+      
     </style>
+
   </body>
   
 </html>
-
-

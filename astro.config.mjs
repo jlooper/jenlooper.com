@@ -7,6 +7,7 @@ import netlify from "@astrojs/netlify";
 
 // https://astro.build/config
 export default defineConfig({
+  site: "https://jenlooper.com",
   compressHTML: true,
   output: "server",
   integrations: [mdx(), icon(), tailwind({

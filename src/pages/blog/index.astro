@@ -1,16 +1,26 @@
 ---
 import DefaultLayout from "../../layouts/DefaultLayout.astro";
 import { Card } from "accessible-astro-components";
+import type { MarkdownInstance } from 'astro';
+interface Frontmatter {
+    title: string;
+    description: string;
+    publishDate: Date;
+    image?: string;
+    href?: string;
+}
 
 const title = "Blog";
 const description = "Latest articles.";
+const permalink = `${Astro.site.href}blog`;
 
-let allPosts = await Astro.glob("../../data/*.md");
+let allPosts = Object.values(import.meta.glob<MarkdownInstance<Frontmatter>>('../../data/*.md', { eager: true }));
 allPosts = allPosts.sort(
   (a, b) =>
     new Date(b.frontmatter.publishDate).valueOf() -
     new Date(a.frontmatter.publishDate).valueOf()
 );
+
 ---
 
 <DefaultLayout title={title} description={description} current="blog">
@@ -25,14 +35,11 @@ allPosts = allPosts.sort(
           href="https://community.aws/@jelooper"
           target="_blank">here</a
         >. The articles listed here are my more significant or interesting
-        writings. Some of these are from particularly engaging project
+        short-form writing. Some of these are from particularly engaging project
         announcements, some are really creative technical articles, some are
-        thought pieces. I hope you enjoy them all. My work tends to fall into
-        three categories: education thought pieces, project launches of creative
-        works, and web and mobile technical pieces. You'll find posts here from
-        my previous position at AWS, my past work at Microsoft, some work when I
-        was a Developer Advocate for NativeScript at Progress/Telerik, and work
-        related to my nonprofit, Vue Vixens (later renamed to Front-End Foxes).
+        thought pieces. You'll find posts here from
+        my previous positions in Developer Advocacy at AWS, Microsoft, Progress/Telerik, and writing
+        related to my nonprofit, Vue Vixens (later renamed to Front-End Foxes). I hope you enjoy them all. 
       </p>
 
       <div class="container">

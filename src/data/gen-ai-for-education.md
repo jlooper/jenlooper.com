@@ -3,7 +3,7 @@ title: Generative AI for Education - A Curriculum and Instruction Perspective
 publishDate: 06 Jan 2025
 image: /genai-edu.webp
 href: gen-ai-for-education
-description: Article currently under revision for 2025 updates. 
+description: Article currently under revision for 2025 updates; you can however read this draft. 
 ---  
 Newly accessible and user-friendly generative artificial intelligence (AI) tools are transforming the education sector. There has been a considerable amount of debate about if and how AI can and should be used in the classroom. For students, how can AI fit into their educational journey? For educators, how can students be guided about its legitimate, fair and transparent use? And for administrators, can these tools help them streamline manual processes?
 

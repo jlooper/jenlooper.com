@@ -1,4 +1,5 @@
-import { defineConfig } from 'astro/config';
+import { defineConfig } from "astro/config";
+import pagefind from "astro-pagefind";
 import mdx from '@astrojs/mdx';
 import tailwind from '@astrojs/tailwind';
 import compress from 'astro-compress';
@@ -12,7 +13,7 @@ export default defineConfig({
   output: "server",
   integrations: [mdx(), icon(), tailwind({
     applyBaseStyles: false
-  }), compress()],
+  }), compress(), pagefind()],
   //output: "server",
   adapter: netlify(),
   image: {
@@ -36,3 +37,4 @@ export default defineConfig({
     formats: ['webp', 'avif', 'png', 'jpg', 'jpeg', 'gif'],
   },
 });
+

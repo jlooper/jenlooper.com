@@ -14,5 +14,25 @@ export default defineConfig({
     applyBaseStyles: false
   }), compress()],
   //output: "server",
-  adapter: netlify()
+  adapter: netlify(),
+  image: {
+    service: {
+      entrypoint: 'astro/assets/services/sharp',
+    },
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'media2.dev.to'
+      },
+      {
+        protocol: 'https',
+        hostname: 'media.giphy.com'
+      },
+      {
+        protocol: 'https',
+        hostname: 'thepracticaldev.s3.amazonaws.com'
+      }
+    ],
+    formats: ['webp', 'avif', 'png', 'jpg', 'jpeg', 'gif'],
+  },
 });

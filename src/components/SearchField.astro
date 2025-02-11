@@ -6,7 +6,6 @@ const { id, className } = Astro.props as Props;
 const bundlePath = join(import.meta.env.BASE_URL, "dist/pagefind/"); 
 const divProps = { ...(id ? { id }: {}), ...(className ? { class: className } : {}), };
 ---
-<div {...divProps} data-pagefind-ui data-bundle-path={bundlePath}></div>
 <script>
   import { PagefindUI } from "@pagefind/default-ui";
   window.addEventListener("DOMContentLoaded", () => {
@@ -50,3 +49,5 @@ const divProps = { ...(id ? { id }: {}), ...(className ? { class: className } : 
     }
   });
 </script>
+
+<div {...divProps} data-pagefind-ui data-bundle-path={bundlePath}></div>

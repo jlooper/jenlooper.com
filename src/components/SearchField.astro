@@ -10,7 +10,7 @@ const divProps = { ...(id ? { id }: {}), ...(className ? { class: className } : 
 ---
 
 <div {...divProps} data-pagefind-ui data-bundle-path={bundlePath}>
-  <div class="search-loading">Loading search...</div>
+  <div class="search-loading" data-loading>Loading search...</div>
 </div>
 
 <script>
@@ -18,6 +18,7 @@ const divProps = { ...(id ? { id }: {}), ...(className ? { class: className } : 
     try {
       const { PagefindUI } = await import("@pagefind/default-ui");
       document.querySelectorAll("[data-pagefind-ui]").forEach((el) => {
+        const loadingEl = el.querySelector("[data-loading]");
         const bundlePath = el.getAttribute("data-bundle-path");
         if (!bundlePath) {
           console.error("Bundle path not found");
@@ -30,6 +31,9 @@ const divProps = { ...(id ? { id }: {}), ...(className ? { class: className } : 
           showImages: false,
           debounceTimeoutMs: 100
         });
+
+        loadingEl?.remove();
+
       });
     } catch (error) {
       console.error("Search initialization failed:", error);
@@ -39,3 +43,11 @@ const divProps = { ...(id ? { id }: {}), ...(className ? { class: className } : 
   document.addEventListener("astro:after-swap", initializeSearch);
   initializeSearch();
 </script>
+
+
+<style>
+  .search-loading {
+    opacity: 1;
+    transition: opacity 0.3s ease-out;
+  }
+</style>

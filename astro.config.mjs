@@ -10,11 +10,9 @@ import netlify from "@astrojs/netlify";
 export default defineConfig({
   site: "https://jenlooper.com",
   compressHTML: true,
-  //output: "server",
   integrations: [mdx(), icon(), tailwind({
     applyBaseStyles: false
   }), compress(), pagefind()],
-  //output: "server",
   adapter: netlify(),
   image: {
     service: {

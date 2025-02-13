@@ -5,65 +5,37 @@ interface Props {
   readonly className?: string;
 }
 const { id, className } = Astro.props;
-const bundlePath = "dist/pagefind/";
+const bundlePath = "/pagefind/"; // Remove 'dist' from path
 const divProps = { ...(id ? { id }: {}), ...(className ? { class: className } : {}) };
 ---
 
-<div {...divProps} data-pagefind-ui data-bundle-path={bundlePath}></div>
+<div {...divProps} data-pagefind-ui data-bundle-path={bundlePath}>
+  <div class="search-loading">Loading search...</div>
+</div>
 
 <script>
-  async function initializePagefind() {
-    const { PagefindUI } = await import("@pagefind/default-ui");
-    
-    // Initialize search for each search element
-    document.querySelectorAll("[data-pagefind-ui]").forEach(el => {
-      const bundlePath = el.getAttribute("data-bundle-path");
-      
-      // Create search instance
-      new PagefindUI({
-        element: el,
-        bundlePath,
-        showImages: false,
-        debounceTimeoutMs: 100
+  async function initializeSearch() {
+    try {
+      const { PagefindUI } = await import("@pagefind/default-ui");
+      document.querySelectorAll("[data-pagefind-ui]").forEach((el) => {
+        const bundlePath = el.getAttribute("data-bundle-path");
+        if (!bundlePath) {
+          console.error("Bundle path not found");
+          return;
+        }
+
+        new PagefindUI({
+          element: el,
+          bundlePath,
+          showImages: false,
+          debounceTimeoutMs: 100
+        });
       });
-
-      // Handle input focus and URL params
-      const input = el.querySelector<HTMLInputElement>('input[type="text"]');
-      if (!input) return;
-      
-      input.focus();
-
-      // Set initial value from URL
-      const url = new URL(window.location.href);
-      const query = url.searchParams.get("q");
-      if (query) {
-        input.value = query;
-        input.dispatchEvent(new Event("input", { bubbles: true }));
-      }
-
-      // Update URL on input
-      input.addEventListener("input", (e) => {
-        const target = e.target as HTMLInputElement;
-        const newUrl = new URL(window.location.href);
-        newUrl.searchParams.set("q", target.value);
-        history.replaceState({}, "", newUrl.toString());
-      });
-    });
+    } catch (error) {
+      console.error("Search initialization failed:", error);
+    }
   }
 
-  // Initialize on route changes
-  document.addEventListener("astro:after-swap", initializePagefind);
-  // Initialize on first load
-  initializePagefind();
+  document.addEventListener("astro:after-swap", initializeSearch);
+  initializeSearch();
 </script>
-
-<style>
-  :global(.pagefind-ui) {
-    --pagefind-ui-scale: 0.8;
-    --pagefind-ui-primary: var(--color-primary);
-    --pagefind-ui-text: var(--color-text);
-    --pagefind-ui-background: var(--color-background);
-    --pagefind-ui-border: var(--color-border);
-    --pagefind-ui-tag: var(--color-surface-2);
-  }
-</style>

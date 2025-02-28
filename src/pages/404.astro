@@ -5,14 +5,54 @@ import DefaultLayout from '../layouts/DefaultLayout.astro'
 <DefaultLayout title="404">
   <section class="my-12">
     <div class="container">
-      <h1>Are you lost?</h1>
-    </div>
-  </section>
-  <section class="my-12">
-    <div class="space-content container">
-      <img src="/standing.png" alt="standing avatar"/>
-      <p class="text-2xl">This page does not exist. Don't worry though, we got you.</p>
-      <p class="text-2xl"><a class="underline" href="/">Let's get you home!</a></p>
+      <div class="error-grid">
+        <div class="error-content">
+          <h1 class="text-4xl mb-4">Are you lost?</h1>
+          <p class="text-2xl mb-4">This page does not exist. Don't worry though, we got you.</p>
+          <p class="text-2xl"><a class="underline hover:text-action-color" href="/">Let's get you home!</a></p>
+        </div>
+        <div class="error-image">
+          <img src="/3d-404.png" alt="404 illustration" class="w-full h-auto"/>
+        </div>
+      </div>
     </div>
   </section>
 </DefaultLayout>
+
+<style>
+  .error-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: start;  
+    padding: 2rem 0;
+  }
+
+  @media (min-width: 768px) {
+    .error-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .error-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;  
+    justify-content: flex-start;  
+  }
+
+  .error-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radius-small);
+  }
+
+  a {
+    color: var(--action-color);
+    transition: color 0.2s ease;
+  }
+
+  a:hover {
+    color: var(--action-color-state);
+  }
+</style>

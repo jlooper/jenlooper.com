@@ -1,49 +1,109 @@
-
-  <section class="my-12">
-    <div class="space-content container">
-    
-  <h1>Contact me</h1>
-  
-  <div class="feedback-form">
-    <form
-        netlify
-        netlify-honeypot
-        name="feedback-form"
-        method="POST"
-        action="/success"
-      >
-    <input type="hidden" name="form-name" value="feedback-form" />
-    <p class="hidden">
-      <label>
-        Don’t fill this out if you’re human: <input name="bot-field" />
-      </label>
-    </p>
-    
-    <label for="name">Name</label>
-    <input id="name" type="text" name="name" required/>
-    <label for="email">Email</label>
-    <input id="email" type="email" name="email" required />
-    <label for="feedback">Message</label>
-    <textarea id="feedback" wrap="soft" name="feedback" required></textarea>
-    <button type="submit">Submit</button>
-  </form>
-</div>
+<section class="my-12">
+  <div class="space-content container">
+    <div class="form-container">
+      <div class="form-content">
+        <h1 class="pb-5">Contact me</h1>
+        <div class="feedback-form">
+          <form
+            netlify
+            netlify-honeypot
+            name="feedback-form"
+            method="POST"
+            action="/success"
+          >
+            <input type="hidden" name="form-name" value="feedback-form" />
+            <p class="hidden">
+              <label>
+                Don't fill this out if you're human: <input name="bot-field" />
+              </label>
+            </p>
+            
+            <label for="name">Name</label>
+            <input id="name" type="text" name="name" required/>
+            <label for="email">Email</label>
+            <input id="email" type="email" name="email" required />
+            <label for="feedback">Message</label>
+            <textarea id="feedback" wrap="soft" name="feedback" required></textarea>
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+      </div>
+      <div class="form-image">
+        <img src="/3d-contact.png" alt="Contact illustration" />
+      </div>
+    </div>
+  </div>
 </section>
 
-
 <style>
+  .form-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  @media (min-width: 768px) {
+    .form-container {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .form-image img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-small);
+  }
+
   form {
     display: flex;
     flex-direction: column;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  label {
-    font-size: 16px;
+    gap: 0.5rem;  
+    width: 100%;
   }
 
-  button, input, textarea {
-    width: 50%
+  label {
+    font-size: var(--text-lg);  
+    font-weight: 600;  
+    color: var(--font-color);
+    margin-bottom: 0.25rem;  
+  }
+
+  input, textarea {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem; 
+    border: 2px solid var(--neutral-background);
+    border-radius: var(--radius-small);
+    background: var(--background);
+    color: var(--font-color);
+    font-family: var(--font-family-default);
+    
+    &:focus {
+      outline: 2px solid var(--action-color);
+      outline-offset: 2px;
+    }
+  }
+
+  textarea {
+    min-height: 150px;
+    resize: vertical;
+  }
+
+  button {
+    width: auto;
+    padding: 0.75rem 2rem;
+    background: var(--action-color);
+    color: var(--background);
+    border: none;
+    border-radius: var(--radius-small);
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+
+    &:hover {
+      background: var(--action-color-state);
+    }
   }
 
   .hidden {

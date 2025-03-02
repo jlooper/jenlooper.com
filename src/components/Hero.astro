@@ -3,7 +3,7 @@ const { src = "/3d-home.png" } = Astro.props;
 ---
 
 <section class="hero my-12">
-  <div class="container w-full">
+  <div class="container w-full max-h-[400px]">
     <div class="grid grid-cols-1 items-start gap-4 lg:grid-cols-3">
       <div class="flex flex-col items-start gap-6 md:items-start lg:col-span-2 lg:self-start">
         <h1 class="text-center md:text-left">
@@ -19,7 +19,7 @@ const { src = "/3d-home.png" } = Astro.props;
         <h3 class="font-bold">Subscribe to my weekly <a target="_blank" href="https://www.linkedin.com/build-relation/newsletter-follow?entityUrn=7299544901526958081">AI Drops newsletter</a></h3>
       </div>
       <div class="lg:col-span-1">
-        <img src={src} alt="Decorative 3D illustration" class="w-full h-auto hidden lg:block" decoding="async" />
+        <img src={src} alt="Decorative 3D illustration" class="max-h-[500px] hidden lg:block" decoding="async" />
       </div>
     </div>
   </div>

@@ -5,7 +5,7 @@ import DefaultLayout from '../layouts/DefaultLayout.astro'
 <DefaultLayout title="404">
   <section class="my-12">
     <div class="container">
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start py-8">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start py-8 max-h-[400px]">
         <div class="flex flex-col items-start justify-start lg:col-span-2">
           <h1 class="text-4xl font-bold mb-4">Are you lost?</h1>
           <p class="text-2xl mb-4">This page does not exist. Don't worry though, we got you.</p>
@@ -22,7 +22,7 @@ import DefaultLayout from '../layouts/DefaultLayout.astro'
           <img 
             src="/3d-404.png" 
             alt="404 illustration" 
-            class="w-full h-auto hidden lg:block rounded-lg"
+            class="max-h-[400px] hidden lg:block rounded-lg"
           />
         </div>
       </div>

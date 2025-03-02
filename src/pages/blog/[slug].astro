@@ -23,16 +23,17 @@ export async function getStaticPaths() {
 }
 
 const { Content, frontmatter } = Astro.props.post;
-const { title, description, publishDate, image } = frontmatter;
-const { slug } = getPostData(Astro.props.post);
-const permalink = `${Astro.site.href}blog/${slug}`;
+const { title, description, publishDate,image, href } = frontmatter;
 ---
 <DefaultLayout title={title} description={description} current="blog">
   <div class="my-12">
     <section class="space-content container">
       <h1>{title}</h1>
-      <p class="text-2xl">{description}</p>
       <p>{publishDate}</p>
+      <p class="text-2xl pb-5">{description}</p>     
+        <a href={href} target="_blank" class="text-xl">
+          Article link
+        </a>
       <Content />
     </section>
   </div>

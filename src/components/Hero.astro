@@ -3,11 +3,11 @@ const { src = "/3d-home.png" } = Astro.props;
 ---
 
 <section class="hero my-12">
-  <div class="container">
-    <div class="grid grid-cols-1 items-center gap-6 lg:grid-cols-2">
-      <div class="flex flex-col items-center gap-8 md:items-start">
+  <div class="container w-full">
+    <div class="grid grid-cols-1 items-start gap-4 lg:grid-cols-3">
+      <div class="flex flex-col items-start gap-6 md:items-start lg:col-span-2 lg:self-start">
         <h1 class="text-center md:text-left">
-          <slot><span class="text-gradient">Hi, I'm Jen!</span></slot>
+          <span class="text-gradient">Hi, I'm Jen!</span>
         </h1>
         <h2 class="flex flex-col gap-3 min-[500px]:flex-row">
           I'm an author, educator, & creative technologist.
@@ -18,7 +18,9 @@ const { src = "/3d-home.png" } = Astro.props;
         </h3>
         <h3 class="font-bold">Subscribe to my weekly <a target="_blank" href="https://www.linkedin.com/build-relation/newsletter-follow?entityUrn=7299544901526958081">AI Drops newsletter</a></h3>
       </div>
-      <img class="hidden lg:block" src={src} alt="" decoding="async" />
+      <div class="lg:col-span-1">
+        <img src={src} alt="Decorative 3D illustration" class="w-full h-auto hidden lg:block" decoding="async" />
+      </div>
     </div>
   </div>
 </section>

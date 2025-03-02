@@ -9,8 +9,8 @@
   text-decoration: none;
   text-align: center;
   color: var(--neutral-900);
-  background-color: var(--primary-100);
-  border: 3px solid var(--primary-100);
+  background-color: var(--primary-200);
+  border: 3px solid var(--primary-300);
   border-radius: 3px;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
 
@@ -142,5 +142,5 @@
 }
 
 .darkmode .button.type-secondary {
-  color: var(--neutral-100);
+  color: white;
 }

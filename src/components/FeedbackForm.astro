@@ -1,8 +1,8 @@
-<section class="my-12">
+<section class="my-12" aria-labelledby="contact-title">
   <div class="container mx-auto px-4">
     <div class="grid grid-cols-1 md:grid-cols-[1.5fr,1fr] gap-8 items-start">
       <div class="order-1">
-        <h1>Contact Me</h1>
+        <h1 id="contact-title" class="text-3xl font-bold mb-4">Contact Me</h1>
         <div class="w-full pt-5">
           <form
             netlify
@@ -11,50 +11,72 @@
             method="POST"
             action="/success"
             class="flex flex-col gap-2"
+            aria-describedby="form-description"
+            novalidate
           >
-            <input type="hidden" name="form-name" value="feedback-form" />
-            <p class="hidden">
-              <label>
-                Don't fill this out if you're human: <input name="bot-field" />
-              </label>
+            <p id="form-description" class="sr-only">
+              Contact form to get in touch. All fields marked with an asterisk (*) are required.
             </p>
+
+            <input type="hidden" name="form-name" value="feedback-form" />
+            <div hidden aria-hidden="true">
+              <label>
+                Don't fill this out if you're human: <input name="bot-field" tabindex="-1" />
+              </label>
+            </div>
             
             <div class="flex flex-col gap-1">
-              <label for="name" class="text-lg font-semibold">Name</label>
+              <label for="name" class="text-lg font-semibold">
+                Name <span aria-label="required">*</span>
+              </label>
               <input 
                 id="name" 
                 type="text" 
                 name="name" 
                 required
+                aria-required="true"
+                aria-describedby="name-error"
                 class="w-full p-3 border-2 border-neutral-200 rounded-md bg-background text-font-color focus:outline-none focus:ring-2 focus:ring-action-color focus:border-transparent"
               />
+              <div id="name-error" class="text-error hidden">Please enter your name</div>
             </div>
 
             <div class="flex flex-col gap-1">
-              <label for="email" class="text-lg font-semibold">Email</label>
+              <label for="email" class="text-lg font-semibold">
+                Email <span aria-label="required">*</span>
+              </label>
               <input 
                 id="email" 
                 type="email" 
                 name="email" 
                 required
+                aria-required="true"
+                aria-describedby="email-error"
+                autocomplete="email"
                 class="w-full p-3 border-2 border-neutral-200 rounded-md bg-background text-font-color focus:outline-none focus:ring-2 focus:ring-action-color focus:border-transparent"
               />
+              <div id="email-error" class="text-error hidden">Please enter a valid email address</div>
             </div>
 
             <div class="flex flex-col gap-1">
-              <label for="feedback" class="text-lg font-semibold">Message</label>
+              <label for="feedback" class="text-lg font-semibold">
+                Message <span aria-label="required">*</span>
+              </label>
               <textarea 
                 id="feedback" 
-                wrap="soft" 
                 name="feedback" 
                 required
+                aria-required="true"
+                aria-describedby="message-error"
                 class="w-full p-3 border-2 border-neutral-200 rounded-md bg-background text-font-color focus:outline-none focus:ring-2 focus:ring-action-color focus:border-transparent min-h-[150px] resize-y"
               ></textarea>
+              <div id="message-error" class="text-error hidden">Please enter your message</div>
             </div>
 
             <button 
               type="submit"
-              class="button color-secondary size-large mt-4"
+              class="button color-secondary size-large mt-4 focus:ring-2 focus:ring-offset-2 focus:ring-action-color"
+              aria-label="Submit contact form"
             >
               Submit
             </button>
@@ -65,11 +87,35 @@
       <div class="order-2 flex justify-center items-start">
         <img 
           src="/3d-contact.png" 
-          alt="Contact illustration" 
+          alt="Decorative contact illustration"
+          role="presentation" 
           class="max-w-full h-auto hidden lg:block"
         />
       </div>
     </div>
   </div>
 </section>
+
+<script>
+  // Client-side form validation
+  const form = document.querySelector('form');
+  const inputs = form?.querySelectorAll('input[required], textarea[required]');
+
+  inputs?.forEach(input => {
+    input.addEventListener('invalid', (event) => {
+      event.preventDefault();
+      const errorDiv = document.getElementById(`${input.id}-error`);
+      if (errorDiv) {
+        errorDiv.classList.remove('hidden');
+      }
+    });
+
+    input.addEventListener('input', () => {
+      const errorDiv = document.getElementById(`${input.id}-error`);
+      if (errorDiv) {
+        errorDiv.classList.add('hidden');
+      }
+    });
+  });
+</script>
 

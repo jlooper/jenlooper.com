@@ -8,8 +8,7 @@
 @font-face {
   font-family: 'Lato';
   src: local('Lato ExtraBold'), local('Lato-ExtraBold'), 
-       url('/fonts/Lato-Black.woff2') format('woff2'),
-       url('/fonts/Lato-Black.woff') format('woff');
+       url('/fonts/Lato-Black.ttf') format('ttf');
   font-weight: 900;
   font-style: normal;
   font-display: swap;
@@ -18,8 +17,7 @@
 @font-face {
   font-family: 'Lato';
   src: local('Lato Bold'), local('Lato-Bold'), 
-       url('/fonts/Lato-Bold.woff2') format('woff2'),
-       url('/fonts/Lato-Bold.woff') format('woff');
+       url('/fonts/Lato-Bold.ttf') format('ttf');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -28,8 +26,7 @@
 @font-face {
   font-family: 'Lato';
   src: local('Lato Regular'), local('Lato-Regular'), 
-       url('/fonts/Lato-Regular.woff2') format('woff2'),
-       url('/fonts/Lato-Regular.woff') format('woff');
+       url('/fonts/Lato-Regular.ttf') format('ttf');
   font-weight: 400;
   font-style: normal;
   font-display: swap;

@@ -97,24 +97,59 @@
 </section>
 
 <script>
-  // Client-side form validation
   const form = document.querySelector('form');
   const inputs = form?.querySelectorAll('input[required], textarea[required]');
+  const messageTextarea = form?.querySelector('#feedback') as HTMLTextAreaElement;
+  const errorMessages = document.querySelectorAll('[id$="-error"]');
 
-  inputs?.forEach(input => {
-    input.addEventListener('invalid', (event) => {
-      event.preventDefault();
+  // Function to validate form
+  const validateForm = (event: Event) => {
+    event.preventDefault();
+    let isValid = true;
+
+    // Check message textarea specifically
+    if (!messageTextarea?.value.trim()) {
+      isValid = false;
+      messageTextarea?.setAttribute('aria-invalid', 'true');
+      document.getElementById('message-error')?.classList.remove('hidden');
+    }
+
+    // Check other required inputs
+    inputs?.forEach(input => {
       const errorDiv = document.getElementById(`${input.id}-error`);
-      if (errorDiv) {
-        errorDiv.classList.remove('hidden');
+      if (!input.value.trim()) {
+        isValid = false;
+        input.setAttribute('aria-invalid', 'true');
+        errorDiv?.classList.remove('hidden');
+      } else {
+        input.setAttribute('aria-invalid', 'false');
+        errorDiv?.classList.add('hidden');
+      }
+
+      // Email validation
+      if (input.type === 'email' && input.value) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(input.value)) {
+          isValid = false;
+          input.setAttribute('aria-invalid', 'true');
+          errorDiv?.classList.remove('hidden');
+        }
       }
     });
 
+    if (isValid) {
+      form?.submit();
+    }
+  };
+
+  // Event listeners
+  form?.addEventListener('submit', validateForm);
+
+  inputs?.forEach(input => {
     input.addEventListener('input', () => {
       const errorDiv = document.getElementById(`${input.id}-error`);
-      if (errorDiv) {
-        errorDiv.classList.add('hidden');
-      }
+      input.setAttribute('aria-invalid', 'false');
+      errorDiv?.classList.add('hidden');
     });
   });
 </script>

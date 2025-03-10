@@ -83,9 +83,9 @@ const slideoutScript = `
     <button
       id="jenai-button"
       onclick="toggleJenAI()"
-      class="fixed top-1/2 -translate-y-1/2 right-0 border-none bg-purple-600 text-white w-12 px-2 py-16 rounded-r-none hover:bg-purple-700 transition-all duration-300 z-50 flex items-center justify-center"
+      class="fixed top-1/2 -translate-y-1/2 right-0 border-none bg-purple-600 text-white w-12 px-2 py-16 rounded-l-lg hover:bg-purple-700 transition-all duration-300 z-50 hidden md:flex items-center justify-center"
     >
-      <span class="writing-mode-vertical text-lg font-semibold tracking-wide">JenAI</span>
+      <span class="[writing-mode:vertical-rl] text-lg font-semibold tracking-[2px]">JenAI</span>
     </button>
 
     <style>
@@ -103,60 +103,17 @@ const slideoutScript = `
     </main>
     
     <Footer />
-    <style lang="scss" is:global>
+    
+    <script>
+      const button = document.getElementById("mobile-menu-button");
+      const menu = document.getElementById("mobile-menu");
 
-      // theme settings
-      :root {
-        --radius-small: 3px;
-        --radius-large: 6px;
-        --gap-default: 2rem;
-        --font-measure: 70ch;
-        --font-family-heading: 'Playfair Display', Georgia, serif;
-        --font-family-default: 'Lato', sans-serif;
-        --font-family-special: 'Lato', sans-serif;
-        // light theme
-        --font-color: var(--neutral-900);
-        --action-color: var(--primary-300);
-        --action-color-state: var(--primary-500);
-        --background: var(--neutral-100);
-        --primary-background: var(--primary-100);
-        --neutral-background: var(--neutral-200);
-      }
-
-      // dark color scheme overrides
-      .darkmode {
-        --font-color: var(--neutral-100);
-        --action-color: var(--secondary-100);
-        --action-color-state: var(--secondary-500);
-        --background: var(--dark-100);
-        --primary-background: var(--primary-500);
-        --neutral-background: var(--neutral-900);
-      }
-
-      // sticky footer on low content pages
-      html,
-      body {
-        height: 100%;
-        overflow-x: hidden;
-      }
-
-      body {
-        display: flex;
-        flex-direction: column;
-        color: var(--font-color);
-        background-color: var(--background);
-
-        main {
-          flex: 1 0 auto;
-        }
-
-        footer {
-          flex-shrink: 0;
-        }
-      }
-
-      
-    </style>
+      button?.addEventListener("click", () => {
+        const expanded = button.getAttribute("aria-expanded") === "true";
+        button.setAttribute("aria-expanded", String(!expanded));
+        menu?.classList.toggle("hidden");
+      });
+    </script>
 
   </body>
   

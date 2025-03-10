@@ -2,103 +2,100 @@
 import Navigation from '../components/Navigation.astro'
 import { SkipLink } from 'accessible-astro-components'
 
+
+const menuItems = [
+  { text: 'About', href: '/about/' },
+  { text: 'Projects', href: '/projects/' },
+  { text: 'Articles', href: '/blog/' },
+  { text: 'Books', href: '/books/' },
+  { text: 'Speaking', href: '/speaking/' },
+  { text: 'Curricula', href: '/curricula/' },
+  { text: 'Contact', href: '/contact/' },
+  { text: '🔎', href: '/search/' },
+]
 // Get current path for active state
 const currentPath = Astro.url.pathname;
+// Helper function to check if link is active
+const isActive = (path: string) => {
+  if (path === "/") {
+    return currentPath === "/";
+  }
+  return currentPath.startsWith(path);
+};
 ---
 
 <header>
-  <SkipLink />
   <Navigation>
-    <ul class="flex flex-wrap md:flex-nowrap gap-4 justify-center">
-      <li class="menu-item">
-        <a 
-          href="/about/" 
-          class:list={[
-            "whitespace-nowrap hover:text-action-color transition-colors duration-200",
-            { "border-b-2 border-action-color": currentPath === "/about/" }
-          ]}
+
+     {/* Mobile menu button */}   
+
+     <div class="sm:hidden flex items-center">
+      <button
+        class="w-20 border-none inline-flex items-center justify-center p-2 rounded-md hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors duration-200"
+        type="button"
+        aria-controls="mobile-menu"
+        aria-expanded="false"
+        id="mobile-menu-button"
+      >
+        <span class="sr-only">Open main menu</span>
+        <svg
+          class="h-6 w-6 text-current dark:text-white"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2"
         >
-          About
-        </a>
-      </li>
-      <li class="menu-item">
-        <a 
-          href="/projects/" 
-          class:list={[
-            "whitespace-nowrap hover:text-action-color transition-colors duration-200",
-            { "border-b-2 border-action-color": currentPath === "/projects/" }
-          ]}
-        >
-          Projects
-        </a>
-      </li>
-      <li class="menu-item">
-        <a 
-          href="/blog/" 
-          class:list={[
-            "whitespace-nowrap hover:text-action-color transition-colors duration-200",
-            { "border-b-2 border-action-color": currentPath === "/blog/" }
-          ]}
-        >
-          Articles
-        </a>
-      </li>
-      <li class="menu-item">
-        <a 
-          href="/books/" 
-          class:list={[
-            "whitespace-nowrap hover:text-action-color transition-colors duration-200",
-            { "border-b-2 border-action-color": currentPath === "/books/" }
-          ]}
-        >
-          Books
-        </a>
-      </li>
-      <li class="menu-item">
-        <a 
-          href="/speaking/" 
-          class:list={[
-            "whitespace-nowrap hover:text-action-color transition-colors duration-200",
-            { "border-b-2 border-action-color": currentPath === "/speaking/" }
-          ]}
-        >
-          Speaking
-        </a>
-      </li>
-      <li class="menu-item">
-        <a 
-          href="/curricula/" 
-          class:list={[
-            "whitespace-nowrap hover:text-action-color transition-colors duration-200",
-            { "border-b-2 border-action-color": currentPath === "/curricula/" }
-          ]}
-        >
-          Curricula
-        </a>
-      </li>
-      <li class="menu-item">
-        <a 
-          href="/contact/" 
-          class:list={[
-            "whitespace-nowrap hover:text-action-color transition-colors duration-200",
-            { "border-b-2 border-action-color": currentPath === "/contact/" }
-          ]}
-        >
-          Contact
-        </a>
-      </li>
-      <li class="menu-item">
-        <a 
-          href="/search/" 
-          class:list={[
-            "whitespace-nowrap hover:text-action-color transition-colors duration-200",
-            { "border-b-2 border-action-color": currentPath === "/search/" }
-          ]}
-        >
-          🔎
-        </a>
-      </li>
-    </ul>
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M4 6h16M4 12h16M4 18h16"
+          ></path>
+        </svg>
+      </button>
+    </div>
+
+    {/* Desktop navigation */}
+    <div class="hidden sm:flex sm:items-center sm:space-x-8">
+      {
+        menuItems.map((item) => (
+          <a
+            href={item.href}
+            class={`inline-flex items-center px-1 pt-1 text-sm font-medium text-white hover:text-blue-100 border-b-2 ${
+              isActive(item.href)
+                ? "border-purple-500"
+                : "border-transparent"
+            }`}
+          >
+            {item.text}
+          </a>
+        ))
+      }
+    </div>
+  </div>
+
+  {/* Mobile menu */}
+  <div
+    class="hidden sm:hidden absolute w-full left-0 z-50 top-24 bg-white dark:bg-gray-800 shadow-lg"
+    id="mobile-menu"
+  >
+    <div class="px-4 py-4 space-y-2">
+      {
+        menuItems.map((item) => (
+          <a
+            href={item.href}
+            class={`block px-4 py-3 rounded-md text-base font-medium text-gray-800 dark:text-white hover:bg-purple-100 dark:hover:bg-purple-900 transition-colors duration-200 ${
+              isActive(item.href) 
+                ? "bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-200" 
+                : ""
+            }`}
+          >
+            {item.text}
+          </a>
+        ))
+      }
+    </div>
+  </div>
+    
   </Navigation>
 </header>
 

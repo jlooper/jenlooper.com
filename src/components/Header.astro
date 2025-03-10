@@ -1,36 +1,104 @@
 ---
 import Navigation from '../components/Navigation.astro'
 import { SkipLink } from 'accessible-astro-components'
+
+// Get current path for active state
+const currentPath = Astro.url.pathname;
 ---
 
 <header>
   <SkipLink />
   <Navigation>
-    <li class="menu-item">
-      <a href="/about/">About</a>
-    </li>
-    <li class="menu-item">
-      <a href="/projects/">Projects</a>
-    </li>
-    <li class="menu-item">
-      <a href="/blog/">Articles</a>
-    </li>
-    <li class="menu-item">
-      <a href="/books/">Books</a>
-    </li>
-    <li class="menu-item">
-      <a href="/speaking/">Speaking</a>
-    </li>
-    <li class="menu-item">
-      <a href="/curricula/">Curricula</a>
-    </li>
-    <li class="menu-item">
-      <a href="/contact/">Contact</a>
-    </li>
-    <li class="menu-item">
-      <a href="/search/">🔎</a>
-    </li>
-    
+    <ul class="flex flex-wrap md:flex-nowrap gap-4 justify-center">
+      <li class="menu-item">
+        <a 
+          href="/about/" 
+          class:list={[
+            "whitespace-nowrap hover:text-action-color transition-colors duration-200",
+            { "border-b-2 border-action-color": currentPath === "/about/" }
+          ]}
+        >
+          About
+        </a>
+      </li>
+      <li class="menu-item">
+        <a 
+          href="/projects/" 
+          class:list={[
+            "whitespace-nowrap hover:text-action-color transition-colors duration-200",
+            { "border-b-2 border-action-color": currentPath === "/projects/" }
+          ]}
+        >
+          Projects
+        </a>
+      </li>
+      <li class="menu-item">
+        <a 
+          href="/blog/" 
+          class:list={[
+            "whitespace-nowrap hover:text-action-color transition-colors duration-200",
+            { "border-b-2 border-action-color": currentPath === "/blog/" }
+          ]}
+        >
+          Articles
+        </a>
+      </li>
+      <li class="menu-item">
+        <a 
+          href="/books/" 
+          class:list={[
+            "whitespace-nowrap hover:text-action-color transition-colors duration-200",
+            { "border-b-2 border-action-color": currentPath === "/books/" }
+          ]}
+        >
+          Books
+        </a>
+      </li>
+      <li class="menu-item">
+        <a 
+          href="/speaking/" 
+          class:list={[
+            "whitespace-nowrap hover:text-action-color transition-colors duration-200",
+            { "border-b-2 border-action-color": currentPath === "/speaking/" }
+          ]}
+        >
+          Speaking
+        </a>
+      </li>
+      <li class="menu-item">
+        <a 
+          href="/curricula/" 
+          class:list={[
+            "whitespace-nowrap hover:text-action-color transition-colors duration-200",
+            { "border-b-2 border-action-color": currentPath === "/curricula/" }
+          ]}
+        >
+          Curricula
+        </a>
+      </li>
+      <li class="menu-item">
+        <a 
+          href="/contact/" 
+          class:list={[
+            "whitespace-nowrap hover:text-action-color transition-colors duration-200",
+            { "border-b-2 border-action-color": currentPath === "/contact/" }
+          ]}
+        >
+          Contact
+        </a>
+      </li>
+      <li class="menu-item">
+        <a 
+          href="/search/" 
+          class:list={[
+            "whitespace-nowrap hover:text-action-color transition-colors duration-200",
+            { "border-b-2 border-action-color": currentPath === "/search/" }
+          ]}
+        >
+          🔎
+        </a>
+      </li>
+    </ul>
   </Navigation>
 </header>
 

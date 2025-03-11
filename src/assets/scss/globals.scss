@@ -24,7 +24,7 @@
   --font-family-special: 'Lato', sans-serif;
   // light theme
   --font-color: var(--neutral-900);
-  --action-color: var(--primary-300);
+  --action-color: var(--primary-400);
   --action-color-state: var(--primary-500);
   --background: var(--neutral-100);
   --primary-background: var(--primary-100);
@@ -81,19 +81,6 @@ hr {
   max-width: 40%;
 }
 
-input,
-  textarea,
-  button,
-  .button {
-    border-radius: 5px;
-    border: 1px solid #cbd5e1;
-    font-size: inherit;
-    margin: 15px 0;
-    padding: 12px 20px;
-    width: 100%;
-  }
-  button, .button .darkmode-toggle {
-    background-color: transparent;
-  }
-
-  
+img {
+  inline-size: auto !important;
+}

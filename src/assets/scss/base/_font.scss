@@ -51,11 +51,7 @@ body {
       color: var(--action-color);
     }
 
-    &:hover,
-    &:focus {
-      color: var(--action-color-state);
-      text-decoration: none;
-    }
+   
   }
 
   :where(main) a {

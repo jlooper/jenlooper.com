@@ -1,13 +1,13 @@
 ---
 import { Media } from 'accessible-astro-components'
 
-const { imgSrc, author = null} = Astro.props
+const { imgSrc } = Astro.props
 ---
 
 <section class="my-20">
   <div class="container">
     <div class="grid grid-cols-1 gap-12 md:grid-cols-2">
-      <Media class={author} src={imgSrc} />
+      <Media src={imgSrc}/>
       <div class="space-content flex flex-col justify-center">
         <slot />
       </div>

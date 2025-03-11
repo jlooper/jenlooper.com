@@ -4,10 +4,17 @@ import { Image } from 'astro:assets'
 import logo from '../assets/img/logo.png'
 ---
 
-<div id="main-navigation" class="is-desktop py-3">
+<div id="main-navigation" class="is-desktop">
   <div class="container">
     <a href="/" class="flex items-center gap-2 !no-underline">
-      <Image src={logo} alt="Jen Looper" width="75" height="75" />
+      <Image 
+        src={logo} 
+        alt="Jen Looper" 
+        width={150} 
+        height={150}
+        quality={100}
+        class="w-[75px] h-[75px] md:w-[100px] md:h-[100px]"
+      />
     </a>
     <div class="wrapper">
       <nav class="desktop-menu" aria-label="Main navigation desktop">
@@ -91,9 +98,7 @@ import logo from '../assets/img/logo.png'
         left: 0;
       }
 
-      .responsive-toggle {
-        display: block;
-      }
+  
     }
 
     .wrapper {
@@ -116,18 +121,13 @@ import logo from '../assets/img/logo.png'
         }
 
         a:hover,
-        a:focus,
-        .is-active,
-        .has-dropdown > button:hover,
-        .has-dropdown > button:focus {
+        .is-active {
           text-decoration: underline;
-          text-decoration-thickness: 1px;
+          text-decoration-thickness: 2px;
           text-underline-offset: 7px;
         }
 
-        .is-active {
-          font-weight: bold;
-        }
+      
       }
     }
 
@@ -152,65 +152,7 @@ import logo from '../assets/img/logo.png'
       }
     }
 
-    .has-dropdown {
-      position: relative;
-
-      > button {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0;
-        margin-top: -1px;
-        border: none;
-        color: var(--action-color);
-
-        &:hover {
-          color: var(--action-color-state);
-
-          &::after {
-            border-color: var(--action-color-state);
-          }
-        }
-
-        &::after {
-          content: '';
-          width: 0.85rem;
-          height: 0.75em;
-          margin-top: -0.25rem;
-          border-style: solid;
-          border-width: 0.2em 0.2em 0 0;
-          border-color: var(--action-color);
-          transform: rotate(135deg);
-        }
-
-        &.show {
-          &::after {
-            margin-top: 0.25rem;
-            transform: rotate(-45deg);
-          }
-
-          ~ ul {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-          }
-        }
-      }
-
-      ul {
-        display: none;
-        position: absolute;
-        z-index: 100;
-        min-width: 260px;
-        top: 125%;
-        right: 0;
-        bottom: auto;
-        left: 0;
-        padding: 1rem;
-        background-color: var(--neutral-background);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-      }
-    }
+    
   }
 
   .darkmode-toggle {

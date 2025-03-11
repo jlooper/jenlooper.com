@@ -60,9 +60,9 @@ const isActive = (path: string) => {
         menuItems.map((item) => (
           <a
             href={item.href}
-            class={`inline-flex items-center px-1 pt-1 text-sm font-medium text-white hover:text-blue-100 border-b-2 ${
+            class={`inline-flex items-center pt-1  border-b-2 ${
               isActive(item.href)
-                ? "border-purple-500"
+                ? "border-purple-300"
                 : "border-transparent"
             }`}
           >
@@ -99,28 +99,4 @@ const isActive = (path: string) => {
   </Navigation>
 </header>
 
-<style lang="scss" is:global>
-  @use '../assets/scss/base/outline' as *;
 
-  header {
-    .type-icon a {
-      display: block;
-
-      [data-icon] {
-        height: auto;
-        margin-top: -4px;
-        width: 30px;
-
-        path {
-          fill: var(--action-color);
-        }
-      }
-
-      &:hover {
-        [data-icon] path {
-          fill: var(--action-color-state);
-        }
-      }
-    }
-  }
-</style>

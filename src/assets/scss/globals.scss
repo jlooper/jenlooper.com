@@ -39,6 +39,10 @@
   --background: var(--dark-100);
   --primary-background: var(--primary-500);
   --neutral-background: var(--neutral-900);
+  input, textarea {
+    background-color: var(--neutral-800);
+    color: var(--neutral-100);
+  }
 }
 
 // sticky footer on low content pages

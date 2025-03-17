@@ -1,24 +1,35 @@
 ---
 import DefaultLayout from "../layouts/DefaultLayout.astro";
-import ContentMedia from "../components/ContentMedia.astro";
+import { Image } from "astro:assets";
+import jen from "../assets/img/jen.jpg";
 ---
 
 <DefaultLayout title="Socials">
   <section class="my-12">
-    <div class="space-content container">
-      <ContentMedia author="author-sm" imgSrc="/jen.jpg">
-        <h1>Jen Looper</h1>
-        <h2>Creative Technologist and Tech Lead</h2>
-        <a class="button" href="https://www.linkedin.com/in/jenlooper/"
-          >LinkedIn</a
-        >
-        <a class="button" href="https://x.com/jenlooper">Twitter (X)</a>
-        <a class="button" href="https://bsky.app/profile/jenlooper.com"
-          >Bluesky</a
-        >
-        <a class="button" href="https://github.com/jlooper">GitHub</a>
-        <a class="button" href="https://jenlooper.com/contact/">Contact Me</a>
-      </ContentMedia>
+    <div class="space-content container">    
+      <section class="my-20">
+        <div class="container">
+          <div class="grid grid-cols-1 gap-12 md:grid-cols-2">
+            <Image src={jen} alt="Jen Looper" class="max-h-[500px]" decoding="async" />
+    
+            <div class="space-content flex flex-col justify-center">
+              <h1>Jen Looper</h1>
+              <h2>Creative Technologist & Tech Lead</h2>
+              <a class="button" href="https://www.linkedin.com/in/jenlooper/"
+                >LinkedIn</a
+              >
+              <a class="button" href="https://x.com/jenlooper">Twitter (X)</a>
+              <a class="button" href="https://bsky.app/profile/jenlooper.com"
+                >Bluesky</a
+              >
+              <a class="button" href="https://github.com/jlooper">GitHub</a>
+              <a class="button" href="https://jenlooper.com/contact/">Contact Me</a>      
+            </div>
+          </div>
+          <hr class="my-10"/>
+        </div>
+      </section>
     </div>
-  </section></DefaultLayout
->
+  </section>
+</DefaultLayout>
+

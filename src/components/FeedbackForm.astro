@@ -1,3 +1,8 @@
+---
+import { Image } from 'astro:assets';
+import img from '../assets/img/3d-contact.png';
+---
+
 <section class="my-12" aria-labelledby="contact-title">
   <div class="container mx-auto px-4">
     <div class="grid grid-cols-1 md:grid-cols-[1.5fr,1fr] gap-8 items-start">
@@ -85,8 +90,8 @@
       </div>
 
       <div class="order-2 flex justify-center items-start">
-        <img 
-          src="/3d-contact.png" 
+        <Image 
+          src={img}
           alt="Decorative contact illustration"
           role="presentation" 
           class="max-w-full h-auto hidden lg:block"

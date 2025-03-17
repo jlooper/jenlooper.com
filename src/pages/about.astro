@@ -1,19 +1,28 @@
 ---
 import DefaultLayout from '../layouts/DefaultLayout.astro'
-import ContentMedia from '../components/ContentMedia.astro'
+import { Image } from 'astro:assets';
+import img from '../assets/img/jen.jpg';
 ---
 
 <DefaultLayout title="About Me">
     <section class="my-12">
         <div class="space-content container">
           <h1>About Me</h1>
-          <ContentMedia author="author" imgSrc="/jen.jpg">
-            <p class="text-2xl">         
-              Welcome! I'm Jen Looper. I have over 25 years' experience as a web and mobile developer, specializing in creating creative cross-platform apps, often with an educational focus. I design excellent curricula on technical topics and am known for the quality of my educational content, my managerial skills, and my creative strategies.
-            </p>
-          </ContentMedia>
+          <section class="my-20">
+            <div class="container">
+              <div class="grid grid-cols-1 gap-12 md:grid-cols-2">
+                <Image src={img} alt="Jen Looper" class="rounded-md" decoding="async" />
+                <div class="space-content flex flex-col justify-center">
+                  <p class="text-2xl">         
+                    Welcome! I'm Jen Looper. I have over 25 years' experience as a web and mobile developer, specializing in creating creative cross-platform apps, often with an educational focus. I design excellent curricula on technical topics and am known for the quality of my educational content, my managerial skills, and my creative strategies.
+                  </p>
+                  <p class="text-2xl">I've worked as Head of Academic Advocacy at AWS, a Principal Cloud Developer Advocate at Microsoft, and as a Developer Advocate at Progress/Telerik. I've also worked at small, medium, and large companies over my career.</p>       
+                </div>
+              </div>
+              <hr class="my-10"/>
+            </div>
+          </section>          
           <p class="text-2xl">I'm a multilingual multiculturalist with a passion for hardware hacking, mobile apps, the frontend of the web and various JavaScript frameworks and meta-frameworks, applied machine learning and AI (as well as the ramifications!) and discovering new things every day. On occasion I can be found teaching front-end technologies at Boston University's Metropolitan College. I'm also on the Fulbright Specialists roster, just waiting for that right opportunity to help a community.</p>
-          <p class="text-2xl">I've worked as Head of Academic Advocacy at AWS, a Principal Cloud Developer Advocate at Microsoft, and as a Developer Advocate at Progress/Telerik. I've also worked at small, medium, and large companies over my career.</p>
           <p class="text-2xl">I wrote a textbook, <a href="https://www.amazon.com/Computer-Science-Kids-Storytelling-Approach/dp/1119912512/" target="_blank">Computer Science for Kids: A Storytelling Approach</a> for grades 6-8, aligned to CSTA standards. Learn more at <a href="https://cs4kids.club" target="_blank">CS4Kids.club</a>.</p>
           <p class="text-2xl">I also wrote The Illustrated AWS Cloud, a visual guide to learning fundamental concepts of cloud computing with AWS. Learn more at <a href="https://illustratedaws.cloud" target="_blank">The Illustrated AWS Cloud website</a>.</p>
           <p class="text-2xl">In 2018 I founded what became an international nonprofit organization, Vue Vixens, Inc, which I rebranded to Front-End Foxes, Inc. to welcome more front-end technologies and communities. Our mission was to educate women worldwide in front-end web and mobile technologies. During the pandemic we pivoted to become a free bootcamp for women. I'm very proud of what we accomplished over five years.</p>

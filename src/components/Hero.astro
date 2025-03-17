@@ -1,5 +1,6 @@
 ---
-const { src = "/3d-home.png" } = Astro.props;
+import { Image } from 'astro:assets';
+import homeImage from '../assets/img/3d-home.png';
 ---
 
 <section class="hero my-12">
@@ -19,7 +20,7 @@ const { src = "/3d-home.png" } = Astro.props;
         <h3 class="font-bold">Subscribe to my weekly <a target="_blank" href="https://www.linkedin.com/build-relation/newsletter-follow?entityUrn=7299544901526958081">AI Drops newsletter</a></h3>
       </div>
       <div class="lg:col-span-1">
-        <img src={src} alt="Decorative 3D illustration" class="max-h-[500px] hidden lg:block" decoding="async" />
+        <Image src={homeImage} alt="Decorative 3D illustration" class="max-h-[500px] hidden lg:block" decoding="async" />
       </div>
     </div>
   </div>

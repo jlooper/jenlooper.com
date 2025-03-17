@@ -59,12 +59,12 @@ body {
     word-break: break-word;
   }
 
-  :where(h1, h2) {
+  :where(h1, h2, h3) {
     font-family: var(--font-family-heading);
   }
 
   h1,
-  h2 {
+  h2, h3 {
     font-weight: 800;
   }
 

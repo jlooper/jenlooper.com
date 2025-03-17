@@ -1,5 +1,7 @@
 ---
 import DefaultLayout from '../layouts/DefaultLayout.astro'
+import { Image } from 'astro:assets'
+import img from '../assets/img/3d-404.png'
 ---
 
 <DefaultLayout title="404">
@@ -19,10 +21,10 @@ import DefaultLayout from '../layouts/DefaultLayout.astro'
           </p>
         </div>
         <div class="lg:col-span-1">
-          <img 
-            src="/3d-404.png" 
+          <Image 
+            src={img} 
             alt="404 illustration" 
-            class="max-h-[400px] hidden lg:block rounded-lg"
+            class="max-h-[400px] hidden lg:block"
           />
         </div>
       </div>

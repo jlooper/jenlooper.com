@@ -91,6 +91,7 @@ allPosts = allPosts.sort(
       grid-template-columns: repeat(3, 1fr);
     }
   }
+  
   body .card {
     h3 {
       font-size: 1.2rem;
@@ -99,6 +100,22 @@ allPosts = allPosts.sort(
     }
     p {
       padding-bottom: 0.5rem;
+    }
+    
+    // Add these new styles for the image
+    img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      object-position: top;
+      border-radius: 0.5rem 0.5rem 0 0;
+    }
+
+    figure {
+      margin: 0;
+      padding: 0;
+      aspect-ratio: 16/9;
+      overflow: hidden;
     }
   }
 </style>

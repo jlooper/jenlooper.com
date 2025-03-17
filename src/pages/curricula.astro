@@ -1,99 +1,123 @@
 ---
-import ContentMedia from '../components/ContentMedia.astro'
 import DefaultLayout from '../layouts/DefaultLayout.astro'
+import { Image } from 'astro:assets'
+import webdevImg from '../assets/img/webdev.png'
+import mlImg from '../assets/img/ml.png'
+import kitchenImg from '../assets/img/kitchen-sune.png'
+import quicknomsImg from '../assets/img/quicknoms.png'
+import thinglearnImg from '../assets/img/thinglearn.png'
 ---
 
 <DefaultLayout title="Curricula">
   <section class="my-12">
-      <div class="space-content container">
-        <h1>Great Curricula</h1>
-        <p class="text-2xl">
-          I'm passionate about great curriculum design. In my opinion, there are no poor teachers, only teachers ill equipped by poorly-designed curriculum. Here are some of the curricula I've developed from my various teaching experiences.
-        </p>
-      <h2>CS 601: Front-End Development</h2>
-
-      <p class="text-2xl">Taught at Boston University Metropolitan College, this curriculum used these <a href="https://glitch.com/@cs-601">CS 601 Code Snippets</a>.
-      Hosted on Glitch, these snippets demonstrate various aspects of using HTML, CSS, and JavaScript to build websites.
+    <div class="space-content container">
+      <h1>Great Curricula</h1>
+      <p class="text-2xl">
+        I'm passionate about great curriculum design. In my opinion, there are no poor teachers, only teachers ill equipped by poorly-designed curriculum. Here are some of the curricula I've developed from my various teaching experiences.
       </p>
 
-<h2>Front-End Foxes School</h2>      
+      <h2>University Teaching</h2>
 
-<p class="text-2xl">Taught globally in cohorts from 2020-2022. 
-  While the school closed in 2023, the <a href="https://github.com/frontendfoxes/school-curriculum">22-lesson curriculum</a>, adapted from 
-  the Microsoft Web Development for Beginners, lives on! 
-</p>
-<p class="text-2xl">The original nonprofit, Vue Vixens, was founded as a way to host free 
-  workshops for women in person at Vue.js and Front-End focused conferences. Those workshops live on here: 
-</p>
-<p class="text-2xl"><a href="https://github.com/FrontEndFoxes/curriculum">Standalone workshops</a> are available <a href="https://frontendfoxes.github.io/curriculum/">here</a>
- and the 6-week bootcamp materials are <a href="https://github.com/FrontEndFoxes/bootcamp-materials">here</a>
-</p>
+      <section class="my-20">
+        <div class="container">
+          <div class="grid grid-cols-1 gap-12">
+            <div class="space-content flex flex-col justify-center">
+              <h3>CS 601: Front-End Development</h3>
+              <p class="text-2xl">
+                Taught at Boston University Metropolitan College, this curriculum used these <a href="https://glitch.com/@cs-601">CS 601 Code Snippets</a>.
+                Hosted on Glitch, these snippets demonstrate various aspects of using HTML, CSS, and JavaScript to build websites.
+              </p>
+            </div>
+          </div>
+          <hr class="my-10"/>
+        </div>
+      </section>
 
-<h2>Microsoft's "For Beginners": The Original Design</h2>
+      <h2>Microsoft's "For Beginners" Series</h2>
 
-<p class="text-2xl">The original design of the curricula that I created alongside teammates is conserved here. They were designed with great care with no superfluity, with credit given to the authors, and will remain so on my own repos.</p>
+      <section class="my-20">
+        <div class="container">
+          <div class="grid grid-cols-1 gap-12 md:grid-cols-2">
+            <Image src={webdevImg} alt="Web Development for Beginners Curriculum" class="max-h-[500px]" decoding="async" />
+            <div class="space-content flex flex-col justify-center">
+              <h3>Web Dev for Beginners</h3>
+              <p class="text-2xl">
+                I designed and developed the viral "For Beginners" at Microsoft. These are free and open repos on GitHub with thousands of stars, ranking highly in most-starred repos globally.
+              </p>
+              <p class="text-2xl">Learn more <a href="https:/aka.ms/webdev-beginners">here</a>. Sketchnotes by Tomomi Imuri</p>
+            </div>
+          </div>
+          <hr class="my-10"/>
+        </div>
+      </section>
 
-<ul>
-  <li><a href="https://github.com/jlooper/Web-Dev-For-Beginners">Web Dev for Beginners</a> - The original, and most popular, of the curricula I designed while orchestrating the original team at Microsoft.</li>
-  <li><a href="https://github.com/jlooper/ML-For-Beginners">Machine Learning for Beginners</a> - The second curriculum that I also designed, and for which I wrote a considerable number of lessons.
-  </li>
-  <li><a href="https://github.com/jlooper/AI-For-Beginners">AI for Beginners</a> - Written primarily by Dmitry Soshnikov
-  </li>
-  <li><a href="https://github.com/jlooper/IoT-For-Beginners">IoT for Beginners</a> - Written by Jim Bennett
-  </li>
-  <li><a href="https://github.com/jlooper/Data-Science-For-Beginners">Data Science for Beginners</a> - Written by a team managed by Jasmine Greenaway
-  </li>
-</ul>
+      <section class="my-20">
+        <div class="container">
+          <div class="grid grid-cols-1 gap-12 md:grid-cols-2">
+            <Image src={mlImg} alt="Machine Learning for Beginners Curriculum" class="max-h-[500px]" decoding="async" />
+            <div class="space-content flex flex-col justify-center">
+              <h3>Machine Learning for Beginners</h3>
+              <p class="text-2xl">
+                Among other curricula developed at Microsoft, I designed and wrote large parts of the Machine Learning for Beginners Curriculum.
+              </p>
+              <p class="text-2xl">Learn more <a href="https:/aka.ms/ml-beginners">here</a>. Sketchnotes by Tomomi Imuri</p>
+            </div>
+          </div>
+          <hr class="my-10"/>
+        </div>
+      </section>
 
-<h3 class="font-bold">Curriculum Template</h3>   
+      <h2>Other Creative Curricula</h2>
 
-<p class="text-2xl">
-Used at Microsoft, this is a <a href="https://github.com/jlooper/curriculum-template">template</a> to use when scaffolding a suite of lessons on GitHub.
-</p>
-<ContentMedia imgSrc="/webdev.png">
-  <h2>Web Dev for Beginners</h2>
-  <p class="text-2xl">
-    I designed and developed the viral "For Beginners" at Microsoft. These are free and open repos on GitHub with thousands of stars, ranking highly in most-starred repos globally.
-  </p>
-  <p class="text-2xl">Learn more <a href="https:/aka.ms/webdev-beginners">here</a>. Sketchnotes by Tomomi Imuri</p>
-</ContentMedia>
-<ContentMedia imgSrc="/ml.png">
-  <h2>Machine Learning for Beginners</h2>
-  <p class="text-2xl">
-    Among other curricula developed at Microsoft, I designed and wrote large parts of the Machine Learning for Beginners Curriculum.
-  </p>
-  <p class="text-2xl">Learn more <a href="https:/aka.ms/ml-beginners">here</a>. Sketchnotes by Tomomi Imuri</p>
-</ContentMedia>
+      <section class="my-20">
+        <div class="container">
+          <div class="grid grid-cols-1 gap-12 md:grid-cols-2">
+            <Image src={kitchenImg} alt="Kitchen-Sune Recipe Book" class="max-h-[500px]" decoding="async" />
+            <div class="space-content flex flex-col justify-center">
+              <h3>Kitchen-Sune</h3>
+              <p class="text-2xl">
+                The Front-End Foxes Global Recipe Book
+              </p>
+              <p class="text-2xl">Learn more <a href="https://kitchen-sune.netlify.app">here</a>.</p>
+            </div>
+          </div>
+          <hr class="my-10"/>
+        </div>
+      </section>
 
-<h2>Other Creative Curricula</h2> 
+      <section class="my-20">
+        <div class="container">
+          <div class="grid grid-cols-1 gap-12 md:grid-cols-2">
+            <Image src={quicknomsImg} alt="QuickNoms" class="max-h-[500px]" decoding="async" />
+            <div class="space-content flex flex-col justify-center">
+              <h3>QuickNoms</h3>
+              <p class="text-2xl">
+                5 ingredients, 15 minutes, dinner is served!
+              </p>
+              <p class="text-2xl">Learn more <a href="https://quicknoms.netlify.app">here</a>.</p>
+            </div>
+          </div>
+          <hr class="my-10"/>
+        </div>
+      </section>
 
-<ContentMedia imgSrc="/kitchen-sune.png">
-  <h2>Kitchen-Sune</h2>
-  <p class="text-2xl">
-    The Front-End Foxes Global Recipe Book
-  </p>
-  <p class="text-2xl">Learn more <a href="https://kitchen-sune.netlify.app">here</a>.</p>
-</ContentMedia>
+      <section class="my-20">
+        <div class="container">
+          <div class="grid grid-cols-1 gap-12 md:grid-cols-2">
+            <Image src={thinglearnImg} alt="ThingLearn" class="max-h-[500px]" decoding="async" />
+            <div class="space-content flex flex-col justify-center">
+              <h3>ThingLearn</h3>
+              <p class="text-2xl">
+                It's a curriculum, a community, and a lot of fun! Let's learn about the Internet of Things together.
+              </p>
+              <p class="text-2xl">Learn more <a href="https://thinglearn.netlify.app">here</a>.</p>
+            </div>
+          </div>
+          <hr class="my-10"/>
+        </div>
+      </section>
 
-  <ContentMedia imgSrc="/quicknoms.png">
-    <h2>QuickNoms</h2>
-    <p class="text-2xl">
-      5 ingredients, 15 minutes, dinner is served!
-    </p>
-    <p class="text-2xl">Learn more <a href="https://quicknoms.netlify.app">here</a>.</p>
-  </ContentMedia>
-
-  <ContentMedia imgSrc="/thinglearn.png">
-    <h2>ThingLearn</h2>
-    <p class="text-2xl">
-      It's a curriculum, a community, and a lot of fun! Let's learn about the Internet of Things together.
-    </p>
-    <p class="text-2xl">Learn more <a href="https://thinglearn.netlify.app">here</a>.</p>
-  </ContentMedia>
-  
-
-
-</div>
-</section>
+    </div>
+  </section>
 </DefaultLayout>
 

@@ -31,7 +31,7 @@ import logo from '../assets/img/logo.png'
       </ul>
     </nav>
   </div>
-  <div class="bg-yellow-200 p-4 font-bold text-center">🚀 Just Launched! <a href="https://beanpotstudio.com" target="_blank">Beanpot Studio</a> for educator- and student-centric education technology solutions. Find the studio online and request information for your testing and certification needs.</div>
+  <div class="bg-yellow-200 p-4 font-bold text-center top-banner">🚀 Just Launched! <a href="https://beanpotstudio.com" target="_blank">Beanpot Studio</a> for educator- and student-centric education technology solutions. Find the studio online and request information for your testing and certification needs.</div>
 </div>
 
 
@@ -182,5 +182,17 @@ import logo from '../assets/img/logo.png'
         box-shadow: none;
       }
     }
+  }
+
+  .top-banner {
+    // default text color (inherits)
+  }
+  .darkmode .top-banner,
+  .dark .top-banner {
+    color: #000 !important;
+  }
+  .darkmode .top-banner a,
+  .dark .top-banner a {
+    color: #bc72ee !important; /* Use your brand purple or Tailwind's purple-400 */
   }
 </style>

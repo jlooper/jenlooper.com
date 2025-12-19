@@ -1,51 +1,70 @@
 ---
 import { Image } from 'astro:assets';
-import homeImage from '../assets/img/3d-home.png';
+import homeImage from '../assets/img/hero-jen.jpg';
 ---
 
-<section class="hero my-12">
-  <div class="container w-full">
-    <div class="grid grid-cols-1 items-start gap-4 lg:grid-cols-3">
-      <div class="flex flex-col items-start gap-6 md:items-start lg:col-span-2 lg:self-start">
-        <h1 class="text-center md:text-left">
-          <span class="text-gradient">Hi, I'm Jen!</span>
-        </h1>
-        <h2 class="flex flex-col gap-3 min-[500px]:flex-row">
-          I'm an author, educator, & creative technologist.
-        </h2>
-        <h4 class="flex flex-col gap-3 min-[200px]:flex-row">
-          I'm a 3x founder, I've written books, built viral curricula with millions of views, and led the creation of student and professional communities with
-          thousands of members. Let's learn from each other!
-        </h4>
-        <h4 class="font-bold">Subscribe to my <a target="_blank" href="https://www.linkedin.com/build-relation/newsletter-follow?entityUrn=7299544901526958081">AI Drops newsletter</a></h4>
+<section class="relative min-h-[85vh] flex items-center bg-warm overflow-hidden">
+  <!-- Decorative elements -->
+  <div class="absolute top-20 left-10 w-64 h-64 bg-coral/10 rounded-full blur-3xl animate-gentle-pulse" />
+  <div class="absolute bottom-20 right-20 w-80 h-80 bg-honey/20 rounded-full blur-3xl animate-gentle-pulse delay-200" />
+  <div class="absolute top-40 right-40 w-40 h-40 bg-sage/30 rounded-full blur-2xl animate-gentle-pulse delay-300" />
+  
+  <div class="container max-w-6xl mx-auto px-6 md:px-12 py-16 relative z-10">
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <!-- Text content -->
+      <div class="space-y-8 animate-fade-up">
+        <div class="space-y-4">
+          <p class="text-coral font-medium text-lg">Welcome to my corner of the web ☕️</p>
+          <h1 class="font-serif text-5xl md:text-6xl lg:text-7xl font-semibold text-foreground leading-tight">
+            Hi, I'm <span class="text-gradient">Jen!</span>
+          </h1>
+          <h2 class="font-serif text-2xl md:text-3xl text-muted-foreground italic">
+            Author, Educator & Creative Technologist
+          </h2>
+        </div>
+        
+        <p class="text-lg text-foreground/80 leading-relaxed max-w-lg mb-4">
+          I'm a 3x founder who has written books, built viral curricula with millions of views, 
+          and led the creation of student and professional communities with thousands of members.
+        </p>
+        
+        <p class="text-xl font-serif text-foreground/90 italic">
+          Let's learn from each other!
+        </p>
+
+        <div class="flex flex-wrap gap-4 pt-4">
+          <a
+            href="https://www.linkedin.com/build-relation/newsletter-follow?entityUrn=7299544901526958081"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group inline-flex items-center gap-2 bg-coral text-white px-6 py-3 rounded-lg font-medium hover:bg-coral/90 transition-all duration-300 shadow-warm hover:shadow-lifted"
+          >
+            Subscribe to my newsletter
+            <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </a>
+          <a
+            href="/projects/"
+            class="inline-flex items-center gap-2 border-2 border-border text-foreground px-6 py-3 rounded-lg font-medium hover:bg-muted/50 hover:border-primary/50 transition-all duration-300"
+          >
+            Explore My Work
+          </a>
+        </div>
       </div>
-      <div class="lg:col-span-1">
-        <Image src={homeImage} alt="Decorative 3D illustration" class="max-h-[500px] hidden lg:block" decoding="async" />
+
+      <!-- Illustration -->
+      <div class="relative flex justify-center animate-fade-up delay-200">
+        <div class="relative">
+          <div class="absolute inset-0 bg-gradient-to-br from-coral/20 to-honey/20 rounded-3xl blur-2xl transform rotate-6" />
+          <Image
+            src={homeImage}
+            alt="Jen - Creative Technologist"
+            class="relative w-full max-w-md rounded-3xl shadow-lifted animate-float"
+            decoding="async"
+          />
+        </div>
       </div>
     </div>
   </div>
 </section>
-
-<style lang="scss">
-  .text-gradient {
-    background: linear-gradient(
-      315deg,
-      var(--primary-200) 25%,
-      var(--secondary-500)
-    );
-    background-clip: border-box;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-
-  :global(.darkmode .text-gradient) {
-    background: linear-gradient(
-      315deg,
-      var(--primary-200) 25%,
-      var(--secondary-400)
-    );
-    background-clip: border-box;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-</style>

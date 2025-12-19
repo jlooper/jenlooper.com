@@ -5,11 +5,11 @@ import SearchField from '../components/SearchField.astro'
 
 
 <DefaultLayout title="Search" description="Find what you\'re looking for!">
-    <section class="my-12">
-        <div class="space-content container">
-        <h1>Seek & Ye Shall Find!</h1>
+  <section class="container max-w-6xl mx-auto px-6 md:px-12 py-16">
+    <div class="space-y-8">
+        <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl font-semibold text-foreground leading-tight">Seek & Ye Shall Find!</h1>
         <div class="prose prose-lg max-w-none">
-            <SearchField id="search" className="my-8 w-full" />
+            <SearchField id="search" className="my-8 w-full border-2 border-gray-300 rounded-md p-2" />
           </div>
         </div>
     </section>

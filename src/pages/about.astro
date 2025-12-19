@@ -5,37 +5,36 @@ import img from '../assets/img/jen.jpg';
 ---
 
 <DefaultLayout title="About Me">
-    <section class="my-12">
-        <div class="space-content container">
-          <h1>About Me</h1>
-          <section class="my-20">
-            <div class="container">
-              <div class="grid grid-cols-1 gap-12 md:grid-cols-2">
-                <Image src={img} alt="Jen Looper" class="rounded-md" decoding="async" />
-                <div class="space-content flex flex-col justify-center">
-                  <p class="text-2xl">         
-                    Welcome! I'm Jen Looper. I have over 25 years' experience as a web and mobile developer, specializing in creating creative cross-platform apps, often with an educational focus. I design excellent curricula on technical topics and am known for the quality of my educational content, my managerial skills, and my creative strategies.
-                  </p>
-                  <p class="text-2xl">I'm the Director of Developer Relations at Cloudinary. Previously, I was the Head of Academic Advocacy at AWS, a Principal Cloud Developer Advocate at Microsoft, and a Developer Advocate at Progress/Telerik. I've also worked at small, medium, and large companies over my career.</p>       
-                </div>
-              </div>
-              <hr class="my-10"/>
-            </div>
-          </section>          
+    <section class="container max-w-6xl mx-auto px-6 md:px-12 py-16">
+        <div class="space-y-8">
+          <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl font-semibold text-foreground leading-tight">About Me</h1>
           
-          <p class="text-2xl">I'm a 3x founder, having founded LadeezFirstMedia, Inc., Vue Vixens, Inc. (rebranded to Front-End Foxes, Inc.), and founded a new startup for EdTech solutions called <a href="https://beanpotstudio.com" target="_blank">Beanpot Studio</a>.</p>
-          <p class="text-2xl">I'm also a multilingual multiculturalist with a passion for hardware hacking, mobile apps, the frontend of the web and various JavaScript frameworks and meta-frameworks, applied machine learning and AI (as well as the ramifications!) and discovering new things every day. On occasion I can be found teaching front-end technologies at Boston University's Metropolitan College.</p>
-          <p class="text-2xl">I wrote a textbook, <a href="https://www.amazon.com/Computer-Science-Kids-Storytelling-Approach/dp/1119912512/" target="_blank">Computer Science for Kids: A Storytelling Approach</a> for grades 6-8, aligned to CSTA standards. Learn more at <a href="https://cs4kids.club" target="_blank">CS4Kids.club</a>.</p>
-          <p class="text-2xl">I also wrote The Illustrated AWS Cloud, a visual guide to learning fundamental concepts of cloud computing with AWS. Learn more at <a href="https://illustrated-aws.netlify.app/" target="_blank">The Illustrated AWS Cloud website</a>.</p>
-          <p class="text-2xl">In 2018 I founded what became an international nonprofit organization, Vue Vixens, Inc, which I rebranded to Front-End Foxes, Inc. to welcome more front-end technologies and communities. Our mission was to educate women worldwide in front-end web and mobile technologies. During the pandemic we pivoted to become a free bootcamp for women. I'm very proud of what we accomplished over five years.</p>
-          <p class="text-2xl">My resume can be found <a href="/assets/jlooper-resume.pdf">here</a>. Find me on social media using the icons below.</p>
-          <p class="text-2xl">If you'd like to contact me, fill out <a href="/contact">this form</a>.</p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 my-12 items-start">
+            <Image src={img} alt="Jen Looper" class="rounded-md w-full" decoding="async" />
+            <div class="space-y-6">
+              <p class="text-lg text-foreground/80 leading-relaxed">         
+                Welcome! I'm Jen Looper. I have over 25 years' experience as a web and mobile developer, specializing in creating creative cross-platform apps, often with an educational focus. I design excellent curricula on technical topics and am known for the quality of my educational content, my managerial skills, and my creative strategies.
+              </p>
+              <p class="text-lg text-foreground/80 leading-relaxed">I'm the Director of Developer Relations at Cloudinary. Previously, I was the Head of Academic Advocacy at AWS, a Principal Cloud Developer Advocate at Microsoft, and a Developer Advocate at Progress/Telerik. I've also worked at small, medium, and large companies over my career.</p>       
+            </div>
+          </div>
+          
+          <hr class="my-10"/>
+          
+          <div class="space-y-6">
+            <p class="text-lg text-foreground/80 leading-relaxed">I'm a 3x founder, having founded LadeezFirstMedia, Inc., Vue Vixens, Inc. (rebranded to Front-End Foxes, Inc.), and founded a new startup for EdTech solutions called <a href="https://beanpotstudio.com" target="_blank">Beanpot Studio</a>.</p>
+            <p class="text-lg text-foreground/80 leading-relaxed">I'm also a multilingual multiculturalist with a passion for hardware hacking, mobile apps, the frontend of the web and various JavaScript frameworks and meta-frameworks, applied machine learning and AI (as well as the ramifications!) and discovering new things every day. On occasion I can be found teaching front-end technologies at Boston University's Metropolitan College.</p>
+            <p class="text-lg text-foreground/80 leading-relaxed">I wrote a textbook, <a href="https://www.amazon.com/Computer-Science-Kids-Storytelling-Approach/dp/1119912512/" target="_blank">Computer Science for Kids: A Storytelling Approach</a> for grades 6-8, aligned to CSTA standards. Learn more at <a href="https://cs4kids.club" target="_blank">CS4Kids.club</a>.</p>
+            <p class="text-lg text-foreground/80 leading-relaxed">I also wrote The Illustrated AWS Cloud, a visual guide to learning fundamental concepts of cloud computing with AWS. Learn more at <a href="https://illustrated-aws.netlify.app/" target="_blank">The Illustrated AWS Cloud website</a>.</p>
+            <p class="text-lg text-foreground/80 leading-relaxed">In 2018 I founded what became an international nonprofit organization, Vue Vixens, Inc, which I rebranded to Front-End Foxes, Inc. to welcome more front-end technologies and communities. Our mission was to educate women worldwide in front-end web and mobile technologies. During the pandemic we pivoted to become a free bootcamp for women. I'm very proud of what we accomplished over five years.</p>
+            <p class="text-lg text-foreground/80 leading-relaxed">My resume can be found <a href="/assets/jlooper-resume.pdf">here</a>. Find me on social media using the icons below.</p>
+            <p class="text-lg text-foreground/80 leading-relaxed">If you'd like to contact me, fill out <a href="/contact">this form</a>.</p>
+          </div>
         
-          <h2>AI Usage Policy</h2>
+          <h2 class="font-serif text-2xl md:text-3xl text-muted-foreground italic mt-12">AI Usage Policy</h2>
         
-            <p class="text-2xl">I use AI-powered code editors such as Cursor on occasion to learn a new framework or to help refactor code to improve a piece of software I'm working on. It's a very useful way to upgrade old codebases, as I demonstrated <a href="https://community.aws/content/2oK6iLrwI2onKceVenHeyxYGBkQ/snappy-squirrel-rides-again-with-amazon-q-and-phaser-a-refactoring-success">here</a>. However, I do not use AI to write blogposts or newsletter articles. I do not generate AI "art" as I believe it is not art, but rather often veers intocopyright infringement. I do use photos enhanced in Canva to build header images, and cite licenses where possible, preferring to use Creative Commons works. Some of my imagery on social media is borrowed from already-generated Midjourney content as long as the images don't copy an artist's style, so that I can recycle images already generated. Sources are cited.</p>
+          <p class="text-lg text-foreground/80 leading-relaxed">I use AI-powered code editors such as Cursor to learn a new framework or to help refactor code to improve a piece of software I'm working on. It's a very useful way to upgrade old codebases, as I demonstrated <a href="https://community.aws/content/2oK6iLrwI2onKceVenHeyxYGBkQ/snappy-squirrel-rides-again-with-amazon-q-and-phaser-a-refactoring-success">here</a>. However, I do not use AI to write blogposts or newsletter articles. I rarely generate AI "art" as I believe it is not art, but rather often veers into copyright infringement. The image on this site's homepage is an AI version of my professional photo, created by ChatGPT. I do use photos enhanced in Canva to build header images, and cite licenses where possible, preferring to use Creative Commons works. Some of my imagery on social media is borrowed from already-generated Midjourney content as long as the images don't copy an artist's style, so that I can recycle images already generated. Sources are cited.</p>
         
         </div>
-        
-      </section>
+    </section>
 </DefaultLayout>

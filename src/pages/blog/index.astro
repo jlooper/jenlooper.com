@@ -67,10 +67,10 @@ const allPosts = [...unifiedLocalPosts, ...unifiedDevToPosts].sort(
 ---
 
 <DefaultLayout title={title} description={description} current="blog">
-  <div class="my-12">
-    <section class="space-content container">
-      <h1>Featured Articles</h1>
-      <p class="text-2xl">
+  <section class="container max-w-6xl mx-auto px-6 md:px-12 py-16">
+    <div class="space-y-8">
+      <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl font-semibold text-foreground leading-tight">Featured Articles</h1>
+      <p class="text-lg text-foreground/80 leading-relaxed mb-4 my-5">
         Many of my articles are published on <a
           href="https://dev.to/jenlooper"
           target="_blank">Dev.to</a
@@ -106,7 +106,7 @@ const allPosts = [...unifiedLocalPosts, ...unifiedDevToPosts].sort(
               >
                 <div class="post-content">
                   
-                  <p class="text-gray-700">{post.description}</p>
+                  <p class="text-gray-700 mb-4">{post.description}</p>
                  
                 </div>
               </Card>

@@ -1,0 +1,264 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Warm, cozy color palette */
+    --background: 42 40% 97%;
+    --foreground: 25 25% 20%;
+
+    --card: 40 30% 96%;
+    --card-foreground: 25 25% 20%;
+
+    --popover: 40 30% 96%;
+    --popover-foreground: 25 25% 20%;
+
+    /* Warm coral/terracotta primary */
+    --primary: 12 76% 61%;
+    --primary-foreground: 40 40% 98%;
+
+    /* Soft sage secondary */
+    --secondary: 140 20% 90%;
+    --secondary-foreground: 140 25% 25%;
+
+    --muted: 35 20% 92%;
+    --muted-foreground: 25 15% 45%;
+
+    /* Warm golden accent */
+    --accent: 38 80% 70%;
+    --accent-foreground: 25 25% 15%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 35 25% 88%;
+    --input: 35 25% 88%;
+    --ring: 12 76% 61%;
+
+    --radius: 0.75rem;
+
+    /* Custom semantic tokens */
+    --cream: 42 40% 97%;
+    --warm-white: 40 40% 99%;
+    --coral: 12 76% 61%;
+    --coral-light: 12 76% 75%;
+    --terracotta: 18 60% 50%;
+    --sage: 140 20% 75%;
+    --sage-dark: 140 25% 35%;
+    --honey: 38 80% 65%;
+    --espresso: 25 35% 22%;
+
+    /* Gradients */
+    --gradient-warm: linear-gradient(135deg, hsl(var(--cream)) 0%, hsl(38 60% 95%) 100%);
+    --gradient-coral: linear-gradient(135deg, hsl(var(--coral)) 0%, hsl(var(--terracotta)) 100%);
+    --gradient-soft: linear-gradient(180deg, hsl(var(--warm-white)) 0%, hsl(var(--cream)) 100%);
+
+    /* Shadows */
+    --shadow-soft: 0 4px 20px -4px hsl(var(--espresso) / 0.08);
+    --shadow-warm: 0 8px 30px -8px hsl(var(--coral) / 0.15);
+    --shadow-lifted: 0 12px 40px -12px hsl(var(--espresso) / 0.12);
+
+    /* Typography */
+    --font-serif: 'Playfair Display', Georgia, serif;
+    --font-sans: 'DM Sans', system-ui, sans-serif;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .darkmode {
+    --background: 25 25% 10%;
+    --foreground: 40 30% 92%;
+
+    --card: 25 20% 14%;
+    --card-foreground: 40 30% 92%;
+
+    --popover: 25 20% 14%;
+    --popover-foreground: 40 30% 92%;
+
+    --primary: 12 70% 55%;
+    --primary-foreground: 25 25% 10%;
+
+    --secondary: 140 15% 20%;
+    --secondary-foreground: 140 20% 85%;
+
+    --muted: 25 15% 18%;
+    --muted-foreground: 35 15% 60%;
+
+    --accent: 38 70% 50%;
+    --accent-foreground: 25 25% 10%;
+
+    --destructive: 0 62% 45%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 25 15% 22%;
+    --input: 25 15% 22%;
+    --ring: 12 70% 55%;
+
+    --cream: 25 25% 10%;
+    --warm-white: 25 20% 12%;
+    --coral: 12 70% 55%;
+    --coral-light: 12 70% 65%;
+    --sage: 140 15% 30%;
+    --sage-dark: 140 20% 60%;
+    --honey: 38 70% 50%;
+    --espresso: 40 30% 85%;
+
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+    height: 100%;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  html {
+    height: 100%;
+  }
+
+  main {
+    flex: 1 0 auto;
+  }
+
+  footer {
+    flex-shrink: 0;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+  }
+
+  a {
+    @apply text-primary transition-colors duration-300;
+    text-decoration: none;
+    position: relative;
+  }
+
+  a:hover {
+    @apply text-primary/90;
+  }
+
+  /* Styled underline for content links - exclude navigation, header, and button-style links */
+  section a:not(.no-underline):not([class*="bg-"]):not([class*="button"]):hover::after,
+  main a:not(.no-underline):not([class*="bg-"]):not([class*="button"]):hover::after,
+  article a:not(.no-underline):not([class*="bg-"]):not([class*="button"]):hover::after,
+  p a:not(.no-underline):not([class*="bg-"]):not([class*="button"]):hover::after,
+  div a:not(.no-underline):not([class*="bg-"]):not([class*="button"]):not([class*="flex items-center gap"]):hover::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, hsl(var(--primary)) 0%, hsl(var(--primary)) 100%);
+    border-radius: 1px;
+    animation: underline-expand 0.3s ease-out;
+  }
+
+  @keyframes underline-expand {
+    from {
+      transform: scaleX(0);
+      opacity: 0;
+    }
+    to {
+      transform: scaleX(1);
+      opacity: 1;
+    }
+  }
+}
+
+@layer utilities {
+  .font-serif {
+    font-family: var(--font-serif);
+  }
+  
+  .font-sans {
+    font-family: var(--font-sans);
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-coral);
+  }
+
+  .bg-warm {
+    background: var(--gradient-warm);
+  }
+
+  .bg-soft {
+    background: var(--gradient-soft);
+  }
+
+  .shadow-soft {
+    box-shadow: var(--shadow-soft);
+  }
+
+  .shadow-warm {
+    box-shadow: var(--shadow-warm);
+  }
+
+  .shadow-lifted {
+    box-shadow: var(--shadow-lifted);
+  }
+
+  /* Cozy animations */
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes gentle-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+  }
+
+  .animate-float {
+    animation: float 4s ease-in-out infinite;
+  }
+
+  .animate-fade-up {
+    animation: fade-up 0.6s ease-out forwards;
+  }
+
+  .animate-gentle-pulse {
+    animation: gentle-pulse 3s ease-in-out infinite;
+  }
+
+  .delay-100 { animation-delay: 100ms; }
+  .delay-200 { animation-delay: 200ms; }
+  .delay-300 { animation-delay: 300ms; }
+  .delay-400 { animation-delay: 400ms; }
+}

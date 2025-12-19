@@ -1,19 +1,20 @@
 ---
-import Navigation from '../components/Navigation.astro'
+import BeanpotBanner from './BeanpotBanner.astro'
+import { Code, BookHeart, FileText, Mic, GraduationCap, CircleUserRound, Search } from 'lucide-astro'
 
 const menuItems = [
-  { text: 'About', href: '/about/' },
-  { text: '🫘 Beanpot Studio', href: 'https://beanpotstudio.com' },
-  { text: 'Projects', href: '/projects/' },
-  { text: 'Articles', href: '/blog/' },
-  { text: 'Books', href: '/books/' },
-  { text: 'Speaking', href: '/speaking/' },
-  { text: 'Curricula', href: '/curricula/' },
-  { text: 'Contact', href: '/contact/' },
-  { text: '🔎', href: '/search/' },
+  { text: 'About', href: '/about/', icon: CircleUserRound },
+  { text: 'Projects', href: '/projects/', icon: Code },
+  { text: 'Books', href: '/books/', icon: BookHeart },
+  { text: 'Articles', href: '/blog/', icon: FileText },
+  { text: 'Speaking', href: '/speaking/', icon: Mic },
+  { text: 'Curricula', href: '/curricula/', icon: GraduationCap },
+  { text: 'Search', href: '/search/', icon: Search },
 ]
+
 // Get current path for active state
 const currentPath = Astro.url.pathname;
+
 // Helper function to check if link is active
 const isActive = (path: string) => {
   if (path === "/") {
@@ -24,78 +25,94 @@ const isActive = (path: string) => {
 ---
 
 <header>
-  <Navigation>
+  <BeanpotBanner />
+  <div class="w-full py-5 px-6 md:px-12 bg-warm-white/80 backdrop-blur-sm sticky top-0 z-50 border-b border-border/50">
+    <div class="max-w-6xl mx-auto flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2">
+        <span class="font-serif text-2xl font-semibold text-coral">jl</span>
+      </a>
+      
+      <nav class="hidden md:flex items-center gap-8">
+        {menuItems.map((item) => {
+          const IconComponent = item.icon;
+          return (
+            <a
+              href={item.href}
+              class="flex items-center gap-2 text-foreground/80 hover:text-primary transition-colors duration-300 font-medium"
+            >
+              {IconComponent && <IconComponent class="w-4 h-4" />}
+              {item.text}
+            </a>
+          );
+        })}
+      </nav>
 
-     {/* Mobile menu button */}   
+      <a
+        href="/contact/"
+        class="hidden md:flex items-center gap-2 bg-primary text-primary-foreground px-5 py-2.5 rounded-lg font-medium hover:bg-coral/50 hover:text-black transition-all duration-300 shadow-warm hover:shadow-lifted"
+      >
+        Let's Connect
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+        </svg>
+      </a>
 
-     <div class="sm:hidden flex items-center">
+      {/* Mobile menu button */}
       <button
-        class="w-20 border-none inline-flex items-center justify-center p-2 rounded-md hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors duration-200"
+        class="md:hidden p-2 text-foreground hover:text-primary transition-colors"
         type="button"
         aria-controls="mobile-menu"
         aria-expanded="false"
         id="mobile-menu-button"
       >
         <span class="sr-only">Open main menu</span>
-        <svg
-          class="h-6 w-6 text-current dark:text-white"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          stroke-width="2"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M4 6h16M4 12h16M4 18h16"
-          ></path>
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
         </svg>
       </button>
     </div>
 
-    {/* Desktop navigation */}
-    <div class="hidden sm:flex sm:items-center sm:space-x-8">
-      {
-        menuItems.map((item) => (
-          <a
-            href={item.href}
-            class={`inline-flex items-center pt-1  border-b-2 ${
-              isActive(item.href)
-                ? "border-purple-300"
-                : "border-transparent"
-            }`}
-          >
-            {item.text}
-          </a>
-        ))
-      }
+    {/* Mobile menu */}
+    <div
+      class="hidden md:hidden absolute w-full left-0 z-50 bg-warm-white/95 backdrop-blur-sm border-b border-border/50 shadow-lg"
+      id="mobile-menu"
+    >
+      <div class="px-6 py-4 space-y-2">
+        {menuItems.map((item) => {
+          const IconComponent = item.icon;
+          return (
+            <a
+              href={item.href}
+              class={`flex items-center gap-2 block px-4 py-3 rounded-md text-base font-medium text-foreground/80 hover:text-primary hover:bg-muted/50 transition-colors duration-200 ${
+                isActive(item.href) ? "text-primary bg-muted/30" : ""
+              }`}
+            >
+              {IconComponent && <IconComponent class="w-4 h-4" />}
+              {item.text}
+            </a>
+          );
+        })}
+        <a
+          href="/contact/"
+          class="flex items-center gap-2 block px-4 py-3 rounded-md text-base font-medium bg-primary text-primary-foreground hover:bg-coral/50 hover:text-black transition-colors duration-200"
+        >
+          Let's Connect
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+        </a>
+      </div>
     </div>
   </div>
-
-  {/* Mobile menu */}
-  <div
-    class="hidden sm:hidden absolute w-full left-0 z-50 top-24 bg-white dark:bg-gray-800 shadow-lg"
-    id="mobile-menu"
-  >
-    <div class="px-4 py-4 space-y-2">
-      {
-        menuItems.map((item) => (
-          <a
-            href={item.href}
-            class={`block px-4 py-3 rounded-md text-base font-medium text-gray-800 dark:text-white hover:bg-purple-100 dark:hover:bg-purple-900 transition-colors duration-200 ${
-              isActive(item.href) 
-                ? "bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-200" 
-                : ""
-            }`}
-          >
-            {item.text}
-          </a>
-        ))
-      }
-    </div>
-  </div>
-    
-  </Navigation>
 </header>
 
+<script>
+  const button = document.getElementById("mobile-menu-button");
+  const menu = document.getElementById("mobile-menu");
 
+  button?.addEventListener("click", () => {
+    const expanded = button.getAttribute("aria-expanded") === "true";
+    button.setAttribute("aria-expanded", String(!expanded));
+    menu?.classList.toggle("hidden");
+  });
+</script>

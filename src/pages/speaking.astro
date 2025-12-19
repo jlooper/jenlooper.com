@@ -3,22 +3,20 @@ import DefaultLayout from "../layouts/DefaultLayout.astro";
 ---
 
 <DefaultLayout title="Speaking">
-  <section class="my-12">
-    <div class="space-content container">
-      <h1>Speaking</h1>
-      <p class="text-2xl">
+  <section class="container max-w-6xl mx-auto px-6 md:px-12 py-16">
+    <div class="space-y-8">
+      <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl font-semibold text-foreground leading-tight">Speaking</h1>
+      <p class="text-lg text-foreground/80 leading-relaxed mb-4 my-5">
         I'm a well-known conference speaker. Here are a few of my talks, and a <a
-          class="underline"
           href="https://www.youtube.com/playlist?list=PL8bLS57CI8i2idWqYbsvu9IOwjTGqReaa"
           >link to my playlist on YouTube</a
         >. You can also find links to many of my slide decks <a
-          class="underline"
           href="https://www.slideshare.net/JenLooper/presentations"
           >on SlideShare</a
         >.
       </p>
 
-      <p class="text-xl">
+      <p class="text-lg text-foreground/80 leading-relaxed mb-4 my-5">
         If you'd like me to come speak at your conference, please <a
           href="/contact">fill out this form</a
         >.
@@ -26,114 +24,141 @@ import DefaultLayout from "../layouts/DefaultLayout.astro";
 
       <main class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <article>
-          <h4 class="text-lg">
+          <h4 class="font-serif text-bold text-2xl md:text-3xl italic">A la Recherche du Temps Perdu: Searching for the Cozy Web</h4>
+          <h5>Pixelpalooza 2025</h5>
+
+          <div class="relative w-full aspect-video">
+            <iframe
+              class="absolute top-0 left-0 w-full h-full"
+              src="https://www.youtube.com/embed/P2tJEBC1eZs"
+              title="YouTube video player"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe>
+          </div>
+        </article>
+        <article>
+          <h4 class="font-serif text-bold text-2xl md:text-3xl italic">
             The Last Saree: Connoisseurship in the Age of AI
           </h4>
           <h5>TEDx Charusat 2024</h5>
 
-          <iframe
-            width="560"
-            height="315"
-            src="https://www.youtube.com/embed/y6qopiBGK-E"
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen></iframe>
+          <div class="relative w-full aspect-video">
+            <iframe
+              class="absolute top-0 left-0 w-full h-full"
+              src="https://www.youtube.com/embed/y6qopiBGK-E"
+              title="YouTube video player"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe>
+          </div>
         </article>
         <article>
-          <h4 class="text-lg">WineUP: ML, Mobile Apps, Wine 🍷, & Cheese 🧀</h4>
+          <h4 class="font-serif text-bold text-2xl md:text-3xl italic">WineUP: ML, Mobile Apps, Wine 🍷, & Cheese 🧀</h4>
           <h5>Script'19 - 2019</h5>
-          <iframe
-            width="560"
-            height="315"
-            src="https://www.youtube.com/embed/ToHsJPcgKdI"
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen></iframe>
+          <div class="relative w-full aspect-video">
+            <iframe
+              class="absolute top-0 left-0 w-full h-full"
+              src="https://www.youtube.com/embed/ToHsJPcgKdI"
+              title="YouTube video player"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe>
+          </div>
         </article>
 
         <article>
-          <h4 class="text-lg">The Ethics of Imagery</h4>
+          <h4 class="font-serif text-bold text-2xl md:text-3xl italic">The Ethics of Imagery</h4>
           <h5>ImageCon Keynote 2019</h5>
-          <iframe
-            width="560"
-            height="315"
-            src="https://www.youtube.com/embed/4Zhjy3Mdtbc"
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen></iframe>
+          <div class="relative w-full aspect-video">
+            <iframe
+              class="absolute top-0 left-0 w-full h-full"
+              src="https://www.youtube.com/embed/4Zhjy3Mdtbc"
+              title="YouTube video player"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe>
+          </div>
         </article>
         <article>
-          <h4 class="text-lg">The Great Minibar Challenge</h4>
+          <h4 class="font-serif text-bold text-2xl md:text-3xl italic">The Great Minibar Challenge</h4>
           <h5>Vue Amsterdam 2019</h5>
 
-          <iframe
-            width="560"
-            height="315"
-            src="https://www.youtube.com/embed/SgBDEydZb4A"
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen></iframe>
+          <div class="relative w-full aspect-video">
+            <iframe
+              class="absolute top-0 left-0 w-full h-full"
+              src="https://www.youtube.com/embed/SgBDEydZb4A"
+              title="YouTube video player"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe>
+          </div>
         </article>
         <article>
-          <h4 class="text-lg">The Zen of Vue</h4>
+          <h4 class="font-serif text-bold text-2xl md:text-3xl italic">The Zen of Vue</h4>
           <h5>VueConf 2019</h5>
 
-          <iframe
-            width="560"
-            height="315"
-            src="https://www.youtube.com/embed/wCU-kDlXY58"
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen></iframe>
+          <div class="relative w-full aspect-video">
+            <iframe
+              class="absolute top-0 left-0 w-full h-full"
+              src="https://www.youtube.com/embed/wCU-kDlXY58"
+              title="YouTube video player"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe>
+          </div>
         </article>
         <article>
-          <h4 class="text-lg">
+          <h4 class="font-serif text-bold text-2xl md:text-3xl italic">
             Human vs. AI: Build a Mobile App with Vue.js, ML kit and
             NativeScript
           </h4>
           <h5>Voxxed Thessaloniki 2018</h5>
 
-          <iframe
-            width="560"
-            height="315"
-            src="https://www.youtube.com/embed/ZG7GtgfUS6g"
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen></iframe>
+          <div class="relative w-full aspect-video">
+            <iframe
+              class="absolute top-0 left-0 w-full h-full"
+              src="https://www.youtube.com/embed/ZG7GtgfUS6g"
+              title="YouTube video player"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe>
+          </div>
         </article>
         <article>
-          <h4 class="text-lg">
+          <h4 class="font-serif text-bold text-2xl md:text-3xl italic">
             3 Identical Apps with Ionic, NativeScript, and React Native
           </h4>
           <h5>Frontend Developer Love 2018</h5>
 
-          <iframe
-            width="560"
-            height="315"
-            src="https://www.youtube.com/embed/1Kqtg1Mw2wc"
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen></iframe>
+          <div class="relative w-full aspect-video">
+            <iframe
+              class="absolute top-0 left-0 w-full h-full"
+              src="https://www.youtube.com/embed/1Kqtg1Mw2wc"
+              title="YouTube video player"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe>
+          </div>
         </article>
         <article>
-          <h4 class="text-lg">Staying Fresh and Avoiding Burnout</h4>
+          <h4 class="font-serif text-bold text-2xl md:text-3xl italic">Staying Fresh and Avoiding Burnout</h4>
           <h5>Keynote Voxxed Thessaloniki 2018</h5>
 
-          <iframe
-            width="560"
-            height="315"
-            src="https://www.youtube.com/embed/H4Rnh01ywJk"
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen></iframe>
+          <div class="relative w-full aspect-video">
+            <iframe
+              class="absolute top-0 left-0 w-full h-full"
+              src="https://www.youtube.com/embed/H4Rnh01ywJk"
+              title="YouTube video player"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe>
+          </div>
+        </article>
+       
+        <article>
+          <h4 class="font-serif text-bold text-2xl md:text-3xl italic">Create an Engaging Mobile App with NativeScript</h4>
+          <h5>FITC Toronto 2018</h5>
+
+          <div class="relative w-full aspect-video">
+            <iframe
+              class="absolute top-0 left-0 w-full h-full"
+              src="https://www.youtube.com/embed/3kA4b8o8Wfo"
+              title="YouTube video player"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe>
+          </div>
         </article>
       </main>
     </div>

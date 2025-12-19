@@ -1,6 +1,5 @@
 ---
-import '@astrojs/tailwind/base.css'
-import '../assets/scss/globals.scss'
+import '../assets/css/index.css'
 import SiteMeta from '../components/SiteMeta.astro'
 import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
@@ -13,27 +12,6 @@ const {
   author = 'Jen Looper',
 } = Astro.props
 
-const slideoutScript = `
-  function toggleJenAI() {
-    const panel = document.getElementById('jenai-slideout');
-    const button = document.getElementById('jenai-button');
-    const isOpen = panel.classList.contains('translate-x-0');
-    
-    if (isOpen) {
-      // Close panel
-      panel.classList.remove('translate-x-0');
-      panel.classList.add('translate-x-full');
-      button.classList.remove('right-[400px]');
-      button.classList.add('right-0');
-    } else {
-      // Open panel
-      panel.classList.remove('translate-x-full');
-      panel.classList.add('translate-x-0');
-      button.classList.remove('right-0');
-      button.classList.add('right-[400px]');
-    }
-  }
-`;
 
 
 ---
@@ -53,6 +31,7 @@ const slideoutScript = `
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
+    
     <!-- favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
@@ -66,36 +45,10 @@ const slideoutScript = `
       author={author}
     />
     
-    <script set:html={slideoutScript} />
+
   </head>
   <body>
-    <div 
-      id="jenai-slideout"
-      class="fixed top-0 right-0 w-[400px] h-full bg-white dark:bg-gray-800 shadow-lg transform translate-x-full transition-transform duration-300 ease-in-out z-50"
-    >
-      <iframe
-        src="/assets/chat.html"
-        class="w-full h-full border-none"
-        title="JenAI Interface"
-      ></iframe>
-    </div>
-
-    <button
-      id="jenai-button"
-      onclick="toggleJenAI()"
-      class="fixed top-1/2 -translate-y-1/2 right-0 border-none bg-purple-600 text-white w-12 px-2 py-16 rounded-l-lg hover:bg-purple-700 transition-all duration-300 z-50 hidden md:flex items-center justify-center"
-    >
-      <span class="[writing-mode:vertical-rl] text-lg font-semibold tracking-[2px]">JenAI</span>
-    </button>
-
-    <style>
-      .writing-mode-vertical {
-        writing-mode: vertical-rl;
-        text-orientation: mixed;
-        letter-spacing: 2px;
-      }
-      
-    </style>
+    
 
     <Header />
     <main id="main-content" transition:animate="fade">
@@ -104,16 +57,6 @@ const slideoutScript = `
     
     <Footer />
     
-    <script>
-      const button = document.getElementById("mobile-menu-button");
-      const menu = document.getElementById("mobile-menu");
-
-      button?.addEventListener("click", () => {
-        const expanded = button.getAttribute("aria-expanded") === "true";
-        button.setAttribute("aria-expanded", String(!expanded));
-        menu?.classList.toggle("hidden");
-      });
-    </script>
 
   </body>
   

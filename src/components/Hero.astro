@@ -57,14 +57,251 @@ import homeImage from '../assets/img/hero-jen.jpg';
       <div class="relative flex justify-center animate-fade-up delay-200">
         <div class="relative">
           <div class="absolute inset-0 bg-gradient-to-br from-coral/20 to-honey/20 rounded-3xl blur-2xl transform rotate-6" />
-          <Image
-            src={homeImage}
-            alt="Jen - Creative Technologist"
-            class="relative w-full max-w-md rounded-3xl shadow-lifted animate-float"
-            decoding="async"
-          />
+          <div class="relative">
+            <Image
+              src={homeImage}
+              alt="Jen - Creative Technologist"
+              class="relative w-full max-w-md rounded-3xl shadow-lifted animate-float"
+              decoding="async"
+              id="hero-image"
+            />
+            <div class="absolute top-4 left-4" style="z-index: 50;">
+              <button
+                id="c2pa-hero-button"
+                class="c2pa-pin-button"
+                aria-label="View Content Credentials"
+                style="display: none;"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="2"/>
+                  <text x="12" y="16" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="bold" fill="currentColor">cr</text>
+                </svg>
+              </button>
+            </div>
+            <div id="c2pa-modal" class="c2pa-modal" style="display: none;">
+              <div class="c2pa-modal-content">
+                <button id="c2pa-close" class="c2pa-close">&times;</button>
+                <div id="c2pa-info"></div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<script>
+  import { createC2pa } from '@contentauth/c2pa-web/inline';
+  
+  async function initC2PA() {
+    const c2paButton = document.getElementById('c2pa-hero-button') as HTMLButtonElement | null;
+    const c2paModal = document.getElementById('c2pa-modal') as HTMLElement | null;
+    const c2paInfo = document.getElementById('c2pa-info') as HTMLElement | null;
+    const c2paClose = document.getElementById('c2pa-close') as HTMLButtonElement | null;
+    
+    if (!c2paButton || !c2paModal || !c2paInfo) {
+      return;
+    }
+    
+    // Use the original image from public folder to preserve C2PA metadata
+    const originalImageSrc = '/assets/img/hero-jen.jpg';
+    
+    try {
+      // Initialize C2PA (inline version includes WASM)
+      const c2pa = await createC2pa();
+      
+      // Fetch the image as a blob
+      const response = await fetch(originalImageSrc);
+      const blob = await response.blob();
+      
+      // Create a reader and read the C2PA metadata
+      const reader = await c2pa.reader.fromBlob(blob.type, blob);
+      
+      if (!reader) {
+        console.log('No C2PA metadata found in image');
+        return;
+      }
+      
+      const manifestStore = await reader.manifestStore();
+      
+      if (manifestStore && manifestStore.manifests && Object.keys(manifestStore.manifests).length > 0) {
+        // C2PA metadata found - show the button
+        c2paButton.style.display = 'block';
+        
+        // Format and display C2PA information
+        const activeManifestLabel = manifestStore.activeManifest as string | null;
+        const manifests = manifestStore.manifests as Record<string, any>;
+        const manifestLabel = activeManifestLabel || Object.keys(manifests)[0];
+        const manifest = manifestLabel ? manifests[manifestLabel] : Object.values(manifests)[0];
+        
+        const formatC2PAInfo = () => {
+          if (!manifest) return '';
+          
+          let info = '<h2>Content Credentials</h2>';
+          
+          // Claim generator info
+          if (manifest.claimGenerator) {
+            const generator = typeof manifest.claimGenerator === 'string' 
+              ? manifest.claimGenerator 
+              : manifest.claimGenerator.name || JSON.stringify(manifest.claimGenerator);
+            info += `<p><strong>Created by:</strong> ${generator}</p>`;
+          }
+          
+          // Assertions
+          if (manifest.assertions) {
+            const actions = manifest.assertions.find((a: any) => a.label === 'c2pa.actions.v2' || a.label === 'c2pa.actions');
+            if (actions && actions.data && actions.data.actions) {
+              info += '<h3>Actions:</h3><ul>';
+              actions.data.actions.forEach((action: any) => {
+                if (action.action === 'c2pa.created') {
+                  const agent = action.softwareAgent?.name || '';
+                  info += `<li>Created${agent ? ` by ${agent}` : ''}</li>`;
+                } else {
+                  info += `<li>${action.action || JSON.stringify(action)}</li>`;
+                }
+              });
+              info += '</ul>';
+            }
+          }
+          
+          // Signature info
+          if (manifest.signatureInfo) {
+            info += '<h3>Signature Information:</h3>';
+            info += `<p><strong>Issuer:</strong> ${manifest.signatureInfo.issuer || 'Unknown'}</p>`;
+            if (manifest.signatureInfo.commonName) {
+              info += `<p><strong>Common Name:</strong> ${manifest.signatureInfo.commonName}</p>`;
+            }
+          }
+          
+          return info;
+        };
+        
+        // Show modal on button click
+        c2paButton.addEventListener('click', () => {
+          c2paInfo.innerHTML = formatC2PAInfo();
+          c2paModal!.style.display = 'flex';
+        });
+        
+        // Close modal
+        if (c2paClose) {
+          c2paClose.addEventListener('click', () => {
+            c2paModal!.style.display = 'none';
+          });
+        }
+        
+        // Close modal when clicking outside
+        c2paModal.addEventListener('click', (e) => {
+          if (e.target === c2paModal) {
+            c2paModal.style.display = 'none';
+          }
+        });
+        
+        console.log('C2PA metadata detected and button displayed');
+      } else {
+        console.log('No C2PA metadata found in image');
+      }
+    } catch (error) {
+      console.error('Error reading C2PA metadata:', error);
+    }
+  }
+  
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initC2PA);
+  } else {
+    initC2PA();
+  }
+</script>
+
+<style>
+  .c2pa-pin-button {
+    background-color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    color: #333;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .c2pa-pin-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  .c2pa-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  
+  .c2pa-modal-content {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 12px;
+    max-width: 600px;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+  
+  .c2pa-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #666;
+    line-height: 1;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .c2pa-close:hover {
+    color: #000;
+  }
+  
+  #c2pa-info {
+    margin-top: 1rem;
+  }
+  
+  #c2pa-info h2 {
+    margin-top: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+  
+  #c2pa-info h3 {
+    margin-top: 1.5rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+  
+  #c2pa-info ul {
+    margin: 0.5rem 0;
+    padding-left: 1.5rem;
+  }
+  
+  #c2pa-info p {
+    margin: 0.5rem 0;
+  }
+</style>

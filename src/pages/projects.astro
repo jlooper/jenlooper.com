@@ -1,7 +1,7 @@
 ---
 import DefaultLayout from '../layouts/DefaultLayout.astro'
 import { Image } from 'astro:assets'
-import img1 from '../assets/img/ff.png'
+import img1 from '../assets/img/ff-logo.png'
 import img2 from '../assets/img/cc.png'
 import img3 from '../assets/img/saree.png'
 import img4 from '../assets/img/omb.jpg'
@@ -15,6 +15,7 @@ import img11 from '../assets/img/wa-color.png'
 import img12 from '../assets/img/tarot.png'
 import img13 from '../assets/img/glorious.png'
 import tussie from '../assets/img/tussie.png'
+import cccImg from '../assets/img/ccc.png'
 ---
 <DefaultLayout title="Projects">
   <section class="container max-w-6xl mx-auto px-6 md:px-12 py-16">
@@ -22,10 +23,35 @@ import tussie from '../assets/img/tussie.png'
       <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl font-semibold text-foreground leading-tight">Projects</h1>
 
       <p class="text-lg text-foreground/80 leading-relaxed my-5">
-        I've been creating community and exciting, creative demos and interesting projects for years. Discover some of them here. Many are powered by the <a href="https://www.kaggle.com/jenlooper/datasets">datasets</a> I manage on Kaggle. You can download several of the free items associated with these projects on <a href="https://jenlooper.gumroad.com/">Gumroad</a>.
+        I've been creating community and exciting, creative demos and interesting projects for years. Discover some of them here. Many are powered by the <a target="_blank" rel="noopener noreferrer" href="https://www.kaggle.com/jenlooper/datasets">datasets</a> I manage on Kaggle. You can download several of the free items associated with these projects on <a target="_blank" rel="noopener noreferrer" href="https://jenlooper.gumroad.com/">Gumroad</a>.
       </p>
       
       <h2 class="font-serif text-bold text-2xl md:text-3xl italic">Global Communities</h2>
+
+      <section class="my-20">
+        <div class="container">
+          <div class="grid grid-cols-1 gap-12 md:grid-cols-2">
+            <Image
+              src={cccImg}
+              alt="Cloudinary Creators Community"
+              class="h-auto w-full max-h-44 object-contain object-left sm:max-h-52 md:max-h-56"
+              width={300}
+              height={84}
+              decoding="async"
+            />
+            <div class="space-content flex flex-col justify-center">
+              <h2 class="font-serif text-2xl md:text-3xl text-muted-foreground italic">Cloudinary Creators Community</h2>
+              <p class="text-lg text-foreground/80 leading-relaxed my-5">
+                A global community for developers, designers, and digital storytellers who care how visual media looks, feels, and performs on the web. Members connect on Discord, join live sessions and office hours, learn from guides and sample projects, and share creative uses of Cloudinary in the real world.
+              </p>
+              <p class="text-lg text-foreground/80 leading-relaxed my-5">
+                Learn more <a target="_blank" rel="noopener noreferrer" href="https://community.cloudinary.com/">here</a>.
+              </p>
+            </div>
+          </div>
+          <hr class="my-10"/>
+        </div>
+      </section>
 
       <section class="my-20">
         <div class="container">
@@ -36,7 +62,7 @@ import tussie from '../assets/img/tussie.png'
               <p class="text-lg text-foreground/80 leading-relaxed my-5">
                 Formerly Vue Vixens, Inc., this international nonprofit survived COVID by transforming from in person workshops to an online school; we educated hundreds of women over 5 years and have several success stories.
               </p>
-              <p class="text-lg text-foreground/80 leading-relaxed my-5">Learn more <a href="https://ff-school.jenlooper.com">here</a>.</p>
+              <p class="text-lg text-foreground/80 leading-relaxed my-5">Learn more <a target="_blank" rel="noopener noreferrer" href="https://ff-school.jenlooper.com">here</a>.</p>
             </div>
           </div>
           <hr class="my-10"/>
@@ -50,14 +76,16 @@ import tussie from '../assets/img/tussie.png'
             <div class="space-content flex flex-col justify-center">
               <h2 class="font-serif text-2xl md:text-3xl text-muted-foreground italic">AWS Cloud Clubs</h2>
               <p class="text-lg text-foreground/80 leading-relaxed my-5">
-                In February of 2023 I and my team at AWS launched AWS Cloud Clubs worldwide. The program has grown immensely since then and is a global phenomenon.
+                In February of 2023 I and my team at AWS launched AWS Cloud Clubs worldwide. The program has grown immensely since then, impacting over 100,000 students in 2025 alone.
               </p>
-              <p class="text-lg text-foreground/80 leading-relaxed my-5">Learn more <a href="https://www.meetup.com/pro/cloud-clubs">here</a>.</p>
+              <p class="text-lg text-foreground/80 leading-relaxed my-5">Learn more <a target="_blank" rel="noopener noreferrer" href="https://www.meetup.com/pro/cloud-clubs">here</a>.</p>
             </div>
           </div>
           <hr class="my-10"/>
         </div>
       </section>
+
+     
 
       <h2 class="font-serif text-2xl md:text-3xl text-bold italic">Educational and Fun Demos</h2>
 
@@ -70,7 +98,7 @@ import tussie from '../assets/img/tussie.png'
               <p class="text-lg text-foreground/80 leading-relaxed my-5">
                 Showcasing Cloudinary's image recognition capabilities, this app generates a tussie-mussie based on a selection of flowers by their meaning. Send it as an e-card!
               </p>
-              <p class="text-lg text-foreground/80 leading-relaxed my-5">Watch the demo <a href="https://youtu.be/L8H4SnNUeDs">here</a> and try it yourself <a href="https://tussie-mussies.netlify.app/">here</a>.</p>
+              <p class="text-lg text-foreground/80 leading-relaxed my-5">Watch the demo <a target="_blank" rel="noopener noreferrer" href="https://youtu.be/L8H4SnNUeDs">here</a> and try it yourself <a target="_blank" rel="noopener noreferrer" href="https://tussie-mussies.netlify.app/">here</a>.</p>
             </div>
           </div>
           <hr class="my-10"/>
@@ -86,7 +114,7 @@ import tussie from '../assets/img/tussie.png'
               <p class="text-lg text-foreground/80 leading-relaxed my-5">
                 This app was built as a demo to show how image recognition capabilities can be used for artisan textiles, to enhance connoisseurship.
               </p>
-              <p class="text-lg text-foreground/80 leading-relaxed my-5">Watch the TEDx talk <a href="https://youtu.be/y6qopiBGK-E">here</a>.</p>
+              <p class="text-lg text-foreground/80 leading-relaxed my-5">Watch the TEDx talk <a target="_blank" rel="noopener noreferrer" href="https://youtu.be/y6qopiBGK-E">here</a>.</p>
             </div>
           </div>
           <hr class="my-10"/>
@@ -102,7 +130,7 @@ import tussie from '../assets/img/tussie.png'
               <p class="text-lg text-foreground/80 leading-relaxed my-5">
                 Tell stories with just your hands - and use hand poses to capture them via a web app!
               </p>
-              <p class="text-lg text-foreground/80 leading-relaxed my-5">Visit the GitHub repo <a href="https://github.com/jlooper/ombromanie">here</a>.</p>
+              <p class="text-lg text-foreground/80 leading-relaxed my-5">Visit the GitHub repo <a target="_blank" rel="noopener noreferrer" href="https://github.com/jlooper/ombromanie">here</a>.</p>
             </div>
           </div>
           <hr class="my-10"/>
@@ -118,7 +146,7 @@ import tussie from '../assets/img/tussie.png'
               <p class="text-lg text-foreground/80 leading-relaxed my-5">
                 Learn how to dance like an influencer on TikTok with this web app, which uses body poses to track and score your smooth moves.
               </p>
-              <p class="text-lg text-foreground/80 leading-relaxed my-5">Visit the GitHub repo <a href="https://github.com/jlooper/posedance">here</a>.</p>
+              <p class="text-lg text-foreground/80 leading-relaxed my-5">Visit the GitHub repo <a target="_blank" rel="noopener noreferrer" href="https://github.com/jlooper/posedance">here</a>.</p>
             </div>
           </div>
           <hr class="my-10"/>
@@ -134,7 +162,7 @@ import tussie from '../assets/img/tussie.png'
               <p class="text-lg text-foreground/80 leading-relaxed my-5">
                 Created in conjunction with Microsoft and the Smithsonian's Cooper Hewitt Museum of Design - use a Museum's API to construct connected stories.
               </p>
-              <p class="text-lg text-foreground/80 leading-relaxed my-5">Visit the GitHub repo <a href="https://github.com/jlooper/storytelling-app">here</a>.</p>
+              <p class="text-lg text-foreground/80 leading-relaxed my-5">Visit the GitHub repo <a target="_blank" rel="noopener noreferrer" href="https://github.com/jlooper/storytelling-app">here</a>.</p>
             </div>
           </div>
           <hr class="my-10"/>
@@ -150,7 +178,7 @@ import tussie from '../assets/img/tussie.png'
               <p class="text-lg text-foreground/80 leading-relaxed my-5">
                 Wine and cheese pairings, powered by ML and the Wine Spectator API. A mobile app demo.
               </p>
-              <p class="text-lg text-foreground/80 leading-relaxed my-5">Visit the GitHub repo <a href="https://github.com/jlooper/wineup">here</a>.</p>
+              <p class="text-lg text-foreground/80 leading-relaxed my-5">Visit the GitHub repo <a target="_blank" rel="noopener noreferrer" href="https://github.com/jlooper/wineup">here</a>.</p>
             </div>
           </div>
           <hr class="my-10"/>
@@ -166,7 +194,7 @@ import tussie from '../assets/img/tussie.png'
               <p class="text-lg text-foreground/80 leading-relaxed my-5">
                 A mobile app celebrating the Beatles with ML song generators, an album cover recreation tool, and more
               </p>
-              <p class="text-lg text-foreground/80 leading-relaxed my-5">Visit the GitHub repo <a href="https://github.com/jlooper/twistnshout">here</a>.</p>
+              <p class="text-lg text-foreground/80 leading-relaxed my-5">Visit the GitHub repo <a target="_blank" rel="noopener noreferrer" href="https://github.com/jlooper/twistnshout">here</a>.</p>
             </div>
           </div>
           <hr class="my-10"/>
@@ -182,7 +210,7 @@ import tussie from '../assets/img/tussie.png'
               <p class="text-lg text-foreground/80 leading-relaxed my-5">
                 Celebrate Emily Dickinson's oeuvre with ML-generated poetry 
               </p>
-              <p class="text-lg text-foreground/80 leading-relaxed my-5">Visit the GitHub repo <a href="https://github.com/jlooper/emily">here</a>.</p>
+              <p class="text-lg text-foreground/80 leading-relaxed my-5">Visit the GitHub repo <a target="_blank" rel="noopener noreferrer" href="https://github.com/jlooper/emily">here</a>.</p>
             </div>
           </div>
           <hr class="my-10"/>
@@ -198,7 +226,7 @@ import tussie from '../assets/img/tussie.png'
               <p class="text-lg text-foreground/80 leading-relaxed my-5">
                 Take a pic of your minibar's contents, suggest a cocktail to make, or shake the phone for an AI-generated suggested recipe!
               </p>
-              <p class="text-lg text-foreground/80 leading-relaxed my-5">Visit the GitHub repo <a href="https://github.com/jlooper/mixology-mobile">here</a>.</p>
+              <p class="text-lg text-foreground/80 leading-relaxed my-5">Visit the GitHub repo <a target="_blank" rel="noopener noreferrer" href="https://github.com/jlooper/mixology-mobile">here</a>.</p>
             </div>
           </div>
           <hr class="my-10"/>
@@ -214,7 +242,7 @@ import tussie from '../assets/img/tussie.png'
               <p class="text-lg text-foreground/80 leading-relaxed my-5">
                 To reinforce the ideas that underpin the six pillars of the framework, here's a coloring book that will help you remember them.
               </p>
-              <p class="text-lg text-foreground/80 leading-relaxed my-5">Learn more <a href="https://jenlooper.gumroad.com/l/wa-color">here</a>.</p>
+              <p class="text-lg text-foreground/80 leading-relaxed my-5">Learn more <a target="_blank" rel="noopener noreferrer" href="https://jenlooper.gumroad.com/l/wa-color">here</a>.</p>
             </div>
           </div>
           <hr class="my-10"/>
@@ -230,7 +258,7 @@ import tussie from '../assets/img/tussie.png'
               <p class="text-lg text-foreground/80 leading-relaxed my-5">
                 The companion website of a not-too-serious Tarot card deck that references AWS services
               </p>
-              <p class="text-lg text-foreground/80 leading-relaxed my-5">Learn more <a href="https://aws-tarot.netlify.app">here</a>.</p>
+              <p class="text-lg text-foreground/80 leading-relaxed my-5">Learn more <a target="_blank" rel="noopener noreferrer" href="https://aws-tarot.netlify.app">here</a>.</p>
             </div>
           </div>
           <hr class="my-10"/>
@@ -246,7 +274,7 @@ import tussie from '../assets/img/tussie.png'
               <p class="text-lg text-foreground/80 leading-relaxed my-5">
                 A completely anachronistic journey into cloud computing topics using Bayeux imagery. Because why not.
               </p>
-              <p class="text-lg text-foreground/80 leading-relaxed my-5">Learn more <a href="https://www.webtoons.com/en/canvas/ye-glorious-historiae-of-ye-cloud/list?title_no=926508">here</a>.</p>
+              <p class="text-lg text-foreground/80 leading-relaxed my-5">Learn more <a target="_blank" rel="noopener noreferrer" href="https://www.webtoons.com/en/canvas/ye-glorious-historiae-of-ye-cloud/list?title_no=926508">here</a>.</p>
             </div>
           </div>
           <hr class="my-10"/>

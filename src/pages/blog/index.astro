@@ -1,6 +1,6 @@
 ---
 import DefaultLayout from "../../layouts/DefaultLayout.astro";
-import { Card } from "accessible-astro-components";
+import PostCard from "../../components/PostCard.astro";
 import { fetchDevToPosts, formatDate, type DevToPost } from "../../utils/fetchDevToPosts";
 import type { MarkdownInstance } from 'astro';
 
@@ -73,19 +73,23 @@ const allPosts = [...unifiedLocalPosts, ...unifiedDevToPosts].sort(
       <p class="text-lg text-foreground/80 leading-relaxed mb-4 my-5">
         Many of my articles are published on <a
           href="https://dev.to/jenlooper"
-          target="_blank">Dev.to</a
+          target="_blank"
+          rel="noopener noreferrer">Dev.to</a
         >. Other articles that I've written are published on <a
-          href="https://community.aws/@jelooper"
-          target="_blank">community.aws</a
+          href="https://builder.aws.com/community/@jelooper?tab=articles"
+          target="_blank"
+          rel="noopener noreferrer">community.aws</a
         >. 
         My scholarly articles and others are found on <a
           href="https://scholar.google.com/citations?hl=en&user=zrYOCYwAAAAJ"
-          target="_blank">Google Scholar</a
+          target="_blank"
+          rel="noopener noreferrer">Google Scholar</a
         >. 
         Dozens of articles from my days as a Developer Advocate at Telerik and Progress are found on <a
           href="https://www.telerik.com/blogs/author/jen-looper"
-          target="_blank">Telerik's blog</a
-        > and <a href="https://blog.nativescript.org/" target="_blank">the NativeScript blog</a>. 
+          target="_blank"
+          rel="noopener noreferrer">Telerik's blog</a
+        > and <a href="https://blog.nativescript.org/" target="_blank" rel="noopener noreferrer">the NativeScript blog</a>. 
         The articles listed on this page are my more significant or interesting
         short-form writing. Some of these are from particularly engaging project
         announcements, some are really creative technical articles, some are
@@ -98,7 +102,7 @@ const allPosts = [...unifiedLocalPosts, ...unifiedDevToPosts].sort(
         <ul class="my-3">
           {allPosts.map((post) => (
             <li>
-              <Card
+              <PostCard
                 img={post.image}
                 url={post.url}
                 title={post.title}
@@ -109,7 +113,7 @@ const allPosts = [...unifiedLocalPosts, ...unifiedDevToPosts].sort(
                   <p class="text-gray-700 mb-4">{post.description}</p>
                  
                 </div>
-              </Card>
+              </PostCard>
             </li>
           ))}
         </ul>

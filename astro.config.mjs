@@ -30,6 +30,10 @@ export default defineConfig({
       {
         protocol: 'https',
         hostname: 'thepracticaldev.s3.amazonaws.com'
+      },
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com'
       }
     ],
     formats: ['webp', 'avif', 'png', 'jpg', 'jpeg', 'gif'],

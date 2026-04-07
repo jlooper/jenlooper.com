@@ -81,6 +81,11 @@ const {
 
 const Tag = tagName
 
+const effectiveImageAlt =
+  imageAlt.trim() ||
+  (title && title !== 'Default title' ? `Cover image for the article "${title}"` : '') ||
+  'Article cover image'
+
 const siteOrigin = Astro.site?.origin
 function shouldOpenInNewTab(href: string): boolean {
   if (!href || href === '#' || href.startsWith('/')) return false
@@ -100,9 +105,9 @@ const openInNewTab = shouldOpenInNewTab(url)
   <div class="image">
     {
       imageComponent ? (
-        <Image src={imageComponent} alt={imageAlt} width={width} height={height} />
+        <Image src={imageComponent} alt={effectiveImageAlt} width={width} height={height} />
       ) : (
-        <img src={img} alt={imageAlt} width={width} height={height} />
+        <img src={img} alt={effectiveImageAlt} width={width} height={height} />
       )
     }
   </div>

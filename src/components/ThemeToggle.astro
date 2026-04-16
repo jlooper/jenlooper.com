@@ -1,0 +1,49 @@
+---
+import { Moon, Sun } from 'lucide-astro'
+---
+
+<button
+  type="button"
+  id="theme-toggle"
+  class="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-border/60 bg-background/80 text-foreground transition-colors hover:border-primary/40 hover:bg-muted/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+  aria-label="Use dark theme"
+  aria-pressed="false"
+>
+  <span class="dark:hidden" aria-hidden="true">
+    <Moon class="h-5 w-5" stroke-width="2" />
+  </span>
+  <span class="hidden dark:inline" aria-hidden="true">
+    <Sun class="h-5 w-5" stroke-width="2" />
+  </span>
+</button>
+
+<script>
+  const storageKey = 'theme'
+
+  function syncToggleUi() {
+    const root = document.documentElement
+    const btn = document.getElementById('theme-toggle')
+    const dark = root.classList.contains('darkmode')
+    btn?.setAttribute('aria-pressed', String(dark))
+    btn?.setAttribute('aria-label', dark ? 'Use light theme' : 'Use dark theme')
+  }
+
+  function initThemeToggle() {
+    const root = document.documentElement
+    const btn = document.getElementById('theme-toggle')
+    btn?.addEventListener('click', () => {
+      const nextDark = !root.classList.contains('darkmode')
+      root.classList.toggle('darkmode', nextDark)
+      try {
+        localStorage.setItem(storageKey, nextDark ? 'dark' : 'light')
+      } catch {
+        /* private mode */
+      }
+      syncToggleUi()
+    })
+    syncToggleUi()
+  }
+
+  initThemeToggle()
+  document.addEventListener('astro:after-swap', initThemeToggle)
+</script>

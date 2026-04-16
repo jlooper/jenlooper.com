@@ -1,66 +1,22 @@
 ---
 /**
- * Post card (vendored from accessible-astro-components Card)
+ * Post card — layout aligned with ProjectCard for listing grids.
  * External links open in a new tab; same-site and path-only links do not.
  */
 import { Image } from 'astro:assets'
 import type { ImageMetadata } from 'astro'
 
 interface Props extends astroHTML.JSX.HTMLAttributes {
-  /**
-   * Additional classes to apply to the card
-   */
   class?: string
-  /**
-   * Card's title
-   * @default "Default title"
-   */
   title?: string
-  /**
-   * URL for the card's image
-   * @default "https://fakeimg.pl/640x360"
-   */
   img?: string
-  /**
-   * Optional Astro Image component to use instead of a regular img
-   * Can be a direct ImageMetadata object or a Promise from import()
-   * @default undefined
-   */
   imageComponent?: ImageMetadata | Promise<{ default: ImageMetadata }>
-  /**
-   * Alt text for the image
-   * @default ""
-   */
   imageAlt?: string
-  /**
-   * Width of the image (required for remote images with Image component)
-   * @default 640
-   */
   width?: number
-  /**
-   * Height of the image (required for remote images with Image component)
-   * @default 360
-   */
   height?: number
-  /**
-   * Whether to infer the image size (for remote images)
-   * @default false
-   */
   inferSize?: boolean
-  /**
-   * URL for the card's link
-   * @default "#"
-   */
   url?: string
-  /**
-   * HTML tag to use for the title
-   * @default "h3"
-   */
   tagName?: string
-  /**
-   * Footer content
-   * @default ""
-   */
   footer?: string
 }
 
@@ -101,20 +57,47 @@ function shouldOpenInNewTab(href: string): boolean {
 const openInNewTab = shouldOpenInNewTab(url)
 ---
 
-<article class:list={['card', className]} {...rest}>
-  <div class="image">
+<article
+  class:list={[
+    'post-card group relative flex h-full min-w-0 max-w-none flex-col overflow-hidden rounded-xl border border-border/50 bg-card text-card-foreground shadow-soft transition-[box-shadow,transform] duration-300 hover:-translate-y-0.5 hover:shadow-md dark:border-border/60',
+    className,
+  ]}
+  {...rest}
+>
+  <div
+    class="relative flex h-44 w-full shrink-0 items-center justify-center overflow-hidden border-b border-border/40 bg-muted/30 dark:bg-muted/20 sm:h-48 md:h-52 lg:h-56"
+  >
     {
       imageComponent ? (
-        <Image src={imageComponent} alt={effectiveImageAlt} width={width} height={height} />
+        <Image
+          src={imageComponent}
+          alt={effectiveImageAlt}
+          width={width}
+          height={height}
+          inferSize={inferSize}
+          class="h-full w-full object-cover object-center"
+        />
       ) : (
-        <img src={img} alt={effectiveImageAlt} width={width} height={height} />
+        <img
+          src={img}
+          alt={effectiveImageAlt}
+          width={width}
+          height={height}
+          class="h-full w-full object-cover object-center"
+          loading="lazy"
+          decoding="async"
+        />
       )
     }
   </div>
-  <div class="content">
-    <div class="title">
+  <div class="relative z-0 flex flex-1 flex-col gap-2 p-5 md:gap-3 md:p-6">
+    <div class="meta-area empty:hidden">
+      <slot name="meta" />
+    </div>
+    <div class="title-area font-serif text-lg font-semibold leading-snug text-foreground md:text-xl">
       <Tag>
         <a
+          class="post-card-title-link text-foreground no-underline outline-none ring-ring transition-colors hover:text-primary hover:underline hover:decoration-primary hover:underline-offset-4 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           href={url}
           {...(openInNewTab ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
         >
@@ -122,116 +105,63 @@ const openInNewTab = shouldOpenInNewTab(url)
         </a>
       </Tag>
     </div>
-    <div class="meta"><slot name="meta" /></div>
-    <p class="description"><slot /></p>
-    {footer && <small class="footer">{footer}</small>}
+    <div class="description-area text-sm leading-relaxed text-muted-foreground dark:text-foreground/95 md:text-base">
+      <slot />
+    </div>
+    {
+      footer && (
+        <small class="footer mt-auto border-t border-border/50 pt-3 text-xs text-muted-foreground dark:border-border/40 md:pt-4">
+          {footer}
+        </small>
+      )
+    }
   </div>
 </article>
 
 <style>
-  :where(.card) {
+  .post-card {
     --transition-duration: 0.3s;
     --transition-easing: cubic-bezier(0.165, 0.84, 0.44, 1);
-
-    display: flex;
-    position: relative;
-    flex-direction: column;
-    border: 2px solid light-dark(hsl(0 0% 10%), hsl(0 0% 90%));
-    border-radius: 0.5rem;
-    max-inline-size: 60ch;
-    block-size: 100%;
-    overflow: hidden;
-
-    @media (prefers-reduced-motion: no-preference) {
-      transition: box-shadow var(--transition-duration) var(--transition-easing);
-    }
-  }
-
-  :where(.card:hover),
-  :where(.card:focus-within) {
-    box-shadow: 0 0 0 0.25rem;
-  }
-
-  :where(.card:focus-within) a:focus {
-    outline: none;
-    box-shadow: none;
-    text-decoration: none;
-  }
-
-  :where(.image) {
-    block-size: 250px;
-    overflow: clip;
-  }
-
-  :where(.image img) {
-    inline-size: 100%;
-    block-size: 100%;
-    object-fit: cover;
   }
 
   @media (prefers-reduced-motion: no-preference) {
-    :where(.image img) {
+    .post-card img {
       transition: transform var(--transition-duration) var(--transition-easing);
     }
   }
 
-  :where(.content) {
-    display: flex;
-    flex-grow: 1;
-    flex-direction: column;
-    gap: 0.5rem;
-    padding-inline: 1rem;
-    padding-block: 1rem;
+  .post-card:has(.post-card-title-link:hover, .post-card-title-link:focus-visible) img {
+    transform: scale(1.04);
   }
 
-  :where(.card a) {
-    color: currentColor;
-    font-size: 1.5rem;
-    text-decoration: none;
+  @media (prefers-reduced-motion: reduce) {
+    .post-card:has(.post-card-title-link:hover, .post-card-title-link:focus-visible) img {
+      transform: none;
+    }
   }
 
-  :where(.card a:hover),
-  :where(.card a:focus-visible) {
-    text-decoration: underline;
-    text-underline-offset: 4px;
-  }
-
-  :where(.card:has(a:hover, a:focus-visible) .image img) {
-    transform: scale(1.05);
-  }
-
-  a::after {
+  .post-card-title-link::after {
+    content: '';
     position: absolute;
     inset: 0;
-    content: '';
+    z-index: 1;
   }
 
-  :where(.meta) {
-    order: -1;
-    margin-block-start: 0.5rem;
+  .post-card :global(.description-area a) {
+    position: relative;
+    z-index: 2;
   }
 
-  :where(.card .meta) :global(span) {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 0.5rem;
+  .title-area :global(h3) {
+    margin: 0;
+    line-height: 1.25;
   }
 
-  :where(.card .meta:empty) {
+  .meta-area:empty {
     display: none;
   }
 
-  :where(.card .description) {
-    font-size: 1rem;
-  }
-
-  :where(.card .description:empty) {
+  .description-area:empty {
     display: none;
-  }
-
-  :where(.card .footer) {
-    margin-block-start: auto;
-    padding-block-start: 1rem;
   }
 </style>

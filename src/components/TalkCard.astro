@@ -1,0 +1,32 @@
+---
+interface Props {
+  title: string
+  venue: string
+  embedUrl: string
+}
+
+const { title, venue, embedUrl } = Astro.props
+---
+
+<article
+  class="talk-card flex h-full w-full min-w-0 flex-col overflow-hidden rounded-xl border border-border/50 bg-card text-card-foreground shadow-soft transition-[box-shadow,transform] duration-300 hover:-translate-y-0.5 hover:shadow-md dark:border-border/60"
+>
+  <div
+    class="relative aspect-video w-full shrink-0 border-b border-border/40 bg-muted/30 dark:bg-muted/20"
+  >
+    <iframe
+      class="absolute left-0 top-0 h-full w-full"
+      src={embedUrl}
+      title={title}
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen
+      loading="lazy"
+    />
+  </div>
+  <div class="flex flex-1 flex-col gap-2 p-5 md:gap-3 md:p-6">
+    <h3 class="font-serif text-lg font-semibold leading-snug text-foreground md:text-xl">
+      {title}
+    </h3>
+    <p class="text-sm text-muted-foreground md:text-base">{venue}</p>
+  </div>
+</article>

@@ -1,99 +1,102 @@
 ---
+import type { ImageMetadata } from 'astro'
 import DefaultLayout from '../layouts/DefaultLayout.astro'
-import { Image } from 'astro:assets';
-import img1 from '../assets/img/illus.jpg';
-import img2 from '../assets/img/cs4kids.png';
-import img3 from '../assets/img/snappy.png';
-import img4 from '../assets/img/zines.png';
-import img5 from '../assets/img/ai-kids.png';
+import ProjectCard from '../components/ProjectCard.astro'
+import img1 from '../assets/img/illus.jpg'
+import img2 from '../assets/img/cs4kids.png'
+import img3 from '../assets/img/snappy.png'
+import img4 from '../assets/img/zines.png'
+import img5 from '../assets/img/ai-kids.png'
+
+type BookLink = { href: string; label: string }
+
+type BookItem = {
+  image: ImageMetadata
+  imageAlt: string
+  title: string
+  description: string
+  links: BookLink[]
+}
+
+const books: BookItem[] = [
+  {
+    image: img1,
+    imageAlt:
+      'Book cover and interior art for The Illustrated AWS Cloud, a visual cloud fundamentals guide',
+    title: 'The Illustrated AWS Cloud',
+    description:
+      'In this book from Wiley, learn all about the AWS Cloud and prepare for the Cloud Practitioner Exam, learning Cloud fundamentals alongside Jen (storyteller) and Denise Yu (illustrator). This book doubles as a coloring book!',
+    links: [{ href: 'https://illustrated-aws.netlify.app/', label: 'Visit the companion site' }],
+  },
+  {
+    image: img2,
+    imageAlt: 'Computer Science for Kids textbook cover with friendly student illustrations',
+    title: 'Computer Science for Kids: A Storytelling Approach',
+    description:
+      "Aligned for grades 6-8, this textbook is for sale on Amazon and at a bookstore near you. It's a rethinking of the Middle School Computer Science curriculum and includes a website and GitHub code in a project-based, storytelling-infused format. Watch for the 'hidden curriculum' featuring sustainability!",
+    links: [{ href: 'https://cs4kids.club', label: 'Learn more' }],
+  },
+  {
+    image: img3,
+    imageAlt: 'Snappy Squirrel Scrollybooks cover with cartoon squirrel learning about saving money',
+    title: 'Snappy Squirrel Scrollybooks',
+    description:
+      'Snappy Squirrel needs a new nest and has to learn financial strategies to achieve his goals. Designed for kids and parents to learn together about smart money management, these scrollytelling e-books are a collaboration between Jen and her father, Jerry Looper.',
+    links: [{ href: 'https://snappy.jenlooper.com', label: 'Learn more' }],
+  },
+  {
+    image: img4,
+    imageAlt: 'Collage of printable MaZines covers about machine learning and AI for kids',
+    title: 'MaZines: Zines about Machine Learning',
+    description:
+      'Download, print out, and fold this free library of colorable zines all about machine learning and AI.',
+    links: [{ href: 'https://zines.jenlooper.com', label: 'Learn more' }],
+  },
+  {
+    image: img5,
+    imageAlt: 'AI for Kids booklet cover introducing artificial intelligence for children and parents',
+    title: 'AI for Kids',
+    description:
+      'A collaboration between Jen and her Microsoft colleagues for a hackathon, this booklet is a gentle introduction to AI for kids and parents.',
+    links: [
+      {
+        href: 'https://jenlooper.gumroad.com/l/ai-for-kids-book?layout=profile',
+        label: 'Get it on Gumroad',
+      },
+    ],
+  },
+]
 ---
 
 <DefaultLayout title="Books">
-  <section class="container max-w-6xl mx-auto px-6 md:px-12 py-16">
-    <div class="space-y-8">
-          <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl font-semibold text-foreground leading-tight">Books, E-books & Zines</h1>
-          <p class="text-lg text-foreground/80 leading-relaxed">         
-            I've written two books for general consumption; both are accompanied by a website, free downloadables, and lesson plans. On this page I also list e-books and zines which are freely downloadable.
-          </p>
+  <section class="card-listing-page">
+    <div class="card-listing-intro">
+      <h1 class="font-serif text-4xl font-semibold leading-tight text-foreground md:text-5xl lg:text-6xl">
+        Books, E-books & Zines
+      </h1>
+      <p class="text-lg leading-relaxed text-foreground/85 dark:text-foreground/95 md:text-xl">
+        I've written two books for general consumption; both are accompanied by a website, free downloadables,
+        and lesson plans. On this page I also list e-books and zines which are freely downloadable.
+      </p>
+    </div>
 
-          <section class="my-20">
-            <div class="container">
-              <div class="grid grid-cols-1 gap-12 md:grid-cols-2">
-                <Image src={img1} alt="Book cover and interior art for The Illustrated AWS Cloud, a visual cloud fundamentals guide" class="max-h-[500px]" decoding="async" />
-                <div class="space-content flex flex-col justify-center">
-                  <h2 class="font-serif text-2xl md:text-3xl text-muted-foreground italic">The Illustrated AWS Cloud</h2>
-                  <p class="text-lg text-foreground/80 leading-relaxed max-w-lg mb-4 my-5">
-                    In this book from Wiley, learn all about the AWS Cloud and prepare for the Cloud Practitioner Exam, learning Cloud fundamentals alongside Jen (storyteller) and Denise Yu (illustrator). This book doubles as a coloring book!
-                  </p>
-                  <p class="text-lg text-foreground/80 leading-relaxed max-w-lg mb-4 my-5">Learn more <a target="_blank" rel="noopener noreferrer" href="https://illustrated-aws.netlify.app/">here</a>.</p>
-                </div>
-              </div>
-              <hr class="my-10"/>
-            </div>
-          </section>
+    <hr class="card-listing-divider" />
 
-          <section class="my-20">
-            <div class="container">
-              <div class="grid grid-cols-1 gap-12 md:grid-cols-2">
-                <Image src={img2} alt="Computer Science for Kids textbook cover with friendly student illustrations" class="max-h-[500px]" decoding="async" />
-                <div class="space-content flex flex-col justify-center">
-                  <h2 class="font-serif text-2xl md:text-3xl text-muted-foreground italic">Computer Science for Kids: A Storytelling Approach</h2>
-                  <p class="text-lg text-foreground/80 leading-relaxed max-w-lg mb-4 my-5">
-                    Aligned for grades 6-8, this textbook is for sale on Amazon and at a bookstore near you. It's a rethinking of the Middle School Computer Science curriculum and includes a website and GitHub code in a project-based, storytelling-infused format. Watch for the 'hidden curriculum' featuring sustainability!
-                  </p>
-                  <p class="text-lg text-foreground/80 leading-relaxed max-w-lg mb-4 my-5">Learn more <a target="_blank" rel="noopener noreferrer" href="https://cs4kids.club">here</a>.</p>
-                </div>
-              </div>
-              <hr class="my-10"/>
-            </div>
-          </section>
-
-          <section class="my-20">
-            <div class="container">
-              <div class="grid grid-cols-1 gap-12 md:grid-cols-2">
-                <Image src={img3} alt="Snappy Squirrel Scrollybooks cover with cartoon squirrel learning about saving money" class="max-h-[500px]" decoding="async" />
-                <div class="space-content flex flex-col justify-center">
-                  <h2 class="font-serif text-2xl md:text-3xl text-muted-foreground italic">Snappy Squirrel Scrollybooks</h2>
-                  <p class="text-lg text-foreground/80 leading-relaxed max-w-lg mb-4 my-5">
-                    Snappy Squirrel needs a new nest and has to learn financial strategies to achieve his goals. Designed for kids and parents to learn together about smart money management, these scrollytelling e-books are a collaboration between Jen and her father, Jerry Looper.
-                  </p>
-                  <p class="text-lg text-foreground/80 leading-relaxed max-w-lg mb-4 my-5">Learn more <a target="_blank" rel="noopener noreferrer" href="https://snappy.jenlooper.com">here</a>.</p>
-                </div>
-              </div>
-              <hr class="my-10"/>
-            </div>
-          </section>
-
-          <section class="my-20">
-            <div class="container">
-              <div class="grid grid-cols-1 gap-12 md:grid-cols-2">
-                <Image src={img4} alt="Collage of printable MaZines covers about machine learning and AI for kids" class="max-h-[500px]" decoding="async" />
-                <div class="space-content flex flex-col justify-center">
-                  <h2 class="font-serif text-2xl md:text-3xl text-muted-foreground italic">MaZines: Zines about Machine Learning</h2>
-                  <p class="text-lg text-foreground/80 leading-relaxed max-w-lg mb-4 my-5">
-                    Download, print out, and fold this free library of colorable zines all about machine learning and AI.
-                  </p>
-                  <p class="text-lg text-foreground/80 leading-relaxed max-w-lg mb-4 my-5">Learn more <a target="_blank" rel="noopener noreferrer" href="https://zines.jenlooper.com">here</a>.</p>
-                </div>
-              </div>
-              <hr class="my-10"/>
-            </div>
-          </section>
-
-          <section class="my-20">
-            <div class="container">
-              <div class="grid grid-cols-1 gap-12 md:grid-cols-2">
-                <Image src={img5} alt="AI for Kids booklet cover introducing artificial intelligence for children and parents" class="max-h-[500px]" decoding="async" />
-                <div class="space-content flex flex-col justify-center">
-                  <h2 class="font-serif text-2xl md:text-3xl text-muted-foreground italic">AI for Kids</h2>
-                  <p class="text-lg text-foreground/80 leading-relaxed max-w-lg mb-4 my-5">
-                    A collaboration between Jen and her Microsoft colleagues for a hackathon, this booklet is a gentle introduction to AI for kids and parents.
-                  </p>
-                  <p class="text-lg text-foreground/80 leading-relaxed max-w-lg mb-4 my-5">Learn more <a target="_blank" rel="noopener noreferrer" href="https://jenlooper.gumroad.com/l/ai-for-kids-book?layout=profile">here</a>.</p>
-                </div>
-              </div>
-            </div>
-          </section>
-        </div>
-    </section>
+    <ul class="card-listing-grid" aria-label="Books, e-books, and zines">
+      {
+        books.map((book, index) => (
+          <li>
+            <ProjectCard
+              image={book.image}
+              imageAlt={book.imageAlt}
+              title={book.title}
+              description={book.description}
+              links={book.links}
+              eager={index === 0}
+            />
+          </li>
+        ))
+      }
+    </ul>
+  </section>
 </DefaultLayout>

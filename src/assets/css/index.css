@@ -117,6 +117,24 @@
     --honey: oklch(0.74 0.11 72);
     --espresso: oklch(0.9 0.02 86);
 
+    /* Dark hero / surfaces: deep brown gradients (replaces light cream washes) */
+    --gradient-warm: linear-gradient(
+      135deg,
+      oklch(0.22 0.038 48) 0%,
+      oklch(0.17 0.032 44) 45%,
+      oklch(0.13 0.026 40) 100%
+    );
+    --gradient-soft: linear-gradient(
+      180deg,
+      oklch(0.23 0.028 52) 0%,
+      oklch(0.16 0.03 46) 100%
+    );
+    --gradient-coral: linear-gradient(
+      135deg,
+      oklch(0.32 0.085 36) 0%,
+      oklch(0.2 0.048 38) 100%
+    );
+
     --sidebar-background: oklch(0.22 0.022 52);
     --sidebar-foreground: oklch(0.93 0.02 86);
     --sidebar-primary: oklch(0.66 0.14 40);
@@ -143,6 +161,8 @@
   html {
     height: 100%;
     color-scheme: light;
+    /* Sticky header + optional banner — in-page anchors land below the fold */
+    scroll-padding-top: 6rem;
   }
 
   html.darkmode {
@@ -151,6 +171,8 @@
 
   main {
     flex: 1 0 auto;
+    width: 100%;
+    min-width: 0;
   }
 
   footer {
@@ -206,12 +228,83 @@
     }
   }
 
+  /* Primary nav (header) — orange bar like content links; collapses after hover unless current page */
+  header a.nav-top-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: var(--primary);
+    border-radius: 1px;
+    transform: scaleX(0);
+    opacity: 0;
+    transform-origin: left;
+    pointer-events: none;
+    transition:
+      transform 0.3s ease-out,
+      opacity 0.25s ease-out;
+  }
+
+  header a.nav-top-link:hover::after,
+  header a.nav-top-link:focus-visible::after {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+
+  header a.nav-top-link[aria-current='page']::after {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .animate-float,
     .animate-fade-up,
     .animate-gentle-pulse {
       animation: none !important;
     }
+
+    header a.nav-top-link::after {
+      transition-duration: 0.01ms;
+    }
+  }
+}
+
+@layer components {
+  /* Shared shell for Projects-style listing pages (blog, books, curricula, speaking, etc.) */
+  .card-listing-page {
+    @apply container mx-auto max-w-6xl px-6 py-14 md:px-12 md:py-20;
+  }
+
+  .card-listing-intro {
+    @apply w-full space-y-6 pb-4 md:pb-8;
+  }
+
+  .card-listing-section-head {
+    @apply mt-6 space-y-2 md:mt-10;
+  }
+
+  .card-listing-section-head-spaced {
+    @apply mt-16 space-y-2 md:mt-20;
+  }
+
+  .card-listing-section-deck {
+    @apply max-w-2xl pb-4 text-sm text-muted-foreground md:text-base;
+  }
+
+  .card-listing-grid {
+    @apply grid list-none grid-cols-1 gap-6 p-0 sm:grid-cols-2 sm:gap-8 lg:grid-cols-3 lg:gap-8;
+  }
+
+  /* flex-col so cards stretch to full grid cell width (row flex left cards content-sized) */
+  .card-listing-grid > li {
+    @apply flex min-w-0 flex-col;
+  }
+
+  .card-listing-divider {
+    @apply my-12 border-0 border-t md:my-16;
+    border-top-color: color-mix(in oklch, var(--border) 60%, transparent);
   }
 }
 
@@ -303,5 +396,46 @@
   }
   .delay-400 {
     animation-delay: 400ms;
+  }
+
+  /* Skip to main — visible only when focused */
+  .skip-link {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  .skip-link:focus {
+    position: fixed;
+    left: 1rem;
+    top: 1rem;
+    z-index: 9999;
+    width: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+    padding: 0.75rem 1.25rem;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 0.9375rem;
+    line-height: 1.25;
+    color: var(--foreground);
+    background-color: var(--background);
+    border: 2px solid var(--primary);
+    border-radius: var(--radius);
+    text-decoration: none;
+    box-shadow: var(--shadow-lifted);
+  }
+
+  .skip-link:focus:hover {
+    color: color-mix(in oklch, var(--primary) 88%, var(--foreground));
   }
 }

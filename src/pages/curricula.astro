@@ -1,123 +1,157 @@
 ---
+import type { ImageMetadata } from 'astro'
 import DefaultLayout from '../layouts/DefaultLayout.astro'
-import { Image } from 'astro:assets'
+import ProjectCard from '../components/ProjectCard.astro'
 import webdevImg from '../assets/img/webdev.png'
 import mlImg from '../assets/img/ml.png'
 import kitchenImg from '../assets/img/kitchen-sune.png'
 import quicknomsImg from '../assets/img/quicknoms.png'
 import thinglearnImg from '../assets/img/thinglearn.png'
+
+type CurriculaLink = { href: string; label: string }
+
+type CurriculaItem = {
+  image?: ImageMetadata
+  imageAlt?: string
+  title: string
+  description: string
+  links?: CurriculaLink[]
+}
+
+const universityItems: CurriculaItem[] = [
+  {
+    title: 'CS 601: Front-End Development',
+    description:
+      'Taught at Boston University Metropolitan College, this curriculum used these CS 601 Code Snippets. Previously hosted on Glitch, now on GitHub, these snippets demonstrate various aspects of using HTML, CSS, and JavaScript to build websites.',
+    links: [{ href: 'https://github.com/jlooper/CS601', label: 'View snippets on GitHub' }],
+  },
+]
+
+const microsoftItems: CurriculaItem[] = [
+  {
+    image: webdevImg,
+    imageAlt: 'Web Development for Beginners curriculum artwork with browser and code motifs',
+    title: 'Web Dev for Beginners',
+    description:
+      'I designed and developed the viral "For Beginners" at Microsoft. These are free and open repos on GitHub with thousands of stars, ranking highly in most-starred repos globally. Sketchnotes by Tomomi Imura.',
+    links: [{ href: 'https://aka.ms/webdev-beginners', label: 'Start the curriculum' }],
+  },
+  {
+    image: mlImg,
+    imageAlt: 'Machine Learning for Beginners curriculum banner with data and model icons',
+    title: 'Machine Learning for Beginners',
+    description:
+      'Among other curricula developed at Microsoft, I designed and wrote large parts of the Machine Learning for Beginners Curriculum. Sketchnotes by Tomomi Imura.',
+    links: [{ href: 'https://aka.ms/ml-beginners', label: 'Start the curriculum' }],
+  },
+]
+
+const otherItems: CurriculaItem[] = [
+  {
+    image: kitchenImg,
+    imageAlt: 'Kitchen-Sune family recipe book site with nostalgic kitchen photography styling',
+    title: 'Kitchen-Sune',
+    description: 'The Front-End Foxes Global Recipe Book.',
+    links: [{ href: 'https://kitchen-sune.netlify.app', label: 'Visit the site' }],
+  },
+  {
+    image: quicknomsImg,
+    imageAlt: 'QuickNoms app branding with fast casual cooking and recipe imagery',
+    title: 'QuickNoms',
+    description: '5 ingredients, 15 minutes, dinner is served!',
+    links: [{ href: 'https://quicknoms.netlify.app', label: 'Visit the site' }],
+  },
+  {
+    image: thinglearnImg,
+    imageAlt: 'ThingLearn IoT curriculum artwork with connected devices and sensors',
+    title: 'ThingLearn',
+    description:
+      "It's a curriculum, a community, and a lot of fun! Let's learn about the Internet of Things together.",
+    links: [{ href: 'https://thinglearn.netlify.app', label: 'Visit the site' }],
+  },
+]
 ---
 
 <DefaultLayout title="Curricula">
-  <section class="container max-w-6xl mx-auto px-6 md:px-12 py-16">
-    <div class="space-y-8">
-      <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl font-semibold text-foreground leading-tight">Great Curricula</h1>
-      <p class="text-lg text-foreground/80 leading-relaxed mb-4 my-5">
-        I'm passionate about great curriculum design. In my opinion, there are no poor teachers, only teachers ill equipped by poorly-designed curriculum. Here are some of the curricula I've developed from my various teaching experiences.
+  <section class="card-listing-page">
+    <div class="card-listing-intro">
+      <h1 class="font-serif text-4xl font-semibold leading-tight text-foreground md:text-5xl lg:text-6xl">
+        Great Curricula
+      </h1>
+      <p class="text-lg leading-relaxed text-foreground/85 dark:text-foreground/95 md:text-xl">
+        I'm passionate about great curriculum design. In my opinion, there are no poor teachers, only teachers ill
+        equipped by poorly-designed curriculum. Here are some of the curricula I've developed from my various teaching
+        experiences.
       </p>
-
-      <h2 class="font-serif text-2xl md:text-3xl text-muted-foreground italic">University Teaching</h2>
-
-      <section class="my-20">
-        <div class="container">
-          <div class="grid grid-cols-1 gap-12">
-            <div class="space-content flex flex-col justify-center">
-              <h3 class="font-serif text-xl md:text-2xl text-muted-foreground italic">CS 601: Front-End Development</h3>
-              <p class="text-lg text-foreground/80 leading-relaxed mb-4 my-5">
-                Taught at Boston University Metropolitan College, this curriculum used these <a href="https://github.com/jlooper/CS601" target="_blank" rel="noopener noreferrer">CS 601 Code Snippets</a>.
-                Previously hosted on Glitch, now on GitHub, these snippets demonstrate various aspects of using HTML, CSS, and JavaScript to build websites.
-              </p>
-            </div>
-          </div>
-          <hr class="my-10"/>
-        </div>
-      </section>
-
-      <h2 class="font-serif text-2xl md:text-3xl text-muted-foreground italic">Microsoft's "For Beginners" Series</h2>
-
-      <section class="my-20">
-        <div class="container">
-          <div class="grid grid-cols-1 gap-12 md:grid-cols-2">
-            <Image src={webdevImg} alt="Web Development for Beginners curriculum artwork with browser and code motifs" class="max-h-[500px]" decoding="async" />
-            <div class="space-content flex flex-col justify-center">
-              <h3 class="font-serif text-xl md:text-2xl text-muted-foreground italic">Web Dev for Beginners</h3>
-              <p class="text-lg text-foreground/80 leading-relaxed mb-4 my-5">
-                I designed and developed the viral "For Beginners" at Microsoft. These are free and open repos on GitHub with thousands of stars, ranking highly in most-starred repos globally.
-              </p>
-              <p class="text-lg text-foreground/80 leading-relaxed mb-4 my-5">Learn more <a href="https://aka.ms/webdev-beginners" target="_blank" rel="noopener noreferrer">here</a>. Sketchnotes by Tomomi Imuri</p>
-            </div>
-          </div>
-          <hr class="my-10"/>
-        </div>
-      </section>
-
-      <section class="my-20">
-        <div class="container">
-          <div class="grid grid-cols-1 gap-12 md:grid-cols-2">
-            <Image src={mlImg} alt="Machine Learning for Beginners curriculum banner with data and model icons" class="max-h-[500px]" decoding="async" />
-            <div class="space-content flex flex-col justify-center">
-              <h3 class="font-serif text-xl md:text-2xl text-muted-foreground italic">Machine Learning for Beginners</h3>
-              <p class="text-lg text-foreground/80 leading-relaxed mb-4 my-5">
-                Among other curricula developed at Microsoft, I designed and wrote large parts of the Machine Learning for Beginners Curriculum.
-              </p>
-              <p class="text-lg text-foreground/80 leading-relaxed mb-4 my-5">Learn more <a href="https://aka.ms/ml-beginners" target="_blank" rel="noopener noreferrer">here</a>. Sketchnotes by Tomomi Imuri</p>
-            </div>
-          </div>
-          <hr class="my-10"/>
-        </div>
-      </section>
-
-      <h2 class="font-serif text-2xl md:text-3xl text-muted-foreground italic">Other Creative Curricula</h2>
-
-      <section class="my-20">
-        <div class="container">
-          <div class="grid grid-cols-1 gap-12 md:grid-cols-2">
-            <Image src={kitchenImg} alt="Kitchen-Sune family recipe book site with nostalgic kitchen photography styling" class="max-h-[500px]" decoding="async" />
-            <div class="space-content flex flex-col justify-center">
-              <h3 class="font-serif text-xl md:text-2xl text-muted-foreground italic">Kitchen-Sune</h3>
-              <p class="text-lg text-foreground/80 leading-relaxed mb-4 my-5">
-                The Front-End Foxes Global Recipe Book
-              </p>
-              <p class="text-lg text-foreground/80 leading-relaxed mb-4 my-5">Learn more <a href="https://kitchen-sune.netlify.app" target="_blank" rel="noopener noreferrer">here</a>.</p>
-            </div>
-          </div>
-          <hr class="my-10"/>
-        </div>
-      </section>
-
-      <section class="my-20">
-        <div class="container">
-          <div class="grid grid-cols-1 gap-12 md:grid-cols-2">
-            <Image src={quicknomsImg} alt="QuickNoms app branding with fast casual cooking and recipe imagery" class="max-h-[500px]" decoding="async" />
-            <div class="space-content flex flex-col justify-center">
-              <h3 class="font-serif text-xl md:text-2xl text-muted-foreground italic">QuickNoms</h3>
-              <p class="text-lg text-foreground/80 leading-relaxed mb-4 my-5">
-                5 ingredients, 15 minutes, dinner is served!
-              </p>
-              <p class="text-lg text-foreground/80 leading-relaxed mb-4 my-5">Learn more <a href="https://quicknoms.netlify.app" target="_blank" rel="noopener noreferrer">here</a>.</p>
-            </div>
-          </div>
-          <hr class="my-10"/>
-        </div>
-      </section>
-
-      <section class="my-20">
-        <div class="container">
-          <div class="grid grid-cols-1 gap-12 md:grid-cols-2">
-            <Image src={thinglearnImg} alt="ThingLearn IoT curriculum artwork with connected devices and sensors" class="max-h-[500px]" decoding="async" />
-            <div class="space-content flex flex-col justify-center">
-              <h3 class="font-serif text-xl md:text-2xl text-muted-foreground italic">ThingLearn</h3>
-              <p class="text-lg text-foreground/80 leading-relaxed mb-4 my-5">
-                It's a curriculum, a community, and a lot of fun! Let's learn about the Internet of Things together.
-              </p>
-              <p class="text-lg text-foreground/80 leading-relaxed mb-4 my-5">Learn more <a href="https://thinglearn.netlify.app" target="_blank" rel="noopener noreferrer">here</a>.</p>
-            </div>
-          </div>
-          <hr class="my-10"/>
-        </div>
-      </section>
-
     </div>
+
+    <div class="card-listing-section-head">
+      <h2 class="font-serif text-2xl font-bold italic text-foreground md:text-3xl">University Teaching</h2>
+      <p class="card-listing-section-deck">Course materials and references from the classroom.</p>
+    </div>
+
+    <ul class="card-listing-grid" aria-label="University curricula">
+      {
+        universityItems.map((item) => (
+          <li>
+            <ProjectCard
+              image={item.image}
+              imageAlt={item.imageAlt}
+              title={item.title}
+              description={item.description}
+              links={item.links}
+            />
+          </li>
+        ))
+      }
+    </ul>
+
+    <hr class="card-listing-divider" />
+
+    <div class="card-listing-section-head-spaced">
+      <h2 class="font-serif text-2xl font-bold italic text-foreground md:text-3xl">
+        Microsoft's "For Beginners" Series
+      </h2>
+      <p class="card-listing-section-deck">Open, free learning paths that took on a life of their own on GitHub.</p>
+    </div>
+
+    <ul class="card-listing-grid" aria-label="Microsoft For Beginners curricula">
+      {
+        microsoftItems.map((item) => (
+          <li>
+            <ProjectCard
+              image={item.image}
+              imageAlt={item.imageAlt}
+              title={item.title}
+              description={item.description}
+              links={item.links}
+            />
+          </li>
+        ))
+      }
+    </ul>
+
+    <hr class="card-listing-divider" />
+
+    <div class="card-listing-section-head-spaced">
+      <h2 class="font-serif text-2xl font-bold italic text-foreground md:text-3xl">Other Creative Curricula</h2>
+      <p class="card-listing-section-deck">Smaller projects that mix teaching with creative storytelling.</p>
+    </div>
+
+    <ul class="card-listing-grid" aria-label="Other curricula">
+      {
+        otherItems.map((item) => (
+          <li>
+            <ProjectCard
+              image={item.image}
+              imageAlt={item.imageAlt}
+              title={item.title}
+              description={item.description}
+              links={item.links}
+            />
+          </li>
+        ))
+      }
+    </ul>
   </section>
 </DefaultLayout>
-

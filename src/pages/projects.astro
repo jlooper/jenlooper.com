@@ -1,6 +1,7 @@
 ---
+import type { ImageMetadata } from 'astro'
 import DefaultLayout from '../layouts/DefaultLayout.astro'
-import { Image } from 'astro:assets'
+import ProjectCard from '../components/ProjectCard.astro'
 import img1 from '../assets/img/ff-logo.png'
 import img2 from '../assets/img/cc.png'
 import img3 from '../assets/img/saree.png'
@@ -16,270 +17,217 @@ import img12 from '../assets/img/tarot.png'
 import img13 from '../assets/img/glorious.png'
 import tussie from '../assets/img/tussie.png'
 import cccImg from '../assets/img/ccc.png'
+
+type ProjectLink = { href: string; label: string }
+
+type ProjectItem = {
+  image: ImageMetadata
+  imageAlt: string
+  title: string
+  description: string
+  links?: ProjectLink[]
+  eager?: boolean
+}
+
+const communityProjects: ProjectItem[] = [
+  {
+    image: cccImg,
+    imageAlt: 'Cloudinary Creators Community wordmark on a dark banner background',
+    title: 'Cloudinary Creators Community',
+    description:
+      'A global community for developers, designers, and digital storytellers who care how visual media looks, feels, and performs on the web. Members connect on Discord, join live sessions and office hours, and share creative uses of Cloudinary in the real world.',
+    links: [{ href: 'https://community.cloudinary.com/', label: 'Visit the community site' }],
+    eager: true,
+  },
+  {
+    image: img1,
+    imageAlt: 'Front-End Foxes nonprofit logo with fox head illustration and logotype',
+    title: 'Front-End Foxes, Inc.',
+    description:
+      'Formerly Vue Vixens, Inc., this international nonprofit survived COVID by transforming from in-person workshops to an online school; we educated hundreds of women over five years and have several success stories.',
+    links: [{ href: 'https://ff-school.jenlooper.com', label: 'Front-End Foxes school' }],
+  },
+  {
+    image: img2,
+    imageAlt: 'AWS Cloud Clubs program graphic with cloud icon and global meetup branding',
+    title: 'AWS Cloud Clubs',
+    description:
+      'In February 2023 my team at AWS launched AWS Cloud Clubs worldwide. The program has grown immensely since then, impacting over 100,000 students in 2025 alone.',
+    links: [{ href: 'https://www.meetup.com/pro/cloud-clubs', label: 'Cloud Clubs on Meetup' }],
+  },
+]
+
+const demoProjects: ProjectItem[] = [
+  {
+    image: tussie,
+    imageAlt:
+      'Tussie-Mussie Generator web app interface showing Victorian-style flower bouquet selections',
+    title: 'Tussie-Mussie Generator',
+    description:
+      "Showcasing Cloudinary's image recognition capabilities, this app generates a tussie-mussie based on a selection of flowers by their meaning. Send it as an e-card!",
+    links: [
+      { href: 'https://youtu.be/L8H4SnNUeDs', label: 'Watch the demo (YouTube)' },
+      { href: 'https://tussie-mussies.netlify.app/', label: 'Try it on Netlify' },
+    ],
+  },
+  {
+    image: img3,
+    imageAlt: 'Saree Detector mobile app screens identifying traditional South Asian textile patterns',
+    title: 'Saree Detector App',
+    description:
+      'This app was built as a demo to show how image recognition capabilities can be used for artisan textiles, to enhance connoisseurship.',
+    links: [{ href: 'https://youtu.be/y6qopiBGK-E', label: 'Watch the TEDx talk' }],
+  },
+  {
+    image: img4,
+    imageAlt: 'Ombromanie shadow-puppet storytelling web app with silhouette hands on a warm-lit screen',
+    title: 'Ombromanie',
+    description:
+      'Tell stories with just your hands—and use hand poses to capture them via a web app!',
+    links: [{ href: 'https://github.com/jlooper/ombromanie', label: 'GitHub repository' }],
+  },
+  {
+    image: img5,
+    imageAlt: "PoseDance TikTok trainer app comparing a dancer's pose to an on-screen outline",
+    title: 'PoseDance: a TikTok trainer app',
+    description:
+      'Learn how to dance like an influencer on TikTok with this web app, which uses body poses to track and score your smooth moves.',
+    links: [{ href: 'https://github.com/jlooper/posedance', label: 'GitHub repository' }],
+  },
+  {
+    image: img6,
+    imageAlt: 'Project Troubadour storytelling web app connecting museum objects into a narrative path',
+    title: 'Project Troubadour: a storytelling web app',
+    description:
+      "Created with Microsoft and the Smithsonian's Cooper Hewitt Museum of Design—use a museum API to construct connected stories.",
+    links: [{ href: 'https://github.com/jlooper/storytelling-app', label: 'GitHub repository' }],
+  },
+  {
+    image: img7,
+    imageAlt: 'WineUp pocket sommelier app showing wine and cheese pairing suggestions on a phone',
+    title: 'WineUp: your pocket sommelier',
+    description:
+      'Wine and cheese pairings, powered by ML and the Wine Spectator API. A mobile app demo.',
+    links: [{ href: 'https://github.com/jlooper/wineup', label: 'GitHub repository' }],
+  },
+  {
+    image: img8,
+    imageAlt: 'Twist & Shout Beatles tribute app collage with album art and British invasion graphics',
+    title: 'Twist & Shout: Beatles tribute app',
+    description:
+      'A mobile app celebrating the Beatles with ML song generators, an album cover recreation tool, and more.',
+    links: [{ href: 'https://github.com/jlooper/twistnshout', label: 'GitHub repository' }],
+  },
+  {
+    image: img9,
+    imageAlt: 'EMiLy Emily Dickinson tribute app with poetry and portrait-inspired visuals',
+    title: 'EMiLy: Emily Dickinson tribute app',
+    description: "Celebrate Emily Dickinson's oeuvre with ML-generated poetry.",
+    links: [{ href: 'https://github.com/jlooper/emily', label: 'GitHub repository' }],
+  },
+  {
+    image: img10,
+    imageAlt: 'MixoLogy minibar scanner app identifying bottles and suggesting cocktail recipes on mobile',
+    title: "MixoLogy: what's in my minibar?",
+    description:
+      "Take a photo of your minibar's contents, get a cocktail suggestion, or shake the phone for an AI-generated recipe idea.",
+    links: [{ href: 'https://github.com/jlooper/mixology-mobile', label: 'GitHub repository' }],
+  },
+  {
+    image: img11,
+    imageAlt: 'Well-Architected Framework coloring book pages with AWS pillar-themed line art',
+    title: 'The Well-Architected coloring book',
+    description:
+      "To reinforce the ideas behind the six pillars of the framework, here's a coloring book that will help you remember them.",
+    links: [{ href: 'https://jenlooper.gumroad.com/l/wa-color', label: 'Get it on Gumroad' }],
+  },
+  {
+    image: img12,
+    imageAlt: 'AWS Tarot deck website mock-up with cloud-service themed tarot card artwork',
+    title: 'AWS Tarot',
+    description: 'The companion site for a not-too-serious tarot deck that references AWS services.',
+    links: [{ href: 'https://aws-tarot.netlify.app', label: 'View on Netlify' }],
+  },
+  {
+    image: img13,
+    imageAlt:
+      'Ye Glorious Historiae of Ye Cloud comic strip in medieval tapestry style about cloud computing',
+    title: 'Ye Glorious Historiae of Ye Cloud',
+    description:
+      'A completely anachronistic journey into cloud computing topics using Bayeux imagery. Because why not.',
+    links: [
+      {
+        href: 'https://www.webtoons.com/en/canvas/ye-glorious-historiae-of-ye-cloud/list?title_no=926508',
+        label: 'Read on Webtoon',
+      },
+    ],
+  },
+]
 ---
+
 <DefaultLayout title="Projects">
-  <section class="container max-w-6xl mx-auto px-6 md:px-12 py-16">
-    <div class="space-y-8">
-      <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl font-semibold text-foreground leading-tight">Projects</h1>
-
-      <p class="text-lg text-foreground/80 leading-relaxed my-5">
-        I've been creating community and exciting, creative demos and interesting projects for years. Discover some of them here. Many are powered by the <a target="_blank" rel="noopener noreferrer" href="https://www.kaggle.com/jenlooper/datasets">datasets</a> I manage on Kaggle. You can download several of the free items associated with these projects on <a target="_blank" rel="noopener noreferrer" href="https://jenlooper.gumroad.com/">Gumroad</a>.
+  <section class="card-listing-page">
+    <div class="card-listing-intro">
+      <h1 class="font-serif text-4xl font-semibold leading-tight text-foreground md:text-5xl lg:text-6xl">
+        Projects
+      </h1>
+      <p class="text-lg leading-relaxed text-foreground/85 dark:text-foreground/95 md:text-xl">
+        I've been creating community and exciting, creative demos and interesting projects for years. Discover
+        some of them here. Many are powered by the
+        <a target="_blank" rel="noopener noreferrer" href="https://www.kaggle.com/jenlooper/datasets">datasets</a> I
+        manage on Kaggle. You can download several of the free items associated with these projects on
+        <a target="_blank" rel="noopener noreferrer" href="https://jenlooper.gumroad.com/">Gumroad</a>.
       </p>
-      
-      <h2 class="font-serif text-bold text-2xl md:text-3xl italic">Global Communities</h2>
-
-      <section class="my-20">
-        <div class="container">
-          <div class="grid grid-cols-1 gap-12 md:grid-cols-2">
-            <Image
-              src={cccImg}
-              alt="Cloudinary Creators Community wordmark on a dark banner background"
-              class="h-auto w-full max-h-44 object-contain object-left sm:max-h-52 md:max-h-56"
-              width={300}
-              height={84}
-              decoding="async"
-            />
-            <div class="space-content flex flex-col justify-center">
-              <h2 class="font-serif text-2xl md:text-3xl text-muted-foreground italic">Cloudinary Creators Community</h2>
-              <p class="text-lg text-foreground/80 leading-relaxed my-5">
-                A global community for developers, designers, and digital storytellers who care how visual media looks, feels, and performs on the web. Members connect on Discord, join live sessions and office hours, learn from guides and sample projects, and share creative uses of Cloudinary in the real world.
-              </p>
-              <p class="text-lg text-foreground/80 leading-relaxed my-5">
-                Learn more <a target="_blank" rel="noopener noreferrer" href="https://community.cloudinary.com/">here</a>.
-              </p>
-            </div>
-          </div>
-          <hr class="my-10"/>
-        </div>
-      </section>
-
-      <section class="my-20">
-        <div class="container">
-          <div class="grid grid-cols-1 gap-12 md:grid-cols-2">
-            <Image src={img1} alt="Front-End Foxes nonprofit logo with fox head illustration and logotype" class="max-h-[500px]" decoding="async" />
-            <div class="space-content flex flex-col justify-center">
-              <h2 class="font-serif text-2xl md:text-3xl text-muted-foreground italic">Front-End Foxes, Inc.</h2>
-              <p class="text-lg text-foreground/80 leading-relaxed my-5">
-                Formerly Vue Vixens, Inc., this international nonprofit survived COVID by transforming from in person workshops to an online school; we educated hundreds of women over 5 years and have several success stories.
-              </p>
-              <p class="text-lg text-foreground/80 leading-relaxed my-5">Learn more <a target="_blank" rel="noopener noreferrer" href="https://ff-school.jenlooper.com">here</a>.</p>
-            </div>
-          </div>
-          <hr class="my-10"/>
-        </div>
-      </section>
-
-      <section class="my-20">
-        <div class="container">
-          <div class="grid grid-cols-1 gap-12 md:grid-cols-2">
-            <Image src={img2} alt="AWS Cloud Clubs program graphic with cloud icon and global meetup branding" class="max-h-[500px]" decoding="async" />
-            <div class="space-content flex flex-col justify-center">
-              <h2 class="font-serif text-2xl md:text-3xl text-muted-foreground italic">AWS Cloud Clubs</h2>
-              <p class="text-lg text-foreground/80 leading-relaxed my-5">
-                In February of 2023 I and my team at AWS launched AWS Cloud Clubs worldwide. The program has grown immensely since then, impacting over 100,000 students in 2025 alone.
-              </p>
-              <p class="text-lg text-foreground/80 leading-relaxed my-5">Learn more <a target="_blank" rel="noopener noreferrer" href="https://www.meetup.com/pro/cloud-clubs">here</a>.</p>
-            </div>
-          </div>
-          <hr class="my-10"/>
-        </div>
-      </section>
-
-     
-
-      <h2 class="font-serif text-2xl md:text-3xl text-bold italic">Educational and Fun Demos</h2>
-
-      <section class="my-20">
-        <div class="container">
-          <div class="grid grid-cols-1 gap-12 md:grid-cols-2">
-            <Image src={tussie} alt="Tussie-Mussie Generator web app interface showing Victorian-style flower bouquet selections" class="max-h-[500px]" decoding="async" />
-            <div class="space-content flex flex-col justify-center">
-              <h2 class="font-serif text-2xl md:text-3xl text-muted-foreground italic">Tussie-Mussie Generator</h2>
-              <p class="text-lg text-foreground/80 leading-relaxed my-5">
-                Showcasing Cloudinary's image recognition capabilities, this app generates a tussie-mussie based on a selection of flowers by their meaning. Send it as an e-card!
-              </p>
-              <p class="text-lg text-foreground/80 leading-relaxed my-5">Watch the demo <a target="_blank" rel="noopener noreferrer" href="https://youtu.be/L8H4SnNUeDs">here</a> and try it yourself <a target="_blank" rel="noopener noreferrer" href="https://tussie-mussies.netlify.app/">here</a>.</p>
-            </div>
-          </div>
-          <hr class="my-10"/>
-        </div>
-      </section>
-
-      <section class="my-20">
-        <div class="container">
-          <div class="grid grid-cols-1 gap-12 md:grid-cols-2">
-            <Image src={img3} alt="Saree Detector mobile app screens identifying traditional South Asian textile patterns" class="max-h-[500px]" decoding="async" />
-            <div class="space-content flex flex-col justify-center">
-              <h2 class="font-serif text-2xl md:text-3xl text-muted-foreground italic">Saree Detector App</h2>
-              <p class="text-lg text-foreground/80 leading-relaxed my-5">
-                This app was built as a demo to show how image recognition capabilities can be used for artisan textiles, to enhance connoisseurship.
-              </p>
-              <p class="text-lg text-foreground/80 leading-relaxed my-5">Watch the TEDx talk <a target="_blank" rel="noopener noreferrer" href="https://youtu.be/y6qopiBGK-E">here</a>.</p>
-            </div>
-          </div>
-          <hr class="my-10"/>
-        </div>
-      </section>
-
-      <section class="my-20">
-        <div class="container">
-          <div class="grid grid-cols-1 gap-12 md:grid-cols-2">
-            <Image src={img4} alt="Ombromanie shadow-puppet storytelling web app with silhouette hands on a warm-lit screen" class="max-h-[500px]" decoding="async" />
-            <div class="space-content flex flex-col justify-center">
-              <h2 class="font-serif text-2xl md:text-3xl text-muted-foreground italic">Ombromanie</h2>
-              <p class="text-lg text-foreground/80 leading-relaxed my-5">
-                Tell stories with just your hands - and use hand poses to capture them via a web app!
-              </p>
-              <p class="text-lg text-foreground/80 leading-relaxed my-5">Visit the GitHub repo <a target="_blank" rel="noopener noreferrer" href="https://github.com/jlooper/ombromanie">here</a>.</p>
-            </div>
-          </div>
-          <hr class="my-10"/>
-        </div>
-      </section>
-
-      <section class="my-20">
-        <div class="container">
-          <div class="grid grid-cols-1 gap-12 md:grid-cols-2">
-            <Image src={img5} alt="PoseDance TikTok trainer app comparing a dancer's pose to an on-screen outline" class="max-h-[500px]" decoding="async" />
-            <div class="space-content flex flex-col justify-center">
-              <h2 class="font-serif text-2xl md:text-3xl text-muted-foreground italic">PoseDance, a TikTok Trainer app</h2>
-              <p class="text-lg text-foreground/80 leading-relaxed my-5">
-                Learn how to dance like an influencer on TikTok with this web app, which uses body poses to track and score your smooth moves.
-              </p>
-              <p class="text-lg text-foreground/80 leading-relaxed my-5">Visit the GitHub repo <a target="_blank" rel="noopener noreferrer" href="https://github.com/jlooper/posedance">here</a>.</p>
-            </div>
-          </div>
-          <hr class="my-10"/>
-        </div>
-      </section>
-
-      <section class="my-20">
-        <div class="container">
-          <div class="grid grid-cols-1 gap-12 md:grid-cols-2">
-            <Image src={img6} alt="Project Troubadour storytelling web app connecting museum objects into a narrative path" class="max-h-[500px]" decoding="async" />
-            <div class="space-content flex flex-col justify-center">
-              <h2 class="font-serif text-2xl md:text-3xl text-muted-foreground italic">Project Troubadour: A Storytelling Web App</h2>
-              <p class="text-lg text-foreground/80 leading-relaxed my-5">
-                Created in conjunction with Microsoft and the Smithsonian's Cooper Hewitt Museum of Design - use a Museum's API to construct connected stories.
-              </p>
-              <p class="text-lg text-foreground/80 leading-relaxed my-5">Visit the GitHub repo <a target="_blank" rel="noopener noreferrer" href="https://github.com/jlooper/storytelling-app">here</a>.</p>
-            </div>
-          </div>
-          <hr class="my-10"/>
-        </div>
-      </section>
-
-      <section class="my-20">
-        <div class="container">
-          <div class="grid grid-cols-1 gap-12 md:grid-cols-2">
-            <Image src={img7} alt="WineUp pocket sommelier app showing wine and cheese pairing suggestions on a phone" class="max-h-[500px]" decoding="async" />
-            <div class="space-content flex flex-col justify-center">
-              <h2 class="font-serif text-2xl md:text-3xl text-muted-foreground italic">WineUp: Your Pocket Sommelier</h2>
-              <p class="text-lg text-foreground/80 leading-relaxed my-5">
-                Wine and cheese pairings, powered by ML and the Wine Spectator API. A mobile app demo.
-              </p>
-              <p class="text-lg text-foreground/80 leading-relaxed my-5">Visit the GitHub repo <a target="_blank" rel="noopener noreferrer" href="https://github.com/jlooper/wineup">here</a>.</p>
-            </div>
-          </div>
-          <hr class="my-10"/>
-        </div>
-      </section>
-
-      <section class="my-20">
-        <div class="container">
-          <div class="grid grid-cols-1 gap-12 md:grid-cols-2">
-            <Image src={img8} alt="Twist & Shout Beatles tribute app collage with album art and British invasion graphics" class="max-h-[500px]" decoding="async" />
-            <div class="space-content flex flex-col justify-center">
-              <h2 class="font-serif text-2xl md:text-3xl text-muted-foreground italic">Twist & Shout: Beatles Tribute App</h2>
-              <p class="text-lg text-foreground/80 leading-relaxed my-5">
-                A mobile app celebrating the Beatles with ML song generators, an album cover recreation tool, and more
-              </p>
-              <p class="text-lg text-foreground/80 leading-relaxed my-5">Visit the GitHub repo <a target="_blank" rel="noopener noreferrer" href="https://github.com/jlooper/twistnshout">here</a>.</p>
-            </div>
-          </div>
-          <hr class="my-10"/>
-        </div>
-      </section>
-
-      <section class="my-20">
-        <div class="container">
-          <div class="grid grid-cols-1 gap-12 md:grid-cols-2">
-            <Image src={img9} alt="EMiLy Emily Dickinson tribute app with poetry and portrait-inspired visuals" class="max-h-[500px]" decoding="async" />
-            <div class="space-content flex flex-col justify-center">
-              <h2 class="font-serif text-2xl md:text-3xl text-muted-foreground italic">EMiLy App: Emily Dickinson tribute app</h2>
-              <p class="text-lg text-foreground/80 leading-relaxed my-5">
-                Celebrate Emily Dickinson's oeuvre with ML-generated poetry 
-              </p>
-              <p class="text-lg text-foreground/80 leading-relaxed my-5">Visit the GitHub repo <a target="_blank" rel="noopener noreferrer" href="https://github.com/jlooper/emily">here</a>.</p>
-            </div>
-          </div>
-          <hr class="my-10"/>
-        </div>
-      </section>
-
-      <section class="my-20">
-        <div class="container">
-          <div class="grid grid-cols-1 gap-12 md:grid-cols-2">
-            <Image src={img10} alt="MixoLogy minibar scanner app identifying bottles and suggesting cocktail recipes on mobile" class="max-h-[500px]" decoding="async" />
-            <div class="space-content flex flex-col justify-center">
-              <h2 class="font-serif text-2xl md:text-3xl text-muted-foreground italic">MixoLogy: What's in my minibar?</h2>
-              <p class="text-lg text-foreground/80 leading-relaxed my-5">
-                Take a pic of your minibar's contents, suggest a cocktail to make, or shake the phone for an AI-generated suggested recipe!
-              </p>
-              <p class="text-lg text-foreground/80 leading-relaxed my-5">Visit the GitHub repo <a target="_blank" rel="noopener noreferrer" href="https://github.com/jlooper/mixology-mobile">here</a>.</p>
-            </div>
-          </div>
-          <hr class="my-10"/>
-        </div>
-      </section>
-
-      <section class="my-20">
-        <div class="container">
-          <div class="grid grid-cols-1 gap-12 md:grid-cols-2">
-            <Image src={img11} alt="Well-Architected Framework coloring book pages with AWS pillar-themed line art" class="max-h-[500px]" decoding="async" />
-            <div class="space-content flex flex-col justify-center">
-              <h2 class="font-serif text-2xl md:text-3xl text-muted-foreground italic">The Well-Architected Coloring Book</h2>
-              <p class="text-lg text-foreground/80 leading-relaxed my-5">
-                To reinforce the ideas that underpin the six pillars of the framework, here's a coloring book that will help you remember them.
-              </p>
-              <p class="text-lg text-foreground/80 leading-relaxed my-5">Learn more <a target="_blank" rel="noopener noreferrer" href="https://jenlooper.gumroad.com/l/wa-color">here</a>.</p>
-            </div>
-          </div>
-          <hr class="my-10"/>
-        </div>
-      </section>
-
-      <section class="my-20">
-        <div class="container">
-          <div class="grid grid-cols-1 gap-12 md:grid-cols-2">
-            <Image src={img12} alt="AWS Tarot deck website mock-up with cloud-service themed tarot card artwork" class="max-h-[500px]" decoding="async" />
-            <div class="space-content flex flex-col justify-center">
-              <h2 class="font-serif text-2xl md:text-3xl text-muted-foreground italic">AWS Tarot</h2>
-              <p class="text-lg text-foreground/80 leading-relaxed my-5">
-                The companion website of a not-too-serious Tarot card deck that references AWS services
-              </p>
-              <p class="text-lg text-foreground/80 leading-relaxed my-5">Learn more <a target="_blank" rel="noopener noreferrer" href="https://aws-tarot.netlify.app">here</a>.</p>
-            </div>
-          </div>
-          <hr class="my-10"/>
-        </div>
-      </section>
-
-      <section class="my-20">
-        <div class="container">
-          <div class="grid grid-cols-1 gap-12 md:grid-cols-2">
-            <Image src={img13} alt="Ye Glorious Historiae of Ye Cloud comic strip in medieval tapestry style about cloud computing" class="max-h-[500px]" decoding="async" />
-            <div class="space-content flex flex-col justify-center">
-              <h2 class="font-serif text-2xl md:text-3xl text-muted-foreground italic">Ye Glorious Historiae of Ye Cloud</h2>
-              <p class="text-lg text-foreground/80 leading-relaxed my-5">
-                A completely anachronistic journey into cloud computing topics using Bayeux imagery. Because why not.
-              </p>
-              <p class="text-lg text-foreground/80 leading-relaxed my-5">Learn more <a target="_blank" rel="noopener noreferrer" href="https://www.webtoons.com/en/canvas/ye-glorious-historiae-of-ye-cloud/list?title_no=926508">here</a>.</p>
-            </div>
-          </div>
-          <hr class="my-10"/>
-        </div>
-      </section>
     </div>
+
+    <div class="card-listing-section-head">
+      <h2 class="font-serif text-2xl font-bold italic text-foreground md:text-3xl">Global Communities</h2>
+      <p class="card-listing-section-deck">
+        Long-running programs and communities—built for learners and practitioners worldwide.
+      </p>
+    </div>
+
+    <ul class="card-listing-grid" aria-label="Global community projects">
+      {
+        communityProjects.map((project) => (
+          <li>
+            <ProjectCard
+              image={project.image}
+              imageAlt={project.imageAlt}
+              title={project.title}
+              description={project.description}
+              links={project.links}
+              eager={project.eager}
+            />
+          </li>
+        ))
+      }
+    </ul>
+
+    <hr class="card-listing-divider" />
+
+    <div class="card-listing-section-head-spaced">
+      <h2 class="font-serif text-2xl font-bold italic text-foreground md:text-3xl">Educational and fun demos</h2>
+      <p class="card-listing-section-deck">
+        Experiments in ML, mobile, and the web—often tied to conference talks or teaching.
+      </p>
+    </div>
+
+    <ul class="card-listing-grid" aria-label="Educational and demo projects">
+      {
+        demoProjects.map((project) => (
+          <li>
+            <ProjectCard
+              image={project.image}
+              imageAlt={project.imageAlt}
+              title={project.title}
+              description={project.description}
+              links={project.links}
+              eager={project.eager}
+            />
+          </li>
+        ))
+      }
+    </ul>
   </section>
 </DefaultLayout>

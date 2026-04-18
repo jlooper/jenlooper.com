@@ -1,10 +1,9 @@
-// Markdown for Agents: https://developers.cloudflare.com/fundamentals/reference/markdown-for-agents/
-// Skill: https://isitagentready.com/.well-known/agent-skills/markdown-negotiation/SKILL.md
+// Markdown for Agents: dependency-free HTML→text/markdown in Netlify Edge
+// https://developers.cloudflare.com/fundamentals/reference/markdown-for-agents/
 
 import type { Config, Context } from "https://edge.netlify.com";
-import TurndownService from "https://esm.sh/turndown@7.2.0?bundle&target=deno";
 
-const MAX_BYTES = 2_097_152; // 2 MB (same as Cloudflare M4A)
+const MAX_BYTES = 2_097_152; // 2 MB
 
 type PItem = { type: string; q: number };
 
@@ -26,7 +25,6 @@ function parseAccept(accept: string): PItem[] {
     .filter((x) => x.type);
 }
 
-/** Markdown wins only when it has a higher q-value than any explicit HTML type (tie → HTML for browsers). */
 function prefersMarkdown(accept: string | null): boolean {
   if (!accept) return false;
   const p = parseAccept(accept);
@@ -34,10 +32,20 @@ function prefersMarkdown(accept: string | null): boolean {
   let bestHtml = 0;
   for (const { type, q } of p) {
     if (q === 0) continue;
-    if (type === "text/markdown" || type === "text/x-markdown" || type === "application/markdown")
+    if (
+      type === "text/markdown" ||
+      type === "text/x-markdown" ||
+      type === "application/markdown"
+    ) {
       if (q > bestMd) bestMd = q;
-    if (type === "text/html" || type === "application/xhtml+xml" || type === "text/html-fragment")
+    }
+    if (
+      type === "text/html" ||
+      type === "application/xhtml+xml" ||
+      type === "text/html-fragment"
+    ) {
       if (q > bestHtml) bestHtml = q;
+    }
   }
   if (bestMd <= 0) return false;
   if (bestHtml <= 0) return true;
@@ -48,27 +56,115 @@ function tokenEstimate(s: string): number {
   return Math.max(0, Math.ceil(s.length / 4));
 }
 
-const turndown = new TurndownService({
-  headingStyle: "atx",
-  codeBlockStyle: "fenced",
-});
-turndown.addRule("stripScripts", {
-  filter: ["script", "style", "noscript"],
-  replacement: () => "",
-});
-
-// Skip obvious static assets; HTML pages and extensionless app routes are handled by Content-Type.
-const fileExt = /\.(js|mjs|cjs|ts|map|css|png|jpe?g|gif|webp|avif|ico|svg|xml|txt|json|pdf|woff2?|ttf|eot|otf|md|markdown)$/i;
+const fileExt =
+  /\.(js|mjs|cjs|ts|map|css|png|jpe?g|gif|webp|avif|ico|svg|xml|txt|json|pdf|woff2?|ttf|eot|otf|md|markdown)$/i;
 
 function skipPath(pathname: string): boolean {
-  if (pathname.startsWith("/_astro/") || pathname.startsWith("/pagefind/")) return true;
+  if (pathname.startsWith("/_astro/") || pathname.startsWith("/pagefind/")) {
+    return true;
+  }
+  if (pathname.startsWith("/.well-known/")) return true;
   if (fileExt.test(pathname)) return true;
   return false;
 }
 
+function decodeBasicEntities(s: string): string {
+  return s
+    .replace(/&nbsp;/g, " ")
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
+    .replace(/&#(\d+);/g, (_, d) => String.fromCharCode(parseInt(d, 10)))
+    .replace(/&#x([0-9a-f]+);/gi, (_, h) =>
+      String.fromCharCode(parseInt(h, 16)),
+    );
+}
+
+function innerText(html: string): string {
+  return decodeBasicEntities(
+    html.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").trim(),
+  );
+}
+
+/** Deterministic, edge-safe HTML → Markdown (no third-party import). */
+function htmlToMarkdown(html: string): string {
+  let h = html
+    .replace(
+      /<script[\s\S]*?<\/script>/gi,
+      "",
+    )
+    .replace(
+      /<style[\s\S]*?<\/style>/gi,
+      "",
+    )
+    .replace(
+      /<noscript[\s\S]*?<\/noscript>/gi,
+      "",
+    )
+    .replace(/<svg[\s\S]*?<\/svg>/gi, "");
+
+  const main = h.match(/<main\b[^>]*>([\s\S]*?)<\/main>/i);
+  if (main) h = main[1] ?? h;
+
+  for (const [tag, prefix] of [
+    ["h1", "# "],
+    ["h2", "## "],
+    ["h3", "### "],
+    ["h4", "#### "],
+    ["h5", "##### "],
+    ["h6", "###### "],
+  ] as const) {
+    const re = new RegExp(
+      "<" + tag + "\\b[^>]*>([\\s\\S]*?)</" + tag + ">",
+      "gi",
+    );
+    h = h.replace(re, (_f, inner) => prefix + innerText(inner) + "\n\n");
+  }
+
+  h = h.replace(
+    /<a\s+[^>]*href=([^\s>]+|["'][^"']*["'])\s*[^>]*>([\s\S]*?)<\/a>/gi,
+    (_a, hrefRaw, inner) => {
+      const href = String(hrefRaw).replace(/^["']|["']$/g, "");
+      const t = innerText(String(inner));
+      return t ? `[${t}](${href})` : `(${href})`;
+    },
+  );
+  h = h.replace(/<br\s*\/?\s*>/gi, "\n");
+  h = h.replace(
+    /<(b|strong)\b[^>]*>([\s\S]*?)<\/(b|strong)>/gi,
+    (_1, _2, inner) => `**${innerText(String(inner))}**`,
+  );
+  h = h.replace(
+    /<(i|em)\b[^>]*>([\s\S]*?)<\/(i|em)>/gi,
+    (_1, _2, inner) => `_${innerText(String(inner))}_`,
+  );
+  h = h.replace(/<code\b[^>]*>([\s\S]*?)<\/code>/gi, (_c, inner) => {
+    return "`" + innerText(String(inner)) + "`";
+  });
+  h = h.replace(
+    /<pre\b[^>]*>([\s\S]*?)<\/pre>/gi,
+    (_p, inner) => "\n```\n" + innerText(String(inner)) + "\n```\n",
+  );
+  h = h.replace(/<\/(p|div|section|article|li)>/gi, "\n");
+  h = h.replace(
+    /<blockquote\b[^>]*>([\s\S]*?)<\/blockquote>/gi,
+    (_b, inner) => "> " + innerText(String(inner)).replace(/\n/g, "\n> ") + "\n\n",
+  );
+  h = h.replace(/<[^>]+>/g, " ");
+  return decodeBasicEntities(
+    h.replace(/[ \t]+/g, " ").replace(/\n{3,}/g, "\n\n").trim(),
+  );
+}
+
 export const config: Config = {
   path: "/*",
-  excludedPath: ["/.netlify/*", "/_astro/*", "/pagefind/*"],
+  excludedPath: [
+    "/.netlify/*",
+    "/_astro/*",
+    "/pagefind/*",
+    "/.well-known/*",
+  ],
 };
 
 export default async function (request: Request, context: Context) {
@@ -106,7 +202,16 @@ export default async function (request: Request, context: Context) {
   }
 
   const html = new TextDecoder().decode(buf);
-  const markdown = turndown.turndown(html);
+  let markdown: string;
+  try {
+    markdown = htmlToMarkdown(html);
+  } catch (e) {
+    console.error("htmlToMarkdown failed", e);
+    markdown = innerText(
+      html.replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>/gi, ""),
+    );
+  }
+
   const headers: Record<string, string> = {
     "Content-Type": "text/markdown; charset=utf-8",
     "x-markdown-tokens": String(tokenEstimate(markdown)),

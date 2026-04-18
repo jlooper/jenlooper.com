@@ -1,0 +1,48 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "jenlooper.com",
+    "description": "Read-only, statically published personal site. No public authenticated write or programmatic submission API. Content is available as HTML, with sitemap and robots in /.well-known and the site root. OpenID Connect discovery (/.well-known/openid-configuration) documents OAuth/OIDC metadata; this site is public and does not require tokens for read access. Authorization and token endpoints return not_implemented.",
+    "version": "1.0.0"
+  },
+  "externalDocs": {
+    "description": "OpenID Connect discovery 1.0 (issuer, endpoints, JWKS URI)",
+    "url": "https://jenlooper.com/.well-known/openid-configuration"
+  },
+  "x-oauth-protected-resource-metadata": "https://jenlooper.com/.well-known/oauth-protected-resource",
+  "servers": [{ "url": "https://jenlooper.com" }],
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "Homepage",
+        "responses": {
+          "200": {
+            "description": "HTML document"
+          }
+        }
+      }
+    },
+    "/.well-known/health.json": {
+      "get": {
+        "summary": "Service status (API catalog / RFC 8631 link relation: status)",
+        "responses": {
+          "200": {
+            "description": "JSON health object",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": { "type": "string" },
+                    "service": { "type": "string" },
+                    "version": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

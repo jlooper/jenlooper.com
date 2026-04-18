@@ -1,0 +1,66 @@
+# https://www.rfc-editor.org/rfc/rfc9309
+# https://contentsignals.org/ — https://datatracker.ietf.org/doc/draft-romm-aipref-contentsignals/
+# Crawl + Content Signals: public HTML; /pagefind/ is the local search index only.
+
+User-agent: *
+Content-Signal: ai-train=no, search=yes, ai-input=no
+Allow: /
+Disallow: /pagefind/
+
+User-agent: Googlebot
+Content-Signal: ai-train=no, search=yes, ai-input=no
+Allow: /
+Disallow: /pagefind/
+
+User-agent: Bingbot
+Content-Signal: ai-train=no, search=yes, ai-input=no
+Allow: /
+Disallow: /pagefind/
+
+# AI crawlers
+User-agent: GPTBot
+Content-Signal: ai-train=no, search=yes, ai-input=no
+Allow: /
+Disallow: /pagefind/
+
+User-agent: OAI-SearchBot
+Content-Signal: ai-train=no, search=yes, ai-input=no
+Allow: /
+Disallow: /pagefind/
+
+User-agent: Claude-Web
+Content-Signal: ai-train=no, search=yes, ai-input=no
+Allow: /
+Disallow: /pagefind/
+
+User-agent: Google-Extended
+Content-Signal: ai-train=no, search=yes, ai-input=no
+Allow: /
+Disallow: /pagefind/
+
+User-agent: Amazonbot
+Content-Signal: ai-train=no, search=yes, ai-input=no
+Allow: /
+Disallow: /pagefind/
+
+User-agent: anthropic-ai
+Content-Signal: ai-train=no, search=yes, ai-input=no
+Allow: /
+Disallow: /pagefind/
+
+User-agent: Bytespider
+Content-Signal: ai-train=no, search=yes, ai-input=no
+Allow: /
+Disallow: /pagefind/
+
+User-agent: CCBot
+Content-Signal: ai-train=no, search=yes, ai-input=no
+Allow: /
+Disallow: /pagefind/
+
+User-agent: Applebot-Extended
+Content-Signal: ai-train=no, search=yes, ai-input=no
+Allow: /
+Disallow: /pagefind/
+
+Sitemap: https://jenlooper.com/sitemap.xml

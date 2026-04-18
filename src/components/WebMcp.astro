@@ -1,0 +1,130 @@
+---
+/**
+ * WebMCP: https://webmachinelearning.github.io/webmcp/
+ * Exposes read-only and navigation tools for browser agents.
+ */
+---
+
+<script is:inline>
+  (function initWebMcp() {
+    if (typeof window === "undefined" || !window.isSecureContext) return;
+    const mc = navigator.modelContext;
+    if (!mc || typeof mc.registerTool !== "function") return;
+
+    const ac = new AbortController();
+    const reg = (tool) => {
+      try {
+        mc.registerTool(tool, { signal: ac.signal });
+      } catch (e) {
+        console.warn("WebMCP: registerTool failed for", tool.name, e);
+      }
+    };
+
+    const keyPaths = [
+      ["/", "Home"],
+      ["/about/", "About"],
+      ["/blog/", "Blog"],
+      ["/books/", "Books"],
+      ["/card/", "Card"],
+      ["/contact/", "Contact"],
+      ["/credits/", "Credits"],
+      ["/curricula/", "Curricula"],
+      ["/projects/", "Projects"],
+      ["/search/", "Search"],
+      ["/speaking/", "Speaking"],
+      ["/success/", "Success"],
+    ];
+    const pathEnum = keyPaths.map((k) => k[0]);
+
+    reg({
+      name: "com.jenlooper.navigate",
+      title: "Navigate on jenlooper.com",
+      description:
+        "Open a main section of the site in this browser tab (about, blog, projects, search, contact, and other listed paths).",
+      inputSchema: {
+        $schema: "https://json-schema.org/draft/2020-12/schema",
+        type: "object",
+        additionalProperties: false,
+        required: ["path"],
+        properties: {
+          path: {
+            type: "string",
+            description: "Path on jenlooper.com to navigate to",
+            enum: pathEnum,
+          },
+        },
+      },
+      async execute(input) {
+        const path = String((input && input.path) || "/");
+        const u = new URL(path, location.origin);
+        location.assign(u);
+        return { ok: true, navigatedTo: u.pathname };
+      },
+    });
+
+    reg({
+      name: "com.jenlooper.getPageContext",
+      title: "Get current page context",
+      description:
+        "Return the current page title, URL, and primary heading for the open jenlooper.com page (read-only).",
+      inputSchema: {
+        $schema: "https://json-schema.org/draft/2020-12/schema",
+        type: "object",
+        additionalProperties: false,
+        properties: {},
+      },
+      async execute() {
+        const h1 = document.querySelector("main h1, h1");
+        return {
+          url: location.href,
+          title: document.title,
+          h1: h1 ? h1.textContent?.trim() : null,
+        };
+      },
+      annotations: { readOnlyHint: true },
+    });
+
+    reg({
+      name: "com.jenlooper.openSearch",
+      title: "Open site search",
+      description:
+        "Go to the Pagefind search page. Optionally pass a free-text query in the URL (support depends on the search UI).",
+      inputSchema: {
+        $schema: "https://json-schema.org/draft/2020-12/schema",
+        type: "object",
+        additionalProperties: false,
+        properties: {
+          query: { type: "string", description: "Optional search query" },
+        },
+      },
+      async execute(input) {
+        const u = new URL("/search/", location.origin);
+        const q = input && input.query != null ? String(input.query) : "";
+        if (q) u.searchParams.set("q", q);
+        location.assign(u);
+        return { ok: true, url: u.toString() };
+      },
+    });
+
+    reg({
+      name: "com.jenlooper.listKeyPages",
+      title: "List key site pages",
+      description:
+        "List main paths and labels for jenlooper.com for planning navigation (read-only).",
+      inputSchema: {
+        $schema: "https://json-schema.org/draft/2020-12/schema",
+        type: "object",
+        additionalProperties: false,
+        properties: {},
+      },
+      async execute() {
+        return { pages: keyPaths.map(([path, label]) => ({ path, label })) };
+      },
+      annotations: { readOnlyHint: true },
+    });
+
+    window.addEventListener("pagehide", function () {
+      ac.abort();
+    });
+  })();
+</script>

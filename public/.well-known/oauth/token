@@ -1,0 +1,4 @@
+{
+  "error": "not_implemented",
+  "error_description": "Token endpoint is not available. jenlooper.com is a public static site without a live authorization server. See OpenID Connect discovery at /.well-known/openid-configuration."
+}

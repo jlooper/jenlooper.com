@@ -1,0 +1,24 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/v1/server-card.schema.json",
+  "name": "com.jenlooper/personal-site",
+  "version": "1.0.0",
+  "title": "Jen Looper",
+  "description": "Static personal site (jenlooper.com). This card is for HTTP discovery (SEP-1649 / .well-known). A streamable-HTTP transport URL is reserved at /mcp; no live MCP process is running on the origin—connect for discovery metadata only, or use public pages and /.well-known documents.",
+  "websiteUrl": "https://jenlooper.com",
+  "serverInfo": {
+    "name": "com.jenlooper/personal-site",
+    "version": "1.0.0"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://jenlooper.com/mcp",
+      "supportedProtocolVersions": ["2025-03-12", "2025-06-15"]
+    }
+  ],
+  "capabilities": {
+    "tools": { "listChanged": false },
+    "resources": { "subscribe": false, "listChanged": false },
+    "prompts": { "listChanged": false }
+  }
+}

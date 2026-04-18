@@ -5,14 +5,15 @@
   "author": "Jen Looper",
   "homepage": "https://jenlooper.com",
   "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro build && npx pagefind --site dist",
+    "dev": "node scripts/build-agent-skills-index.mjs && astro dev",
+    "start": "node scripts/build-agent-skills-index.mjs && astro dev",
+    "build": "node scripts/build-agent-skills-index.mjs && astro build && node scripts/copy-sitemap.cjs && npx pagefind --site dist",
     "preview": "astro preview"
   },
   "devDependencies": {
     "@astrojs/mdx": "^4.2.3",
     "@astrojs/partytown": "^2.1.4",
+    "@astrojs/sitemap": "^3.7.2",
     "@astrojs/tailwind": "^6.0.2",
     "@iconify-json/ion": "^1.1.15",
     "@iconify-json/mdi": "^1.1.64",
@@ -24,7 +25,6 @@
     "astro": "^5.18.0",
     "astro-compress": "^2.3.5",
     "astro-icon": "^1.1.5",
-    "baseline-browser-mapping": "^2.9.11",
     "eslint": "^8.33.0",
     "eslint-plugin-astro": "^0.23.0",
     "eslint-plugin-jsx-a11y": "^6.7.1",

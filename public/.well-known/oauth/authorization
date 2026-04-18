@@ -1,0 +1,4 @@
+{
+  "error": "not_implemented",
+  "error_description": "jenlooper.com does not host an interactive OAuth 2.0 or OpenID Connect authorization server. This is a public read-only static site. OpenID Connect discovery is published for programmatic discovery; no access tokens are required to read public pages."
+}

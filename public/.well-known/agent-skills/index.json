@@ -1,0 +1,124 @@
+{
+  "$schema": "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
+  "skills": [
+    {
+      "name": "adapt",
+      "type": "skill-md",
+      "description": "Adapt designs to work across different screen sizes, devices, contexts, or platforms. Implements breakpoints, fluid layouts, and touch targets. Use when the user mentions responsive design, mobile layouts, breakpoints, viewport adaptation, or cross-device compatibility.",
+      "url": "https://jenlooper.com/.well-known/agent-skills/artifacts/adapt/SKILL.md",
+      "digest": "sha256:4d8218605f1aa3e5eaecc6ffcd1903a7197c96c59292a4f43f140de117e0237d"
+    },
+    {
+      "name": "animate",
+      "type": "skill-md",
+      "description": "Review a feature and enhance it with purposeful animations, micro-interactions, and motion effects that improve usability and delight. Use when the user mentions adding animation, transitions, micro-interactions, motion design, hover effects, or making the UI feel more alive.",
+      "url": "https://jenlooper.com/.well-known/agent-skills/artifacts/animate/SKILL.md",
+      "digest": "sha256:8c3fa9a748670889c728a558c1f203278a29199a175174674b8d4acc9d51939b"
+    },
+    {
+      "name": "audit",
+      "type": "skill-md",
+      "description": "Run technical quality checks across accessibility, performance, theming, responsive design, and anti-patterns. Generates a scored report with P0-P3 severity ratings and actionable plan. Use when the user wants an accessibility check, performance audit, or technical quality review.",
+      "url": "https://jenlooper.com/.well-known/agent-skills/artifacts/audit/SKILL.md",
+      "digest": "sha256:877a126d91e1f72137ea94309282beca2fc756167aa38d27fd8e8eac70dc79d6"
+    },
+    {
+      "name": "bolder",
+      "type": "skill-md",
+      "description": "Amplify safe or boring designs to make them more visually interesting and stimulating. Increases impact while maintaining usability. Use when the user says the design looks bland, generic, too safe, lacks personality, or wants more visual impact and character.",
+      "url": "https://jenlooper.com/.well-known/agent-skills/artifacts/bolder/SKILL.md",
+      "digest": "sha256:2d4df2c1a6ffd3b70099e2a240baf85dbab3146a7cb4f2a7ea66ed95aafb0037"
+    },
+    {
+      "name": "clarify",
+      "type": "skill-md",
+      "description": "Improve unclear UX copy, error messages, microcopy, labels, and instructions to make interfaces easier to understand. Use when the user mentions confusing text, unclear labels, bad error messages, hard-to-follow instructions, or wanting better UX writing.",
+      "url": "https://jenlooper.com/.well-known/agent-skills/artifacts/clarify/SKILL.md",
+      "digest": "sha256:fadbe45be1fdd0920be57def2ea2af2dc4518de3044f94ffd14ff3fca169bec5"
+    },
+    {
+      "name": "colorize",
+      "type": "skill-md",
+      "description": "Add strategic color to features that are too monochromatic or lack visual interest, making interfaces more engaging and expressive. Use when the user mentions the design looking gray, dull, lacking warmth, needing more color, or wanting a more vibrant or expressive palette.",
+      "url": "https://jenlooper.com/.well-known/agent-skills/artifacts/colorize/SKILL.md",
+      "digest": "sha256:60b8240ad2e5e664ef6709f0a5f8f1f36ace59754e6cbc62dabc32159b4ede20"
+    },
+    {
+      "name": "critique",
+      "type": "skill-md",
+      "description": "Evaluate design from a UX perspective, assessing visual hierarchy, information architecture, emotional resonance, cognitive load, and overall quality with quantitative scoring, persona-based testing, automated anti-pattern detection, and actionable feedback. Use when the user asks to review, critique, evaluate, or give feedback on a design or component.",
+      "url": "https://jenlooper.com/.well-known/agent-skills/artifacts/critique/SKILL.md",
+      "digest": "sha256:fd4629ea70b763def79aa87bf113b0c810faafe7949ca49975b7fa1f1ed52a04"
+    },
+    {
+      "name": "delight",
+      "type": "skill-md",
+      "description": "Add moments of joy, personality, and unexpected touches that make interfaces memorable and enjoyable to use. Elevates functional to delightful. Use when the user asks to add polish, personality, animations, micro-interactions, delight, or make an interface feel fun or memorable.",
+      "url": "https://jenlooper.com/.well-known/agent-skills/artifacts/delight/SKILL.md",
+      "digest": "sha256:dc1842f17ddffcff0afb7789d3e0e2b1c4f8cccb2528fe5117f7517255044f76"
+    },
+    {
+      "name": "distill",
+      "type": "skill-md",
+      "description": "Strip designs to their essence by removing unnecessary complexity. Great design is simple, powerful, and clean. Use when the user asks to simplify, declutter, reduce noise, remove elements, or make a UI cleaner and more focused.",
+      "url": "https://jenlooper.com/.well-known/agent-skills/artifacts/distill/SKILL.md",
+      "digest": "sha256:2aa5d9b86377c552d6bcf352bed70fb8ed0a4c15e0eef83296ceaf143a28a326"
+    },
+    {
+      "name": "impeccable",
+      "type": "skill-md",
+      "description": "Create distinctive, production-grade frontend interfaces with high design quality. Generates creative, polished code that avoids generic AI aesthetics. Use when the user asks to build web components, pages, artifacts, posters, or applications, or when any design skill requires project context. Call with 'craft' for shape-then-build, 'teach' for design context setup, or 'extract' to pull reusable components and tokens into the design system.",
+      "url": "https://jenlooper.com/.well-known/agent-skills/artifacts/impeccable/SKILL.md",
+      "digest": "sha256:53780a713d4400931342c751c984cac384ae90956556a0e514a5eb452f8b6a33"
+    },
+    {
+      "name": "layout",
+      "type": "skill-md",
+      "description": "Improve layout, spacing, and visual rhythm. Fixes monotonous grids, inconsistent spacing, and weak visual hierarchy. Use when the user mentions layout feeling off, spacing issues, visual hierarchy, crowded UI, alignment problems, or wanting better composition.",
+      "url": "https://jenlooper.com/.well-known/agent-skills/artifacts/layout/SKILL.md",
+      "digest": "sha256:2bc3f90b39c819157756220df92c45e0ead9690a0d49f4087286320aebd46a17"
+    },
+    {
+      "name": "optimize",
+      "type": "skill-md",
+      "description": "Diagnoses and fixes UI performance across loading speed, rendering, animations, images, and bundle size. Use when the user mentions slow, laggy, janky, performance, bundle size, load time, or wants a faster, smoother experience.",
+      "url": "https://jenlooper.com/.well-known/agent-skills/artifacts/optimize/SKILL.md",
+      "digest": "sha256:02183edcc94de3f0208fd993fc4ac1e328c9f5a65f32a7439c964ea841acd1e0"
+    },
+    {
+      "name": "overdrive",
+      "type": "skill-md",
+      "description": "Pushes interfaces past conventional limits with technically ambitious implementations — shaders, spring physics, scroll-driven reveals, 60fps animations. Use when the user wants to wow, impress, go all-out, or make something that feels extraordinary.",
+      "url": "https://jenlooper.com/.well-known/agent-skills/artifacts/overdrive/SKILL.md",
+      "digest": "sha256:12d5103036e5e90fe5ec0d55cc0f16d88e1cc9e3ff77cb704d686e4ee9c1c48b"
+    },
+    {
+      "name": "polish",
+      "type": "skill-md",
+      "description": "Performs a final quality pass fixing alignment, spacing, consistency, and micro-detail issues before shipping. Use when the user mentions polish, finishing touches, pre-launch review, something looks off, or wants to go from good to great.",
+      "url": "https://jenlooper.com/.well-known/agent-skills/artifacts/polish/SKILL.md",
+      "digest": "sha256:8d9749d77b82d040ce035b4949ef64c17b86fb56e1970b531c22c087635c40db"
+    },
+    {
+      "name": "quieter",
+      "type": "skill-md",
+      "description": "Tones down visually aggressive or overstimulating designs, reducing intensity while preserving quality. Use when the user mentions too bold, too loud, overwhelming, aggressive, garish, or wants a calmer, more refined aesthetic.",
+      "url": "https://jenlooper.com/.well-known/agent-skills/artifacts/quieter/SKILL.md",
+      "digest": "sha256:60c2e797da69ab1240b95d5e1431b24f1d0d7267e5ad4bd78456abd338fb7907"
+    },
+    {
+      "name": "shape",
+      "type": "skill-md",
+      "description": "Plan the UX and UI for a feature before writing code. Runs a structured discovery interview, then produces a design brief that guides implementation. Use during the planning phase to establish design direction, constraints, and strategy before any code is written.",
+      "url": "https://jenlooper.com/.well-known/agent-skills/artifacts/shape/SKILL.md",
+      "digest": "sha256:20ac5e5abf2f4eee3fadaec9cf9b6b555cba9a90b0707f98bfe770dce2ace542"
+    },
+    {
+      "name": "typeset",
+      "type": "skill-md",
+      "description": "Improves typography by fixing font choices, hierarchy, sizing, weight, and readability so text feels intentional. Use when the user mentions fonts, type, readability, text hierarchy, sizing looks off, or wants more polished, intentional typography.",
+      "url": "https://jenlooper.com/.well-known/agent-skills/artifacts/typeset/SKILL.md",
+      "digest": "sha256:5668819ccd89c27b2d6634a674a630beb41357c17b3c4a7e209084efe50170b7"
+    }
+  ]
+}

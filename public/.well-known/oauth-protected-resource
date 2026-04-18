@@ -1,0 +1,8 @@
+{
+  "resource": "https://jenlooper.com",
+  "authorization_servers": ["https://jenlooper.com"],
+  "scopes_supported": ["openid", "profile", "email"],
+  "bearer_methods_supported": ["header"],
+  "resource_name": "jenlooper.com",
+  "resource_documentation": "https://jenlooper.com/.well-known/openapi.json"
+}

@@ -1,17 +1,25 @@
 ---
-import BeanpotBanner from './BeanpotBanner.astro'
-import ThemeToggle from './ThemeToggle.astro'
-import { Code, BookHeart, FileText, Mic, GraduationCap, CircleUserRound, Search } from 'lucide-astro'
+import Banner from "./Banner.astro";
+import ThemeToggle from "./ThemeToggle.astro";
+import {
+  Code,
+  BookHeart,
+  FileText,
+  Mic,
+  GraduationCap,
+  CircleUserRound,
+  Search,
+} from "lucide-astro";
 
 const menuItems = [
-  { text: 'About', href: '/about/', icon: CircleUserRound },
-  { text: 'Projects', href: '/projects/', icon: Code },
-  { text: 'Books', href: '/books/', icon: BookHeart },
-  { text: 'Articles', href: '/blog/', icon: FileText },
-  { text: 'Speaking', href: '/speaking/', icon: Mic },
-  { text: 'Curricula', href: '/curricula/', icon: GraduationCap },
-  { text: 'Search', href: '/search/', icon: Search },
-]
+  { text: "About", href: "/about/", icon: CircleUserRound },
+  { text: "Projects", href: "/projects/", icon: Code },
+  { text: "Books", href: "/books/", icon: BookHeart },
+  { text: "Articles", href: "/blog/", icon: FileText },
+  { text: "Speaking", href: "/speaking/", icon: Mic },
+  { text: "Curricula", href: "/curricula/", icon: GraduationCap },
+  { text: "Search", href: "/search/", icon: Search },
+];
 
 // Get current path for active state
 const currentPath = Astro.url.pathname;
@@ -26,33 +34,48 @@ const isActive = (path: string) => {
 ---
 
 <header class="site-header">
-  <BeanpotBanner />
+  <Banner />
   <div
     class="sticky top-0 z-50 w-full border-b border-border/50 bg-background/85 py-4 backdrop-blur-md supports-[backdrop-filter]:bg-background/75 md:py-5"
   >
-    <div class="mx-auto flex max-w-6xl items-center justify-between gap-3 px-6 md:px-12">
-      <a href="/" class="no-underline flex items-center gap-2 rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring" aria-label="Jen Looper — home">
+    <div
+      class="mx-auto flex max-w-6xl items-center justify-between gap-3 px-6 md:px-12"
+    >
+      <a
+        href="/"
+        class="no-underline flex items-center gap-2 rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+        aria-label="Jen Looper — home"
+      >
         <span class="font-serif text-2xl font-semibold text-coral">jl</span>
       </a>
-      
-      <nav class="hidden max-w-2xl flex-1 items-center justify-center gap-6 md:flex lg:gap-8" aria-label="Main">
-        {menuItems.map((item) => {
-          const IconComponent = item.icon;
-          const active = isActive(item.href);
-          return (
-            <a
-              href={item.href}
-              class:list={[
-                'nav-top-link relative inline-flex items-center gap-2 pb-0.5 font-medium transition-colors duration-300',
-                active ? 'text-primary' : 'text-foreground/80 hover:text-primary',
-              ]}
-              {...(active ? { 'aria-current': 'page' as const } : {})}
-            >
-              {IconComponent && <IconComponent class="w-4 h-4 shrink-0" aria-hidden="true" />}
-              {item.text}
-            </a>
-          );
-        })}
+
+      <nav
+        class="hidden max-w-2xl flex-1 items-center justify-center gap-6 md:flex lg:gap-8"
+        aria-label="Main"
+      >
+        {
+          menuItems.map((item) => {
+            const IconComponent = item.icon;
+            const active = isActive(item.href);
+            return (
+              <a
+                href={item.href}
+                class:list={[
+                  "nav-top-link relative inline-flex items-center gap-2 pb-0.5 font-medium transition-colors duration-300",
+                  active
+                    ? "text-primary"
+                    : "text-foreground/80 hover:text-primary",
+                ]}
+                {...(active ? { "aria-current": "page" as const } : {})}
+              >
+                {IconComponent && (
+                  <IconComponent class="w-4 h-4 shrink-0" aria-hidden="true" />
+                )}
+                {item.text}
+              </a>
+            );
+          })
+        }
       </nav>
 
       <div class="flex items-center gap-2 shrink-0">
@@ -62,8 +85,17 @@ const isActive = (path: string) => {
           class="no-underline hidden items-center gap-2 rounded-lg bg-primary px-5 py-2.5 font-medium text-primary-foreground shadow-warm transition-all duration-300 hover:bg-coral/90 hover:shadow-lifted focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring md:inline-flex"
         >
           Let's Connect
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          <svg
+            class="w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
           </svg>
         </a>
         <button
@@ -74,8 +106,17 @@ const isActive = (path: string) => {
           id="mobile-menu-button"
         >
           <span class="sr-only">Open main menu</span>
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"></path>
           </svg>
         </button>
       </div>
@@ -87,32 +128,45 @@ const isActive = (path: string) => {
       id="mobile-menu"
     >
       <div class="mx-auto max-w-6xl space-y-1 px-6 py-4 md:px-12">
-        {menuItems.map((item) => {
-          const IconComponent = item.icon;
-          const active = isActive(item.href);
-          return (
-            <a
-              href={item.href}
-              class:list={[
-                'nav-top-link relative flex items-center gap-2 rounded-md px-4 py-3 text-base font-medium transition-colors duration-200 hover:bg-muted/50',
-                active
-                  ? 'text-primary bg-muted/30'
-                  : 'text-foreground/80 hover:text-primary',
-              ]}
-              {...(active ? { 'aria-current': 'page' as const } : {})}
-            >
-              {IconComponent && <IconComponent class="w-4 h-4 shrink-0" aria-hidden="true" />}
-              {item.text}
-            </a>
-          );
-        })}
+        {
+          menuItems.map((item) => {
+            const IconComponent = item.icon;
+            const active = isActive(item.href);
+            return (
+              <a
+                href={item.href}
+                class:list={[
+                  "nav-top-link relative flex items-center gap-2 rounded-md px-4 py-3 text-base font-medium transition-colors duration-200 hover:bg-muted/50",
+                  active
+                    ? "text-primary bg-muted/30"
+                    : "text-foreground/80 hover:text-primary",
+                ]}
+                {...(active ? { "aria-current": "page" as const } : {})}
+              >
+                {IconComponent && (
+                  <IconComponent class="w-4 h-4 shrink-0" aria-hidden="true" />
+                )}
+                {item.text}
+              </a>
+            );
+          })
+        }
         <a
           href="/contact/"
           class="no-underline flex items-center gap-2 rounded-md bg-primary px-4 py-3 text-base font-medium text-primary-foreground transition-colors duration-200 hover:bg-coral/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
         >
           Let's Connect
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          <svg
+            class="w-4 h-4"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
           </svg>
         </a>
       </div>

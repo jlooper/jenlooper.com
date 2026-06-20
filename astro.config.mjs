@@ -2,7 +2,6 @@ import { defineConfig } from "astro/config";
 import pagefind from "astro-pagefind";
 import sitemap from "@astrojs/sitemap";
 import mdx from '@astrojs/mdx';
-import tailwind from '@astrojs/tailwind';
 import compress from 'astro-compress';
 import icon from "astro-icon";
 import netlify from "@astrojs/netlify";
@@ -13,9 +12,7 @@ const site = "https://jenlooper.com";
 export default defineConfig({
   site,
   compressHTML: true,
-  integrations: [mdx(), icon(), tailwind({
-    applyBaseStyles: false
-  }), sitemap({
+  integrations: [mdx(), icon(), sitemap({
     // Canonical `loc` values use `site` above; list refreshes on each `astro build`.
     filter: (page) => {
       const path = new URL(page).pathname.replace(/\/$/, "") || "/";

@@ -5,6 +5,8 @@ import mdx from '@astrojs/mdx';
 import compress from 'astro-compress';
 import icon from "astro-icon";
 import netlify from "@astrojs/netlify";
+import sentry from "@sentry/astro";
+
 
 const site = "https://jenlooper.com";
 
@@ -12,7 +14,21 @@ const site = "https://jenlooper.com";
 export default defineConfig({
   site,
   compressHTML: true,
+<<<<<<< Updated upstream
   integrations: [mdx(), icon(), sitemap({
+=======
+  integrations: [
+     sentry({
+      project: "javascript-astro",
+      org: "her-ai-studio",
+      authToken: process.env.SENTRY_AUTH_TOKEN,
+    }),
+    mdx(), 
+    icon(), 
+    tailwind({
+    applyBaseStyles: false
+  }), sitemap({
+>>>>>>> Stashed changes
     // Canonical `loc` values use `site` above; list refreshes on each `astro build`.
     filter: (page) => {
       const path = new URL(page).pathname.replace(/\/$/, "") || "/";
@@ -24,7 +40,7 @@ export default defineConfig({
       image: false,
       video: false,
     },
-  }), compress(), pagefind()],
+  }), compress(), pagefind(), sentry()],
   adapter: netlify(),
   image: {
     service: {
@@ -51,4 +67,3 @@ export default defineConfig({
     formats: ['webp', 'avif', 'png', 'jpg', 'jpeg', 'gif'],
   },
 });
-

@@ -14,21 +14,7 @@ const site = "https://jenlooper.com";
 export default defineConfig({
   site,
   compressHTML: true,
-<<<<<<< Updated upstream
   integrations: [mdx(), icon(), sitemap({
-=======
-  integrations: [
-     sentry({
-      project: "javascript-astro",
-      org: "her-ai-studio",
-      authToken: process.env.SENTRY_AUTH_TOKEN,
-    }),
-    mdx(), 
-    icon(), 
-    tailwind({
-    applyBaseStyles: false
-  }), sitemap({
->>>>>>> Stashed changes
     // Canonical `loc` values use `site` above; list refreshes on each `astro build`.
     filter: (page) => {
       const path = new URL(page).pathname.replace(/\/$/, "") || "/";
